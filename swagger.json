@@ -1,0 +1,2872 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "",
+    "title": "Halo SDK",
+    "description": "Software Development Kit (SDK) to access the SOLiD Halo RESTful API.",
+    "license": {
+      "name": "MIT",
+      "url": "http://github.com/gruntjs/grunt/blob/master/LICENSE-MIT"
+    }
+  },
+  "securityDefinitions": {
+    "auth": {
+      "type": "basic",
+      "name": "auth"
+    }
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/alarms": {
+      "get": {
+        "description": "Get alarms",
+        "tags": [
+          "Alarm"
+        ],
+        "operationId": "Represent Alarms",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "default": "1",
+            "type": "integer",
+            "format": "int64",
+            "description": "Page number"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "default": "10",
+            "type": "integer",
+            "format": "int64",
+            "description": "Results per page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Alarm"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query parameter is supplied"
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "post": {
+        "description": "Create alarm",
+        "tags": [
+          "Alarm"
+        ],
+        "operationId": "Add Alarm",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "alarm",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "description": "The alarm to create",
+            "schema": {
+              "$ref": "#/definitions/Alarm"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Alarm"
+            }
+          },
+          "400": {
+            "description": "Invalid or missing parameter is detected."
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/alarms/{id}": {
+      "get": {
+        "description": "Get alarm with specified id",
+        "tags": [
+          "Alarm"
+        ],
+        "operationId": "Represent Alarm",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Alarm"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "Update alarm with id",
+        "tags": [
+          "Alarm"
+        ],
+        "operationId": "Store Alarm",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string",
+            "description": "The new alarm attribute values. This does not need to be a complete representation. Only attributes to be modified need to be specified. Omitted attributes will retain their current values."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Alarm"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete alarm with id",
+        "tags": [
+          "Alarm"
+        ],
+        "operationId": "Remove Alarm",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/@/functions/{function}": {
+      "put": {
+        "description": "Execute admin function",
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "Execute Function",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "function",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "enum": [
+              "update",
+              "initSectors",
+              "initAlarms",
+              "setClock",
+              "reboot"
+            ],
+            "type": "string",
+            "description": "The administrative function to be executed"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {}
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/@/settings": {
+      "get": {
+        "description": "Get system settings",
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "Represent Settings",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Setting"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "Update settings",
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "Store Settings",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "setting",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "description": "The new setting attribute values. This does not need to be a complete representation. Only attributes to be modified need to be specified. Omitted attributes will retain their current values.",
+            "schema": {
+              "$ref": "#/definitions/Setting"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Setting"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/groups/{id}/members": {
+      "get": {
+        "description": "Get group users",
+        "tags": [
+          "User"
+        ],
+        "operationId": "Represent Group Users",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "default": "1",
+            "type": "integer",
+            "format": "int64",
+            "description": "Page number"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": true,
+            "x-is-map": false,
+            "default": "10",
+            "type": "integer",
+            "format": "int64",
+            "description": "Results per page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/group/{groupId}/members/{userId}": {
+      "put": {
+        "description": "Add a member to a group",
+        "tags": [
+          "User"
+        ],
+        "operationId": "Store User in Group",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Remove a member from a group",
+        "tags": [
+          "User"
+        ],
+        "operationId": "Remove User from Group",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/groups/{id}/policies": {
+      "get": {
+        "description": "Get policies in group",
+        "tags": [
+          "Policy"
+        ],
+        "operationId": "Represent Group Policies",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "default": "1",
+            "type": "integer",
+            "format": "int64",
+            "description": "Page number"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "default": "10",
+            "type": "integer",
+            "format": "int64",
+            "description": "Results per page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Policy"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "Create and add a policy to a group.",
+        "tags": [
+          "Policy"
+        ],
+        "operationId": "Add Policy to Group",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "policy",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "description": "The new policy.",
+            "schema": {
+              "$ref": "#/definitions/Policy"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Policy"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/groups/{groupId}/policies/{policyId}": {
+      "get": {
+        "description": "Get group policy with id",
+        "tags": [
+          "Policy"
+        ],
+        "operationId": "Represent Group Policy",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "policyId",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Policy"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "Update group policy with id",
+        "tags": [
+          "Policy"
+        ],
+        "operationId": "Store Policy in Group",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "policyId",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "policy",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "description": "The new policy attribute values. This does not need to be a complete representation. Only attributes to be modified need to be specified. Omitted attributes will retain their current values.",
+            "schema": {
+              "$ref": "#/definitions/Policy"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Policy"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete policy from group with id",
+        "tags": [
+          "Policy"
+        ],
+        "operationId": "Remove Policy from Group",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "policyId",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/groups": {
+      "get": {
+        "description": "Get groups",
+        "tags": [
+          "Group"
+        ],
+        "operationId": "Represent Groups",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "default": "1",
+            "type": "integer",
+            "format": "int64",
+            "description": "Page number"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "default": "10",
+            "type": "integer",
+            "format": "int64",
+            "description": "Results per page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Group"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "post": {
+        "description": "Create group",
+        "tags": [
+          "Group"
+        ],
+        "operationId": "Add Group",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "group",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/groups/{id}": {
+      "get": {
+        "description": "Get group with id",
+        "tags": [
+          "Group"
+        ],
+        "operationId": "Represent Group",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "Update group with id",
+        "tags": [
+          "Group"
+        ],
+        "operationId": "Store Group",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "group",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "description": "The new group attribute values. This does not need to be a complete representation. Only attributes to be modified need to be specified. Omitted attributes will retain their current values.",
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete group with id",
+        "tags": [
+          "Group"
+        ],
+        "operationId": "Remove Group",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/notifications": {
+      "get": {
+        "description": "Get notifications",
+        "tags": [
+          "Notification"
+        ],
+        "operationId": "Represent Notifications",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "default": "1",
+            "type": "integer",
+            "format": "int64",
+            "description": "Page number"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "default": "10",
+            "type": "integer",
+            "format": "int64",
+            "description": "Results per page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Notification"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "post": {
+        "description": "Create notification",
+        "tags": [
+          "Notification"
+        ],
+        "operationId": "Add Notification",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "notification",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "schema": {
+              "$ref": "#/definitions/Notification"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Notification"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/notifications/{id}": {
+      "get": {
+        "description": "Get notification with id",
+        "tags": [
+          "Notification"
+        ],
+        "operationId": "Represent Notification",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Notification"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "Update notification with id",
+        "tags": [
+          "Notification"
+        ],
+        "operationId": "Store Notification",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "notification",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "description": "The new notification attribute values. This does not need to be a complete representation. Only attributes to be modified need to be specified. Omitted attributes will retain their current values.",
+            "schema": {
+              "$ref": "#/definitions/Notification"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Notification"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete notification with id",
+        "tags": [
+          "Notification"
+        ],
+        "operationId": "Remove Notification",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/sectors/{id}/events": {
+      "get": {
+        "description": "Get sector events",
+        "tags": [
+          "Event"
+        ],
+        "operationId": "Represent Sector Events",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "default": "1",
+            "type": "integer",
+            "format": "int64",
+            "description": "Page number"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "default": "10",
+            "type": "integer",
+            "format": "int64",
+            "description": "Results per page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Event"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/sectors/{id}/nodes/{index}/firmware": {
+      "put": {
+        "description": "Update node firmware",
+        "tags": [
+          "Firmware"
+        ],
+        "operationId": "Store Node Firmware",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "index",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/sectors/{id}/nodes/{index}/properties/{name}": {
+      "get": {
+        "description": "Get property with name",
+        "tags": [
+          "Property"
+        ],
+        "operationId": "Represent Sector Node Property",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "index",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Property"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "Update property with name",
+        "tags": [
+          "Property"
+        ],
+        "operationId": "Store Sector Node Property",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "index",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "property",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "description": "The new property attribute values. This does not need to be a complete representation. Only attributes to be modified need to be specified. Omitted attributes will retain their current values.",
+            "schema": {
+              "$ref": "#/definitions/Property"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/sectors/{id}/nodes": {
+      "get": {
+        "description": "Get nodes",
+        "tags": [
+          "Node"
+        ],
+        "operationId": "Represent Sector Nodes",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "default": "1",
+            "type": "integer",
+            "format": "int64",
+            "description": "Page number"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "default": "10",
+            "type": "integer",
+            "format": "int64",
+            "description": "Results per page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Node"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "post": {
+        "description": "Create and add a node to a sector",
+        "tags": [
+          "Node"
+        ],
+        "operationId": "Add Sector Node",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "node",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "schema": {
+              "$ref": "#/definitions/Node"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Node"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/sectors/{id}/nodes/{index}": {
+      "get": {
+        "description": "Get sector node with index",
+        "tags": [
+          "Node"
+        ],
+        "operationId": "Represent Sector Node",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "index",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Node"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "Update node with index",
+        "tags": [
+          "Node"
+        ],
+        "operationId": "Store Sector Node",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "index",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "node",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "description": "The new node attribute values. This does not need to be a complete representation. Only attributes to be modified need to be specified. Omitted attributes will retain their current values.",
+            "schema": {
+              "$ref": "#/definitions/Node"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Node"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete node from sector with index",
+        "tags": [
+          "Node"
+        ],
+        "operationId": "Remove Sector Node",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "index",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/sectors/{id}/snmps": {
+      "put": {
+        "description": "Upload a zip file containing the MIB file and the MIB mapper",
+        "tags": [
+          "Snmp"
+        ],
+        "operationId": "Add Sector SNMP",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/sectors": {
+      "get": {
+        "description": "Get sectors",
+        "tags": [
+          "Sector"
+        ],
+        "operationId": "Represent Sectors",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "default": "1",
+            "type": "integer",
+            "format": "int64",
+            "description": "Page number"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "default": "10",
+            "type": "integer",
+            "format": "int64",
+            "description": "Results per page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Sector"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "post": {
+        "description": "Create a sector",
+        "tags": [
+          "Sector"
+        ],
+        "operationId": "Add Sector",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sector",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "schema": {
+              "$ref": "#/definitions/Sector"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Sector"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/sectors/{id}": {
+      "get": {
+        "description": "Get sector with id",
+        "tags": [
+          "Sector"
+        ],
+        "operationId": "Represent Sector",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Sector"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "Update sector with id",
+        "tags": [
+          "Sector"
+        ],
+        "operationId": "Store Sector",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "sector",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "description": "The new sector attribute values. This does not need to be a complete representation. Only attributes to be modified need to be specified. Omitted attributes will retain their current values.",
+            "schema": {
+              "$ref": "#/definitions/Sector"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Sector"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete sector with id",
+        "tags": [
+          "Sector"
+        ],
+        "operationId": "Remove Sector",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/users/{id}/events": {
+      "get": {
+        "description": "Get user events",
+        "tags": [
+          "Event"
+        ],
+        "operationId": "Represent User Events",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "default": "1",
+            "type": "integer",
+            "format": "int64",
+            "description": "Page number"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "default": "10",
+            "type": "integer",
+            "format": "int64",
+            "description": "Results per page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Event"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/users": {
+      "get": {
+        "description": "Get users",
+        "tags": [
+          "User"
+        ],
+        "operationId": "Represent Users",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "default": "1",
+            "type": "integer",
+            "format": "int64",
+            "description": "Page number"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "default": "10",
+            "type": "integer",
+            "format": "int64",
+            "description": "Results per page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "post": {
+        "description": "Create a user",
+        "tags": [
+          "User"
+        ],
+        "operationId": "Add User",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "description": "Get user with id",
+        "tags": [
+          "User"
+        ],
+        "operationId": "Represent User",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "Update user with id",
+        "tags": [
+          "User"
+        ],
+        "operationId": "Store User",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "user",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "description": "The new user attribute values. This does not need to be a complete representation. Only attributes to be modified need to be specified. Omitted attributes will retain their current values.",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete user with id",
+        "tags": [
+          "User"
+        ],
+        "operationId": "Remove User",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/incidents": {
+      "get": {
+        "description": "Get incidents",
+        "tags": [
+          "Incident"
+        ],
+        "operationId": "Represent Incidents",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "default": "1",
+            "type": "integer",
+            "format": "int64",
+            "description": "Page number"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "default": "10",
+            "type": "integer",
+            "format": "int64",
+            "description": "Results per page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Incident"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/sectors/{id}/incidents": {
+      "get": {
+        "description": "Get sector incidents",
+        "tags": [
+          "Incident"
+        ],
+        "operationId": "Represent Sector Incidents",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "default": "1",
+            "type": "integer",
+            "format": "int64",
+            "description": "Page number"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "default": "10",
+            "type": "integer",
+            "format": "int64",
+            "description": "Results per page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Incident"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/sectors/{id}/nodes/{index}/incidents": {
+      "get": {
+        "description": "Get sector node incidents",
+        "tags": [
+          "Incident"
+        ],
+        "operationId": "Represent Sector Node Incidents",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "index",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "default": "1",
+            "type": "integer",
+            "format": "int64",
+            "description": "Page number"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "default": "10",
+            "type": "integer",
+            "format": "int64",
+            "description": "Results per page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Incident"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/sectors/{id}/nodes/{index}/properties": {
+      "get": {
+        "description": "Get sector node properties",
+        "tags": [
+          "Property"
+        ],
+        "operationId": "Represent Sector Node Properties",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "index",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "default": "1",
+            "type": "integer",
+            "format": "int64",
+            "description": "Page number"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "default": "10",
+            "type": "integer",
+            "format": "int64",
+            "description": "Results per page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Property"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "EventMethod": {
+      "title": "Event Method",
+      "description": "HTTP Methods ",
+      "type": "string",
+      "enum": [
+        "POST",
+        "PUT",
+        "GET",
+        "DELETE"
+      ]
+    },
+    "AlarmStatistic": {
+      "title": "Alarm Statistic",
+      "description": "Mathematical functions applied to an Alarm to determine how the values are evaluated.",
+      "type": "string",
+      "enum": [
+        "AVG",
+        "MAX",
+        "MIN",
+        "SUM"
+      ]
+    },
+    "Alarm": {
+      "title": "Alarm",
+      "description": "Representation of an ALARM definition.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The unique system assigned identification of the alarm .",
+          "type": "string"
+        },
+        "name": {
+          "description": "A convenient identifying name. This is a human assignable value for convenience and is not unique.",
+          "type": "string"
+        },
+        "cause": {
+          "description": "A description of the conditions that would cause this alarm definition to become active.",
+          "type": "string"
+        },
+        "impact": {
+          "description": "A description of the impacts that would result in this alarm definition becoming active.",
+          "type": "string"
+        },
+        "remedy": {
+          "description": "A description of the remedy that would resolve this alarm definition if it becomes active.",
+          "type": "string"
+        },
+        "active": {
+          "description": "Specifies whether the alarm definition should be actively considered by the system. If this value is `false` the definition is stored but never evaluated.",
+          "type": "boolean"
+        },
+        "period": {
+          "description": "A time period (defined in snapshots) that constitutes a single experimental period for this alarm definition.",
+          "type": "integer",
+          "format": "int64"
+        },
+        "periods": {
+          "description": "The number of times the experimental time period should be repeated to define this alarm.",
+          "type": "integer",
+          "format": "int64"
+        },
+        "function": {
+          "description": "The javascript function that evaluates whether this alarm definition becomes active.",
+          "type": "string"
+        },
+        "tags": {
+          "description": "Identifying tags. Predominantly used for search functions.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "createdAt": {
+          "description": "A system created time stamp recording when this alarm definition was created.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "description": "A system created time stamp recording when this alarm definition was last modified.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "statistic": {
+          "description": "The mathematical function used to pass the values of a single period.",
+          "$ref": "#/definitions/AlarmStatistic"
+        }
+      }
+    },
+    "Event": {
+      "title": "Event",
+      "description": "Representation of an Event",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "method": {
+          "$ref": "#/definitions/EventMethod"
+        },
+        "resource": {
+          "type": "string"
+        },
+        "actor": {
+          "$ref": "#/definitions/User"
+        },
+        "payload": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "UserState": {
+      "title": "User State",
+      "description": "The account state of a user",
+      "type": "string",
+      "enum": [
+        "PENDING",
+        "SUSPENDED",
+        "ACTIVE"
+      ]
+    },
+    "User": {
+      "title": "User",
+      "description": "Representation of a User",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "bio": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        },
+        "secret": {
+          "type": "string"
+        },
+        "eventsUrl": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "updatedAt"
+      ]
+    },
+    "Group": {
+      "title": "Group",
+      "description": "Representation of a Group",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "policiesUrl": {
+          "type": "string"
+        },
+        "membersUrl": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "NodeType": {
+      "title": "Node Type",
+      "description": "Types of node",
+      "type": "string",
+      "enum": [
+        "BIU",
+        "DOU",
+        "HRDU",
+        "HMRU",
+        "HARU",
+        "LRDU",
+        "LMRU",
+        "LARU",
+        "MDBU",
+        "MROU",
+        "ODU",
+        "OEU",
+        "ROU"
+      ]
+    },
+    "NodeState": {
+      "title": "Node State",
+      "description": "Operational state of a node",
+      "type": "string",
+      "enum": [
+        "NORMAL",
+        "LINK_FAIL",
+        "FAIL",
+        "UNUSED",
+        "UNKNOWN"
+      ]
+    },
+    "Node": {
+      "title": "Node",
+      "description": "Representation of a Node",
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/NodeType"
+        },
+        "state": {
+          "$ref": "#/definitions/NodeState"
+        },
+        "propertiesUrl": {
+          "type": "string"
+        },
+        "incidentsUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "Incident": {
+      "title": "Incident",
+      "description": "Representation of an Incident",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "guiltyNode": {
+          "$ref": "#/definitions/Node"
+        },
+        "alarm": {
+          "$ref": "#/definitions/Alarm"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createdFor": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "NotificationMethod": {
+      "title": "Notification Method",
+      "description": "Notification delivery methods",
+      "type": "string",
+      "enum": [
+        "HTTP",
+        "EMAIL",
+        "ATOM",
+        "SNMP",
+        "NONE"
+      ]
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "Representation of a Notification",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "deliveryMethod": {
+          "$ref": "#/definitions/NotificationMethod"
+        },
+        "deliveryOptions": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Policy": {
+      "title": "Policy",
+      "description": "Representation of a Policy",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "permission": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "PropertyType": {
+      "title": "Property Type",
+      "description": "Property value types",
+      "type": "string",
+      "enum": [
+        "INTEGER",
+        "PRECISION",
+        "BOOLEAN",
+        "STRING"
+      ]
+    },
+    "Property": {
+      "title": "Property",
+      "description": "Representation of a Property",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/PropertyType"
+        },
+        "value": {
+          "type": "string"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "readOnly": {
+          "type": "boolean"
+        },
+        "propertyUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "SectorType": {
+      "title": "Sector Type",
+      "description": "Types of sector hardware",
+      "type": "string",
+      "enum": [
+        "SOLiD_R4",
+        "SOLiD_R5",
+        "SOLiD_R6"
+      ]
+    },
+    "SectorState": {
+      "title": "Sector State",
+      "description": "Operational state of a sector",
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "PASSIVE"
+      ]
+    },
+    "Sector": {
+      "title": "Sector",
+      "description": "Representation of a Sector",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/SectorType"
+        },
+        "masterIp": {
+          "type": "string"
+        },
+        "slaveIp": {
+          "type": "string"
+        },
+        "snmp": {
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/definitions/SectorType"
+        },
+        "nodeUrl": {
+          "type": "string"
+        },
+        "eventsUrl": {
+          "type": "string"
+        },
+        "incidentsUrl": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "snmp"
+      ]
+    },
+    "SNMPUserAccess": {
+      "title": "SNMP User Access",
+      "description": "Access types for SNMP User",
+      "type": "string",
+      "enum": [
+        "READ",
+        "READ_WRITE"
+      ]
+    },
+    "SNMPUserSecurity": {
+      "title": "SNMP User Security",
+      "description": "Security types for SNMP user",
+      "type": "string",
+      "enum": [
+        "NONE",
+        "NO_PRIVACY",
+        "PRIVACY"
+      ]
+    },
+    "SNMPUserAuthentication": {
+      "title": "SNMP User Authentication",
+      "description": "Authentication types for SNMP user",
+      "type": "string",
+      "enum": [
+        "MD5",
+        "SHA1"
+      ]
+    },
+    "SNMPUserPrivacy": {
+      "title": "SNMP User Privacy",
+      "description": "Privacy types for SNMP user",
+      "type": "string",
+      "enum": [
+        "DES",
+        "AES"
+      ]
+    },
+    "SNMPSecurityUser": {
+      "title": "SNMP Security User",
+      "description": "Representation of an SNMP security user ",
+      "type": "object",
+      "properties": {
+        "accessType": {
+          "$ref": "#/definitions/SNMPUserAccess"
+        },
+        "username": {
+          "type": "string"
+        },
+        "security": {
+          "$ref": "#/definitions/SNMPUserSecurity"
+        },
+        "authProtocol": {
+          "$ref": "#/definitions/SNMPUserAuthentication"
+        },
+        "privacyProtocol": {
+          "$ref": "#/definitions/SNMPUserPrivacy"
+        }
+      },
+      "required": [
+        "accessType",
+        "username",
+        "security",
+        "authProtocol",
+        "privacyProtocol"
+      ]
+    },
+    "SNMPTrapSession": {
+      "title": "SNMP Trap Session",
+      "description": "Representation of an SNMP trap session",
+      "type": "object",
+      "properties": {
+        "ip": {
+          "type": "string"
+        },
+        "securityUsername": {
+          "type": "string"
+        },
+        "managerName": {
+          "type": "string"
+        },
+        "security": {
+          "$ref": "#/definitions/SNMPUserSecurity"
+        },
+        "authProtocol": {
+          "$ref": "#/definitions/SNMPUserAuthentication"
+        },
+        "privacyProtocol": {
+          "$ref": "#/definitions/SNMPUserPrivacy"
+        }
+      },
+      "required": [
+        "ip",
+        "securityUsername",
+        "managerName",
+        "security",
+        "authProtocol",
+        "privacyProtocol"
+      ]
+    },
+    "SNMP": {
+      "title": "SNMP",
+      "description": "Representation of an SNMP",
+      "type": "object",
+      "properties": {
+        "active": {
+          "type": "boolean"
+        },
+        "securityUsers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SNMPSecurityUser"
+          }
+        },
+        "trapSessions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SNMPTrapSession"
+          }
+        },
+        "mib": {
+          "type": "string"
+        },
+        "mapper": {
+          "type": "string"
+        }
+      }
+    },
+    "Setting": {
+      "title": "Setting",
+      "description": "Representation of a system Setting",
+      "type": "object",
+      "properties": {
+        "outsideIp": {
+          "type": "string"
+        },
+        "outsideSubnetMask": {
+          "type": "string"
+        },
+        "outsideGateway": {
+          "type": "string"
+        },
+        "insideIp": {
+          "type": "string"
+        },
+        "insideSubnetMask": {
+          "type": "string"
+        },
+        "http": {
+          "type": "boolean"
+        },
+        "snapshotInterval": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "updateRepo": {
+          "type": "string"
+        },
+        "updateAvailable": {
+          "type": "boolean"
+        },
+        "versionCurrent": {
+          "type": "string"
+        },
+        "versionLatest": {
+          "type": "string"
+        },
+        "ntpServer": {
+          "type": "string"
+        },
+        "time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "projectName": {
+          "type": "string"
+        },
+        "smtpEmail": {
+          "type": "string"
+        },
+        "smtpUsername": {
+          "type": "string"
+        },
+        "smtpPassword": {
+          "type": "string"
+        },
+        "smtpAuth": {
+          "type": "boolean"
+        },
+        "smtpTls": {
+          "type": "boolean"
+        },
+        "smtpHost": {
+          "type": "string"
+        },
+        "smtpPort": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "snmp": {
+          "type": "boolean"
+        }
+      }
+    },
+    "AdminFunction": {
+      "title": "Admin Function",
+      "description": "Administrative functions",
+      "type": "string",
+      "enum": [
+        "update",
+        "initSectors",
+        "initAlarms",
+        "setClock",
+        "reboot"
+      ]
+    }
+  }
+}

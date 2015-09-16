@@ -1,0 +1,4021 @@
+{
+  "Name": "Halo SDK",
+  "BaseUri": "https://{REPLACE}/api",
+  "Description": "Software Development Kit (SDK) to access the SOLiD Halo RESTful API.",
+  "Version": "1.0",
+  "AdditionalHeaders": [],
+  "Authentication": {
+    "Type": "Basic",
+    "AuthType": "Basic",
+    "Parameters": []
+  },
+  "Endpoints": [
+    {
+      "Name": "Represent Alarms",
+      "Description": "Get alarms",
+      "HTTPMethod": "GET",
+      "Group": "Alarm",
+      "RequiresAuthentication": true,
+      "Route": "/alarms",
+      "Response": {
+        "Optional": false,
+        "Type": "Alarm",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": true,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "page",
+          "Description": "Page number",
+          "DefaultValue": "1"
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "perPage",
+          "Description": "Results per page",
+          "DefaultValue": "10"
+        }
+      ],
+      "Errors": [
+        {
+          "ErrorCode": 400,
+          "ErrorMessage": "Invalid query parameter is supplied"
+        }
+      ]
+    },
+    {
+      "Name": "Add Alarm",
+      "Description": "Create alarm",
+      "HTTPMethod": "POST",
+      "Group": "Alarm",
+      "RequiresAuthentication": true,
+      "Route": "/alarms",
+      "Response": {
+        "Optional": false,
+        "Type": "Alarm",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Body",
+          "Optional": false,
+          "Type": "Alarm",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "alarm",
+          "Description": "The alarm to create"
+        }
+      ],
+      "Errors": [
+        {
+          "ErrorCode": 400,
+          "ErrorMessage": "Invalid or missing parameter is detected."
+        }
+      ]
+    },
+    {
+      "Name": "Represent Alarm",
+      "Description": "Get alarm with specified id",
+      "HTTPMethod": "GET",
+      "Group": "Alarm",
+      "RequiresAuthentication": true,
+      "Route": "/alarms/{id}",
+      "Response": {
+        "Optional": false,
+        "Type": "Alarm",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Store Alarm",
+      "Description": "Update alarm with id",
+      "HTTPMethod": "PUT",
+      "Group": "Alarm",
+      "RequiresAuthentication": true,
+      "Route": "/alarms/{id}",
+      "Response": {
+        "Optional": false,
+        "Type": "Alarm",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id",
+          "Description": "The new alarm attribute values. This does not need to be a complete representation. Only attributes to be modified need to be specified. Omitted attributes will retain their current values."
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Remove Alarm",
+      "Description": "Delete alarm with id",
+      "HTTPMethod": "DELETE",
+      "Group": "Alarm",
+      "RequiresAuthentication": true,
+      "Route": "/alarms/{id}",
+      "Response": {
+        "Optional": false,
+        "Type": "String",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Execute Function",
+      "Description": "Execute admin function",
+      "HTTPMethod": "PUT",
+      "Group": "Admin",
+      "RequiresAuthentication": true,
+      "Route": "/@/functions/{function}",
+      "Response": {
+        "Optional": false,
+        "Type": "Void",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "Admin Function",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "function",
+          "Description": "The administrative function to be executed"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Represent Settings",
+      "Description": "Get system settings",
+      "HTTPMethod": "GET",
+      "Group": "Admin",
+      "RequiresAuthentication": true,
+      "Route": "/@/settings",
+      "Response": {
+        "Optional": false,
+        "Type": "Setting",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [],
+      "Errors": []
+    },
+    {
+      "Name": "Store Settings",
+      "Description": "Update settings",
+      "HTTPMethod": "PUT",
+      "Group": "Admin",
+      "RequiresAuthentication": true,
+      "Route": "/@/settings",
+      "Response": {
+        "Optional": false,
+        "Type": "Setting",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Body",
+          "Optional": false,
+          "Type": "Setting",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "setting",
+          "Description": "The new setting attribute values. This does not need to be a complete representation. Only attributes to be modified need to be specified. Omitted attributes will retain their current values."
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Represent Group Users",
+      "Description": "Get group users",
+      "HTTPMethod": "GET",
+      "Group": "User",
+      "RequiresAuthentication": true,
+      "Route": "/groups/{id}/members",
+      "Response": {
+        "Optional": false,
+        "Type": "User",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": true,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "page",
+          "Description": "Page number",
+          "DefaultValue": "1"
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": false,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "perPage",
+          "Description": "Results per page",
+          "DefaultValue": "10"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Store User in Group",
+      "Description": "Add a member to a group",
+      "HTTPMethod": "PUT",
+      "Group": "User",
+      "RequiresAuthentication": true,
+      "Route": "/group/{groupId}/members/{userId}",
+      "Response": {
+        "Optional": false,
+        "Type": "String",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "groupId"
+        },
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "userId"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Remove User from Group",
+      "Description": "Remove a member from a group",
+      "HTTPMethod": "DELETE",
+      "Group": "User",
+      "RequiresAuthentication": true,
+      "Route": "/group/{groupId}/members/{userId}",
+      "Response": {
+        "Optional": false,
+        "Type": "String",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "groupId"
+        },
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "userId"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Add Policy to Group",
+      "Description": "Create and add a policy to a group.",
+      "HTTPMethod": "PUT",
+      "Group": "Policy",
+      "RequiresAuthentication": true,
+      "Route": "/groups/{id}/policies",
+      "Response": {
+        "Optional": false,
+        "Type": "Policy",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Body",
+          "Optional": false,
+          "Type": "Policy",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "policy",
+          "Description": "The new policy."
+        },
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Represent Group Policy",
+      "Description": "Get group policy with id",
+      "HTTPMethod": "GET",
+      "Group": "Policy",
+      "RequiresAuthentication": true,
+      "Route": "/groups/{groupId}/policies/{policyId}",
+      "Response": {
+        "Optional": false,
+        "Type": "Policy",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "groupId"
+        },
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "policyId"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Remove Policy from Group",
+      "Description": "Delete policy from group with id",
+      "HTTPMethod": "DELETE",
+      "Group": "Policy",
+      "RequiresAuthentication": true,
+      "Route": "/groups/{groupId}/policies/{policyId}",
+      "Response": {
+        "Optional": false,
+        "Type": "String",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "groupId"
+        },
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "policyId"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Add Group",
+      "Description": "Create group",
+      "HTTPMethod": "POST",
+      "Group": "Group",
+      "RequiresAuthentication": true,
+      "Route": "/groups",
+      "Response": {
+        "Optional": false,
+        "Type": "Group",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Body",
+          "Optional": false,
+          "Type": "Group",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "group"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Represent Group",
+      "Description": "Get group with id",
+      "HTTPMethod": "GET",
+      "Group": "Group",
+      "RequiresAuthentication": true,
+      "Route": "/groups/{id}",
+      "Response": {
+        "Optional": false,
+        "Type": "Group",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Store Group",
+      "Description": "Update group with id",
+      "HTTPMethod": "PUT",
+      "Group": "Group",
+      "RequiresAuthentication": true,
+      "Route": "/groups/{id}",
+      "Response": {
+        "Optional": false,
+        "Type": "Group",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        },
+        {
+          "ParamFormat": "Body",
+          "Optional": false,
+          "Type": "Group",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "group",
+          "Description": "The new group attribute values. This does not need to be a complete representation. Only attributes to be modified need to be specified. Omitted attributes will retain their current values."
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Remove Group",
+      "Description": "Delete group with id",
+      "HTTPMethod": "DELETE",
+      "Group": "Group",
+      "RequiresAuthentication": true,
+      "Route": "/groups/{id}",
+      "Response": {
+        "Optional": false,
+        "Type": "String",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Add Notification",
+      "Description": "Create notification",
+      "HTTPMethod": "POST",
+      "Group": "Notification",
+      "RequiresAuthentication": true,
+      "Route": "/notifications",
+      "Response": {
+        "Optional": false,
+        "Type": "Notification",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Body",
+          "Optional": false,
+          "Type": "Notification",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "notification"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Represent Notification",
+      "Description": "Get notification with id",
+      "HTTPMethod": "GET",
+      "Group": "Notification",
+      "RequiresAuthentication": true,
+      "Route": "/notifications/{id}",
+      "Response": {
+        "Optional": false,
+        "Type": "Notification",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Remove Notification",
+      "Description": "Delete notification with id",
+      "HTTPMethod": "DELETE",
+      "Group": "Notification",
+      "RequiresAuthentication": true,
+      "Route": "/notifications/{id}",
+      "Response": {
+        "Optional": false,
+        "Type": "String",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Represent Sector Events",
+      "Description": "Get sector events",
+      "HTTPMethod": "GET",
+      "Group": "Event",
+      "RequiresAuthentication": true,
+      "Route": "/sectors/{id}/events",
+      "Response": {
+        "Optional": false,
+        "Type": "Event",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": true,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "page",
+          "Description": "Page number",
+          "DefaultValue": "1"
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "perPage",
+          "Description": "Results per page",
+          "DefaultValue": "10"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Store Node Firmware",
+      "Description": "Update node firmware",
+      "HTTPMethod": "PUT",
+      "Group": "Firmware",
+      "RequiresAuthentication": true,
+      "Route": "/sectors/{id}/nodes/{index}/firmware",
+      "Response": {
+        "Optional": false,
+        "Type": "String",
+        "Constant": false,
+        "IsStream": true,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        },
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "index"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Represent Sector Node Property",
+      "Description": "Get property with name",
+      "HTTPMethod": "GET",
+      "Group": "Property",
+      "RequiresAuthentication": true,
+      "Route": "/sectors/{id}/nodes/{index}/properties/{name}",
+      "Response": {
+        "Optional": false,
+        "Type": "Property",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        },
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "index"
+        },
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "name"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Store Sector Node Property",
+      "Description": "Update property with name",
+      "HTTPMethod": "PUT",
+      "Group": "Property",
+      "RequiresAuthentication": true,
+      "Route": "/sectors/{id}/nodes/{index}/properties/{name}",
+      "Response": {
+        "Optional": false,
+        "Type": "String",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        },
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "index"
+        },
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "name"
+        },
+        {
+          "ParamFormat": "Body",
+          "Optional": false,
+          "Type": "Property",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "property",
+          "Description": "The new property attribute values. This does not need to be a complete representation. Only attributes to be modified need to be specified. Omitted attributes will retain their current values."
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Represent Sector Nodes",
+      "Description": "Get nodes",
+      "HTTPMethod": "GET",
+      "Group": "Node",
+      "RequiresAuthentication": true,
+      "Route": "/sectors/{id}/nodes",
+      "Response": {
+        "Optional": false,
+        "Type": "Node",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": true,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "page",
+          "Description": "Page number",
+          "DefaultValue": "1"
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "perPage",
+          "Description": "Results per page",
+          "DefaultValue": "10"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Add Sector Node",
+      "Description": "Create and add a node to a sector",
+      "HTTPMethod": "POST",
+      "Group": "Node",
+      "RequiresAuthentication": true,
+      "Route": "/sectors/{id}/nodes",
+      "Response": {
+        "Optional": false,
+        "Type": "Node",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        },
+        {
+          "ParamFormat": "Body",
+          "Optional": false,
+          "Type": "Node",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "node"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Represent Sector Node",
+      "Description": "Get sector node with index",
+      "HTTPMethod": "GET",
+      "Group": "Node",
+      "RequiresAuthentication": true,
+      "Route": "/sectors/{id}/nodes/{index}",
+      "Response": {
+        "Optional": false,
+        "Type": "Node",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        },
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "index"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Remove Sector Node",
+      "Description": "Delete node from sector with index",
+      "HTTPMethod": "DELETE",
+      "Group": "Node",
+      "RequiresAuthentication": true,
+      "Route": "/sectors/{id}/nodes/{index}",
+      "Response": {
+        "Optional": false,
+        "Type": "String",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        },
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "index"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Add Sector SNMP",
+      "Description": "Upload a zip file containing the MIB file and the MIB mapper",
+      "HTTPMethod": "PUT",
+      "Group": "Snmp",
+      "RequiresAuthentication": true,
+      "Route": "/sectors/{id}/snmps",
+      "Response": {
+        "Optional": false,
+        "Type": "String",
+        "Constant": false,
+        "IsStream": true,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Add Sector",
+      "Description": "Create a sector",
+      "HTTPMethod": "POST",
+      "Group": "Sector",
+      "RequiresAuthentication": true,
+      "Route": "/sectors",
+      "Response": {
+        "Optional": false,
+        "Type": "Sector",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Body",
+          "Optional": false,
+          "Type": "Sector",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "sector"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Represent Sector",
+      "Description": "Get sector with id",
+      "HTTPMethod": "GET",
+      "Group": "Sector",
+      "RequiresAuthentication": true,
+      "Route": "/sectors/{id}",
+      "Response": {
+        "Optional": false,
+        "Type": "Sector",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Store Sector",
+      "Description": "Update sector with id",
+      "HTTPMethod": "PUT",
+      "Group": "Sector",
+      "RequiresAuthentication": true,
+      "Route": "/sectors/{id}",
+      "Response": {
+        "Optional": false,
+        "Type": "Sector",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        },
+        {
+          "ParamFormat": "Body",
+          "Optional": false,
+          "Type": "Sector",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "sector",
+          "Description": "The new sector attribute values. This does not need to be a complete representation. Only attributes to be modified need to be specified. Omitted attributes will retain their current values."
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Remove Sector",
+      "Description": "Delete sector with id",
+      "HTTPMethod": "DELETE",
+      "Group": "Sector",
+      "RequiresAuthentication": true,
+      "Route": "/sectors/{id}",
+      "Response": {
+        "Optional": false,
+        "Type": "String",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Represent User Events",
+      "Description": "Get user events",
+      "HTTPMethod": "GET",
+      "Group": "Event",
+      "RequiresAuthentication": true,
+      "Route": "/users/{id}/events",
+      "Response": {
+        "Optional": false,
+        "Type": "Event",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": true,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "page",
+          "Description": "Page number",
+          "DefaultValue": "1"
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "perPage",
+          "Description": "Results per page",
+          "DefaultValue": "10"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Add User",
+      "Description": "Create a user",
+      "HTTPMethod": "POST",
+      "Group": "User",
+      "RequiresAuthentication": true,
+      "Route": "/users",
+      "Response": {
+        "Optional": false,
+        "Type": "User",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Body",
+          "Optional": false,
+          "Type": "User",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "user"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Represent User",
+      "Description": "Get user with id",
+      "HTTPMethod": "GET",
+      "Group": "User",
+      "RequiresAuthentication": true,
+      "Route": "/users/{id}",
+      "Response": {
+        "Optional": false,
+        "Type": "User",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Store User",
+      "Description": "Update user with id",
+      "HTTPMethod": "PUT",
+      "Group": "User",
+      "RequiresAuthentication": true,
+      "Route": "/users/{id}",
+      "Response": {
+        "Optional": false,
+        "Type": "User",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        },
+        {
+          "ParamFormat": "Body",
+          "Optional": false,
+          "Type": "User",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "user",
+          "Description": "The new user attribute values. This does not need to be a complete representation. Only attributes to be modified need to be specified. Omitted attributes will retain their current values."
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Remove User",
+      "Description": "Delete user with id",
+      "HTTPMethod": "DELETE",
+      "Group": "User",
+      "RequiresAuthentication": true,
+      "Route": "/users/{id}",
+      "Response": {
+        "Optional": false,
+        "Type": "String",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Represent Groups",
+      "Description": "Get groups",
+      "HTTPMethod": "GET",
+      "Group": "Group",
+      "RequiresAuthentication": true,
+      "Route": "/groups",
+      "Response": {
+        "Optional": false,
+        "Type": "Group",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": true,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "page",
+          "Description": "Page number",
+          "DefaultValue": "1"
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "perPage",
+          "Description": "Results per page",
+          "DefaultValue": "10"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Represent Incidents",
+      "Description": "Get incidents",
+      "HTTPMethod": "GET",
+      "Group": "Incident",
+      "RequiresAuthentication": true,
+      "Route": "/incidents",
+      "Response": {
+        "Optional": false,
+        "Type": "Incident",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": true,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "page",
+          "Description": "Page number",
+          "DefaultValue": "1"
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "perPage",
+          "Description": "Results per page",
+          "DefaultValue": "10"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Represent Sector Incidents",
+      "Description": "Get sector incidents",
+      "HTTPMethod": "GET",
+      "Group": "Incident",
+      "RequiresAuthentication": true,
+      "Route": "/sectors/{id}/incidents",
+      "Response": {
+        "Optional": false,
+        "Type": "Incident",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": true,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "page",
+          "Description": "Page number",
+          "DefaultValue": "1"
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "perPage",
+          "Description": "Results per page",
+          "DefaultValue": "10"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Represent Sector Node Incidents",
+      "Description": "Get sector node incidents",
+      "HTTPMethod": "GET",
+      "Group": "Incident",
+      "RequiresAuthentication": true,
+      "Route": "/sectors/{id}/nodes/{index}/incidents",
+      "Response": {
+        "Optional": false,
+        "Type": "Incident",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": true,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        },
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "index"
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "page",
+          "Description": "Page number",
+          "DefaultValue": "1"
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "perPage",
+          "Description": "Results per page",
+          "DefaultValue": "10"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Represent Notifications",
+      "Description": "Get notifications",
+      "HTTPMethod": "GET",
+      "Group": "Notification",
+      "RequiresAuthentication": true,
+      "Route": "/notifications",
+      "Response": {
+        "Optional": false,
+        "Type": "Notification",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": true,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "page",
+          "Description": "Page number",
+          "DefaultValue": "1"
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "perPage",
+          "Description": "Results per page",
+          "DefaultValue": "10"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Represent Group Policies",
+      "Description": "Get policies in group",
+      "HTTPMethod": "GET",
+      "Group": "Policy",
+      "RequiresAuthentication": true,
+      "Route": "/groups/{id}/policies",
+      "Response": {
+        "Optional": false,
+        "Type": "Policy",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": true,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "page",
+          "Description": "Page number",
+          "DefaultValue": "1"
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "perPage",
+          "Description": "Results per page",
+          "DefaultValue": "10"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Represent Sector Node Properties",
+      "Description": "Get sector node properties",
+      "HTTPMethod": "GET",
+      "Group": "Property",
+      "RequiresAuthentication": true,
+      "Route": "/sectors/{id}/nodes/{index}/properties",
+      "Response": {
+        "Optional": false,
+        "Type": "Property",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": true,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        },
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "index"
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "page",
+          "Description": "Page number",
+          "DefaultValue": "1"
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "perPage",
+          "Description": "Results per page",
+          "DefaultValue": "10"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Represent Sectors",
+      "Description": "Get sectors",
+      "HTTPMethod": "GET",
+      "Group": "Sector",
+      "RequiresAuthentication": true,
+      "Route": "/sectors",
+      "Response": {
+        "Optional": false,
+        "Type": "Sector",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": true,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "page",
+          "Description": "Page number",
+          "DefaultValue": "1"
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "perPage",
+          "Description": "Results per page",
+          "DefaultValue": "10"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Represent Users",
+      "Description": "Get users",
+      "HTTPMethod": "GET",
+      "Group": "User",
+      "RequiresAuthentication": true,
+      "Route": "/users",
+      "Response": {
+        "Optional": false,
+        "Type": "User",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": true,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "page",
+          "Description": "Page number",
+          "DefaultValue": "1"
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "perPage",
+          "Description": "Results per page",
+          "DefaultValue": "10"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Store Sector Node",
+      "Description": "Update node with index",
+      "HTTPMethod": "PUT",
+      "Group": "Node",
+      "RequiresAuthentication": true,
+      "Route": "/sectors/{id}/nodes/{index}",
+      "Response": {
+        "Optional": false,
+        "Type": "Node",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        },
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "index"
+        },
+        {
+          "ParamFormat": "Body",
+          "Optional": false,
+          "Type": "Node",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "node",
+          "Description": "The new node attribute values. This does not need to be a complete representation. Only attributes to be modified need to be specified. Omitted attributes will retain their current values."
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Store Notification",
+      "Description": "Update notification with id",
+      "HTTPMethod": "PUT",
+      "Group": "Notification",
+      "RequiresAuthentication": true,
+      "Route": "/notifications/{id}",
+      "Response": {
+        "Optional": false,
+        "Type": "Notification",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        },
+        {
+          "ParamFormat": "Body",
+          "Optional": false,
+          "Type": "Notification",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "notification",
+          "Description": "The new notification attribute values. This does not need to be a complete representation. Only attributes to be modified need to be specified. Omitted attributes will retain their current values."
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Store Policy in Group",
+      "Description": "Update group policy with id",
+      "HTTPMethod": "PUT",
+      "Group": "Policy",
+      "RequiresAuthentication": true,
+      "Route": "/groups/{groupId}/policies/{policyId}",
+      "Response": {
+        "Optional": false,
+        "Type": "Policy",
+        "Constant": false,
+        "IsStream": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "groupId"
+        },
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "policyId"
+        },
+        {
+          "ParamFormat": "Body",
+          "Optional": false,
+          "Type": "Policy",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "policy",
+          "Description": "The new policy attribute values. This does not need to be a complete representation. Only attributes to be modified need to be specified. Omitted attributes will retain their current values."
+        }
+      ],
+      "Errors": []
+    }
+  ],
+  "CustomTypes": [
+    {
+      "Name": "Event Method",
+      "ImplementationType": "Enumeration",
+      "Description": "HTTP Methods ",
+      "Fields": [
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "POST",
+          "Description": "The POST method requests that the server accept the entity enclosed in the request as a new subordinate of the web resource identified by the URI. The data POSTed might be, for example, an annotation for existing resources; a message for a bulletin board, newsgroup, mailing list, or comment thread; a block of data that is the result of submitting a web form to a data-handling process; or an item to add to a database."
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "PUT",
+          "Description": "The PUT method requests that the enclosed entity be stored under the supplied URI. If the URI refers to an already existing resource, it is modified; if the URI does not point to an existing resource, then the server can create the resource with that URI."
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "GET",
+          "Description": "The GET method requests a representation of the specified resource. Requests using GET should only retrieve data and should have no other effect."
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "DELETE",
+          "Description": "The DELETE method deletes the specified resource."
+        }
+      ]
+    },
+    {
+      "Name": "Alarm Statistic",
+      "ImplementationType": "Enumeration",
+      "Description": "Mathematical functions applied to an Alarm to determine how the values are evaluated.",
+      "Fields": [
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "AVG",
+          "Description": "Average refers to the sum of numbers divided by n."
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "MAX",
+          "Description": "The greatest quantity or amount assigned."
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "MIN",
+          "Description": "The lowest quantity or amount assigned."
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "SUM",
+          "Description": "The aggregate of two or more numbers, magnitudes, quantities, or particulars as determined by or as if by the mathematical process of addition."
+        }
+      ]
+    },
+    {
+      "Name": "Alarm",
+      "ImplementationType": "Structure",
+      "Description": "Representation of an ALARM definition.",
+      "Fields": [
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id",
+          "Description": "The unique system assigned identification of the alarm ."
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "name",
+          "Description": "A convenient identifying name. This is a human assignable value for convenience and is not unique."
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "cause",
+          "Description": "A description of the conditions that would cause this alarm definition to become active."
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "impact",
+          "Description": "A description of the impacts that would result in this alarm definition becoming active."
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "remedy",
+          "Description": "A description of the remedy that would resolve this alarm definition if it becomes active."
+        },
+        {
+          "Optional": true,
+          "Type": "Boolean",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "active",
+          "Description": "Specifies whether the alarm definition should be actively considered by the system. If this value is `false` the definition is stored but never evaluated."
+        },
+        {
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "period",
+          "Description": "A time period (defined in snapshots) that constitutes a single experimental period for this alarm definition."
+        },
+        {
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "periods",
+          "Description": "The number of times the experimental time period should be repeated to define this alarm."
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "function",
+          "Description": "The javascript function that evaluates whether this alarm definition becomes active."
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "tags",
+          "Description": "Identifying tags. Predominantly used for search functions."
+        },
+        {
+          "Optional": true,
+          "Type": "DateTime",
+          "Constant": true,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "createdAt",
+          "Description": "A system created time stamp recording when this alarm definition was created."
+        },
+        {
+          "Optional": true,
+          "Type": "DateTime",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "updatedAt",
+          "Description": "A system created time stamp recording when this alarm definition was last modified."
+        },
+        {
+          "Optional": true,
+          "Type": "Alarm Statistic",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "statistic",
+          "Description": "The mathematical function used to pass the values of a single period."
+        }
+      ]
+    },
+    {
+      "Name": "Event",
+      "ImplementationType": "Structure",
+      "Description": "Representation of an Event",
+      "Fields": [
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        },
+        {
+          "Optional": true,
+          "Type": "Event Method",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "method"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "resource"
+        },
+        {
+          "Optional": true,
+          "Type": "User",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "actor"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "payload"
+        },
+        {
+          "Optional": true,
+          "Type": "DateTime",
+          "Constant": true,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "createdAt"
+        }
+      ]
+    },
+    {
+      "Name": "User State",
+      "ImplementationType": "Enumeration",
+      "Description": "The account state of a user",
+      "Fields": [
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "PENDING"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "SUSPENDED"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "ACTIVE"
+        }
+      ]
+    },
+    {
+      "Name": "User",
+      "ImplementationType": "Structure",
+      "Description": "Representation of a User",
+      "Fields": [
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "name"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "email"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "bio"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "company"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "secret"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": true,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "eventsUrl"
+        },
+        {
+          "Optional": true,
+          "Type": "DateTime",
+          "Constant": true,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "createdAt"
+        },
+        {
+          "Optional": false,
+          "Type": "DateTime",
+          "Constant": true,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "updatedAt"
+        }
+      ]
+    },
+    {
+      "Name": "Group",
+      "ImplementationType": "Structure",
+      "Description": "Representation of a Group",
+      "Fields": [
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "name"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "description"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "policiesUrl"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "membersUrl"
+        },
+        {
+          "Optional": true,
+          "Type": "DateTime",
+          "Constant": true,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "createdAt"
+        },
+        {
+          "Optional": true,
+          "Type": "DateTime",
+          "Constant": true,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "updatedAt"
+        }
+      ]
+    },
+    {
+      "Name": "Node Type",
+      "ImplementationType": "Enumeration",
+      "Description": "Types of node",
+      "Fields": [
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "BIU"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "DOU"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "HRDU"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "HMRU"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "HARU"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "LRDU"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "LMRU"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "LARU"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "MDBU"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "MROU"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "ODU"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "OEU"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "ROU"
+        }
+      ]
+    },
+    {
+      "Name": "Node State",
+      "ImplementationType": "Enumeration",
+      "Description": "Operational state of a node",
+      "Fields": [
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "NORMAL"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "LINK_FAIL"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "FAIL"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "UNUSED"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "Name": "Node",
+      "ImplementationType": "Structure",
+      "Description": "Representation of a Node",
+      "Fields": [
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "index"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "name"
+        },
+        {
+          "Optional": true,
+          "Type": "Node Type",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "type"
+        },
+        {
+          "Optional": true,
+          "Type": "Node State",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "state"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "propertiesUrl"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "incidentsUrl"
+        }
+      ]
+    },
+    {
+      "Name": "Incident",
+      "ImplementationType": "Structure",
+      "Description": "Representation of an Incident",
+      "Fields": [
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        },
+        {
+          "Optional": true,
+          "Type": "Node",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "guiltyNode"
+        },
+        {
+          "Optional": true,
+          "Type": "Alarm",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "alarm"
+        },
+        {
+          "Optional": true,
+          "Type": "DateTime",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "createdAt"
+        },
+        {
+          "Optional": true,
+          "Type": "DateTime",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "createdFor"
+        }
+      ]
+    },
+    {
+      "Name": "Notification Method",
+      "ImplementationType": "Enumeration",
+      "Description": "Notification delivery methods",
+      "Fields": [
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "HTTP"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "EMAIL"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "ATOM"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "SNMP"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "NONE"
+        }
+      ]
+    },
+    {
+      "Name": "Notification",
+      "ImplementationType": "Structure",
+      "Description": "Representation of a Notification",
+      "Fields": [
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "name"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "description"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "tags"
+        },
+        {
+          "Optional": true,
+          "Type": "Notification Method",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "deliveryMethod"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "deliveryOptions"
+        },
+        {
+          "Optional": true,
+          "Type": "DateTime",
+          "Constant": true,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "createdAt"
+        },
+        {
+          "Optional": true,
+          "Type": "DateTime",
+          "Constant": true,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "updatedAt"
+        }
+      ]
+    },
+    {
+      "Name": "Policy",
+      "ImplementationType": "Structure",
+      "Description": "Representation of a Policy",
+      "Fields": [
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "name"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "description"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "permission"
+        },
+        {
+          "Optional": true,
+          "Type": "DateTime",
+          "Constant": true,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "createdAt"
+        },
+        {
+          "Optional": true,
+          "Type": "DateTime",
+          "Constant": true,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "updatedAt"
+        }
+      ]
+    },
+    {
+      "Name": "Property Type",
+      "ImplementationType": "Enumeration",
+      "Description": "Property value types",
+      "Fields": [
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "INTEGER"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "PRECISION"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "BOOLEAN"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "STRING"
+        }
+      ]
+    },
+    {
+      "Name": "Property",
+      "ImplementationType": "Structure",
+      "Description": "Representation of a Property",
+      "Fields": [
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "name"
+        },
+        {
+          "Optional": true,
+          "Type": "Property Type",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "type"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "value"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "unit"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "description"
+        },
+        {
+          "Optional": true,
+          "Type": "Boolean",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "readOnly"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "propertyUrl"
+        }
+      ]
+    },
+    {
+      "Name": "Sector Type",
+      "ImplementationType": "Enumeration",
+      "Description": "Types of sector hardware",
+      "Fields": [
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "SOLiD_R4"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "SOLiD_R5"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "SOLiD_R6"
+        }
+      ]
+    },
+    {
+      "Name": "Sector State",
+      "ImplementationType": "Enumeration",
+      "Description": "Operational state of a sector",
+      "Fields": [
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "ACTIVE"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "Name": "Sector",
+      "ImplementationType": "Structure",
+      "Description": "Representation of a Sector",
+      "Fields": [
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "name"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "description"
+        },
+        {
+          "Optional": true,
+          "Type": "Sector Type",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "type"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "masterIp"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "slaveIp"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "snmp"
+        },
+        {
+          "Optional": true,
+          "Type": "Sector Type",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "state"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "nodeUrl"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "eventsUrl"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "incidentsUrl"
+        }
+      ]
+    },
+    {
+      "Name": "SNMP User Access",
+      "ImplementationType": "Enumeration",
+      "Description": "Access types for SNMP User",
+      "Fields": [
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "READ"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "READ_WRITE"
+        }
+      ]
+    },
+    {
+      "Name": "SNMP User Security",
+      "ImplementationType": "Enumeration",
+      "Description": "Security types for SNMP user",
+      "Fields": [
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "NONE"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "NO_PRIVACY"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "PRIVACY"
+        }
+      ]
+    },
+    {
+      "Name": "SNMP User Authentication",
+      "ImplementationType": "Enumeration",
+      "Description": "Authentication types for SNMP user",
+      "Fields": [
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "MD5"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "SHA1"
+        }
+      ]
+    },
+    {
+      "Name": "SNMP User Privacy",
+      "ImplementationType": "Enumeration",
+      "Description": "Privacy types for SNMP user",
+      "Fields": [
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "DES"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "AES"
+        }
+      ]
+    },
+    {
+      "Name": "SNMP Security User",
+      "ImplementationType": "Structure",
+      "Description": "Representation of an SNMP security user ",
+      "Fields": [
+        {
+          "Optional": false,
+          "Type": "SNMP User Access",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "accessType"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "username"
+        },
+        {
+          "Optional": false,
+          "Type": "SNMP User Security",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "security"
+        },
+        {
+          "Optional": false,
+          "Type": "SNMP User Authentication",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "authProtocol"
+        },
+        {
+          "Optional": false,
+          "Type": "SNMP User Privacy",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "privacyProtocol"
+        }
+      ]
+    },
+    {
+      "Name": "SNMP Trap Session",
+      "ImplementationType": "Structure",
+      "Description": "Representation of an SNMP trap session",
+      "Fields": [
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "ip"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "securityUsername"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "managerName"
+        },
+        {
+          "Optional": false,
+          "Type": "SNMP User Security",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "security"
+        },
+        {
+          "Optional": false,
+          "Type": "SNMP User Authentication",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "authProtocol"
+        },
+        {
+          "Optional": false,
+          "Type": "SNMP User Privacy",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "privacyProtocol"
+        }
+      ]
+    },
+    {
+      "Name": "SNMP",
+      "ImplementationType": "Structure",
+      "Description": "Representation of an SNMP",
+      "Fields": [
+        {
+          "Optional": true,
+          "Type": "Boolean",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "active"
+        },
+        {
+          "Optional": true,
+          "Type": "SNMP Security User",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "securityUsers"
+        },
+        {
+          "Optional": true,
+          "Type": "SNMP Trap Session",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "trapSessions"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "mib"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "mapper"
+        }
+      ]
+    },
+    {
+      "Name": "Setting",
+      "ImplementationType": "Structure",
+      "Description": "Representation of a system Setting",
+      "Fields": [
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "outsideIp"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "outsideSubnetMask"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "outsideGateway"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "insideIp"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "insideSubnetMask"
+        },
+        {
+          "Optional": true,
+          "Type": "Boolean",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "http"
+        },
+        {
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "snapshotInterval"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "updateRepo"
+        },
+        {
+          "Optional": true,
+          "Type": "Boolean",
+          "Constant": true,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "updateAvailable"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": true,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "versionCurrent"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": true,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "versionLatest"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "ntpServer"
+        },
+        {
+          "Optional": true,
+          "Type": "DateTime",
+          "Constant": true,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "time"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "projectName"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "smtpEmail"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "smtpUsername"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "smtpPassword"
+        },
+        {
+          "Optional": true,
+          "Type": "Boolean",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "smtpAuth"
+        },
+        {
+          "Optional": true,
+          "Type": "Boolean",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "smtpTls"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "smtpHost"
+        },
+        {
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "smtpPort"
+        },
+        {
+          "Optional": true,
+          "Type": "Boolean",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "snmp"
+        }
+      ]
+    },
+    {
+      "Name": "Admin Function",
+      "ImplementationType": "Enumeration",
+      "Description": "Administrative functions",
+      "Fields": [
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "update"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "initSectors"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "initAlarms"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "setClock"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "reboot"
+        }
+      ]
+    }
+  ],
+  "CodeGenSettings": {
+    "SynchronyMode": 0,
+    "ModelSerializationScheme": "Json",
+    "UseHttpMethodPrefix": true,
+    "UseModelPrefix": false,
+    "UseEnumPrefix": true,
+    "UseControllerPrefix": true,
+    "UseConstructorsForConfig": true,
+    "AndroidUseAppManifest": true,
+    "iOSUseAppInfoPlist": true,
+    "iOSGenerateCoreData": false,
+    "CollapseParamsToArray": true,
+    "RunscopeEnabled": false,
+    "AndroidHttpClient": "UNIREST",
+    "ObjCHttpClient": "UNIREST",
+    "CSharpHttpClient": "UNIREST",
+    "PHPHttpClient": "UNIREST",
+    "EnableAdditionalModelProperties": false,
+    "PreserveParameterOrder": false,
+    "BodySerialization": 0
+  }
+}
