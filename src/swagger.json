@@ -1,0 +1,4484 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "",
+    "title": "Halo",
+    "description": "Software Development Kit (SDK) to access the Halo RESTful API.",
+    "license": {
+      "name": "MIT",
+      "url": "http://github.com/gruntjs/grunt/blob/master/LICENSE-MIT"
+    }
+  },
+  "host": "localhost:8080",
+  "basePath": "/api",
+  "securityDefinitions": {
+    "auth": {
+      "type": "basic"
+    }
+  },
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/@/settings/{setting_id}": {
+      "get": {
+        "description": "Get the fields that constitute the setting",
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "GETGet Setting",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "setting_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SettingField"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "Update settings",
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "PUTUpdate Settings",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "setting_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "field",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "schema": {
+              "$ref": "#/definitions/SettingField"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SettingField"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/messages/{message_id}": {
+      "get": {
+        "description": "Get a specific user alert message",
+        "tags": [
+          "Message"
+        ],
+        "operationId": "GETGet User Message",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "message_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Message"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "Update user message",
+        "tags": [
+          "Message"
+        ],
+        "operationId": "PUTUpdate User Message",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "message_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "message",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "schema": {
+              "$ref": "#/definitions/Message"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Message"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete user message",
+        "tags": [
+          "Message"
+        ],
+        "operationId": "DELETERemove User Message",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "message_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/@/functions/{function}": {
+      "put": {
+        "description": "Execute admin function",
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "PUTExecute Function",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "function",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "enum": [
+              "update",
+              "initSectors",
+              "initAlarms",
+              "setClock",
+              "reboot"
+            ],
+            "type": "string",
+            "description": "The administrative function to be executed"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/@/settings": {
+      "get": {
+        "description": "Get system settings",
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "GETGet Settings",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Setting"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/teams/{team_id}/members/{user_id}": {
+      "put": {
+        "description": "Add a member to a team",
+        "tags": [
+          "User"
+        ],
+        "operationId": "PUTAdd User to Team",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "team_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Remove a member from a team",
+        "tags": [
+          "User"
+        ],
+        "operationId": "DELETERemove User from Team",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "team_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/teams": {
+      "get": {
+        "description": "Get teams",
+        "tags": [
+          "Team"
+        ],
+        "operationId": "GETGet Teams",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64",
+            "description": "Page number"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64",
+            "description": "Results per page"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Team"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "post": {
+        "description": "Create team",
+        "tags": [
+          "Team"
+        ],
+        "operationId": "POSTAdd Team",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "team",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "schema": {
+              "$ref": "#/definitions/Team"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Team"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/teams/{team_id}": {
+      "get": {
+        "description": "Get team with id",
+        "tags": [
+          "Team"
+        ],
+        "operationId": "GETGet Team",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "team_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Team"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "Update team with id",
+        "tags": [
+          "Team"
+        ],
+        "operationId": "PUTUpdate Team",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "team_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "team",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "description": "The new group attribute values. This does not need to be a complete representation. Only attributes to be modified need to be specified. Omitted attributes will retain their current values.",
+            "schema": {
+              "$ref": "#/definitions/Team"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Team"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete team with id",
+        "tags": [
+          "Team"
+        ],
+        "operationId": "DELETERemove Team",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "team_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/sectors/{sector_id}/nodes/{node_id}/properties/{property_id}": {
+      "get": {
+        "description": "Get property with name",
+        "tags": [
+          "Property"
+        ],
+        "operationId": "GETGet Sector Node Property",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sector_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "node_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "property_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Property"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "Update property with name",
+        "tags": [
+          "Property"
+        ],
+        "operationId": "PUTUpdate Sector Node Property",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sector_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "node_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "property_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "property",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "description": "The new property attribute values. This does not need to be a complete representation. Only attributes to be modified need to be specified. Omitted attributes will retain their current values.",
+            "schema": {
+              "$ref": "#/definitions/Property"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Property"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/sectors/{sector_id}/nodes": {
+      "get": {
+        "description": "Get nodes",
+        "tags": [
+          "Node"
+        ],
+        "operationId": "GETGet Sector Nodes",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sector_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64",
+            "description": "Page number"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64",
+            "description": "Results per page"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Node"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "post": {
+        "description": "Create and add a node to a sector",
+        "tags": [
+          "Node"
+        ],
+        "operationId": "POSTAdd Sector Node",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sector_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "node",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "schema": {
+              "$ref": "#/definitions/Node"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Node"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/sectors/{sector_id}/nodes/{node_id}": {
+      "get": {
+        "description": "Get sector node with index",
+        "tags": [
+          "Node"
+        ],
+        "operationId": "GETGet Sector Node",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sector_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "node_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Node"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "Update node with index",
+        "tags": [
+          "Node"
+        ],
+        "operationId": "PUTUpdate Sector Node",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sector_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "node_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "node",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "description": "The new node attribute values. This does not need to be a complete representation. Only attributes to be modified need to be specified. Omitted attributes will retain their current values.",
+            "schema": {
+              "$ref": "#/definitions/Node"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Node"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete node from sector with index",
+        "tags": [
+          "Node"
+        ],
+        "operationId": "DELETERemove Sector Node",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sector_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "node_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/sectors": {
+      "get": {
+        "description": "Get sectors",
+        "tags": [
+          "Sector"
+        ],
+        "operationId": "GETGet Sectors",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64",
+            "description": "Page number"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64",
+            "description": "Results per page"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Sector"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "post": {
+        "description": "Create a sector",
+        "tags": [
+          "Sector"
+        ],
+        "operationId": "POSTAdd Sector",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sector",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "schema": {
+              "$ref": "#/definitions/Sector"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Sector"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/sectors/{sector_id}": {
+      "get": {
+        "description": "Get sector with id",
+        "tags": [
+          "Sector"
+        ],
+        "operationId": "GETGet Sector",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sector_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Sector"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "Update sector with id",
+        "tags": [
+          "Sector"
+        ],
+        "operationId": "PUTUpdate Sector",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sector_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "sector",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "description": "The new sector attribute values. This does not need to be a complete representation. Only attributes to be modified need to be specified. Omitted attributes will retain their current values.",
+            "schema": {
+              "$ref": "#/definitions/Sector"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Sector"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete sector with id",
+        "tags": [
+          "Sector"
+        ],
+        "operationId": "DELETERemove Sector",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sector_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/users": {
+      "get": {
+        "description": "Get users",
+        "tags": [
+          "User"
+        ],
+        "operationId": "GETGet Users",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64",
+            "description": "Page number"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64",
+            "description": "Results per page"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Person"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "post": {
+        "description": "Create a user",
+        "tags": [
+          "User"
+        ],
+        "operationId": "POSTAdd User",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "schema": {
+              "$ref": "#/definitions/Person"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Person"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/users/{user_id}": {
+      "get": {
+        "description": "Get user with id",
+        "tags": [
+          "User"
+        ],
+        "operationId": "GETGet User",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Person"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "Update user with id",
+        "tags": [
+          "User"
+        ],
+        "operationId": "PUTUpdate User",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "user",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "description": "The new user attribute values. This does not need to be a complete representation. Only attributes to be modified need to be specified. Omitted attributes will retain their current values.",
+            "schema": {
+              "$ref": "#/definitions/Person"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Person"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete user with id",
+        "tags": [
+          "User"
+        ],
+        "operationId": "DELETERemove User",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/sectors/{sector_id}/nodes/{node_id}/properties": {
+      "get": {
+        "description": "Get sector node properties",
+        "tags": [
+          "Property"
+        ],
+        "operationId": "GETGet Sector Node Properties",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sector_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "node_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64",
+            "description": "Page number"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64",
+            "description": "Results per page"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Property"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/messages": {
+      "get": {
+        "description": "Get user messages",
+        "tags": [
+          "Message"
+        ],
+        "operationId": "GETGet User Messages",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64",
+            "description": "Page number"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64",
+            "description": "Results per page"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Message"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/incidents": {
+      "get": {
+        "description": "Get incidents",
+        "tags": [
+          "Incident"
+        ],
+        "operationId": "GETGet Incidents",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64",
+            "description": "Page number"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64",
+            "description": "Results per page"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Incident"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/teams/{team_id}/members": {
+      "get": {
+        "description": "Get team users",
+        "tags": [
+          "User"
+        ],
+        "operationId": "GETGet Team Users",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "team_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64",
+            "description": "Page number"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64",
+            "description": "Results per page"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Person"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/extensions/{extension_id}": {
+      "get": {
+        "description": "Get extention with specified id",
+        "tags": [
+          "Extension"
+        ],
+        "operationId": "GETGet Extension",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "extension_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Extension"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "Update extension with id",
+        "tags": [
+          "Extension"
+        ],
+        "operationId": "PUTUpdate Extension",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "extension_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "extension",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "schema": {
+              "$ref": "#/definitions/Extension"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Extension"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete extension with id",
+        "tags": [
+          "Extension"
+        ],
+        "operationId": "DELETERemove Extension",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "extension_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/extensions": {
+      "get": {
+        "description": "Get extensions",
+        "tags": [
+          "Extension"
+        ],
+        "operationId": "GETGet Extensions",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64",
+            "description": "Page number"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64",
+            "description": "Results per page"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Extension"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "post": {
+        "description": "Create extension",
+        "tags": [
+          "Extension"
+        ],
+        "operationId": "POSTAdd Extension",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Extension"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/keys": {
+      "get": {
+        "description": "Get user access keys",
+        "tags": [
+          "Key"
+        ],
+        "operationId": "GETGet Access Keys",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AccessKey"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "post": {
+        "description": "Create an access key for a user",
+        "tags": [
+          "Key"
+        ],
+        "operationId": "POSTAdd Access Key",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AccessKey"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/keys/{key_id}": {
+      "get": {
+        "description": "Get access key with id",
+        "tags": [
+          "Key"
+        ],
+        "operationId": "GETGet Access Key",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "key_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AccessKey"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "Update access key with id",
+        "tags": [
+          "Key"
+        ],
+        "operationId": "PUTUpdate Access Key",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "key_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "key",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "schema": {
+              "$ref": "#/definitions/AccessKey"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AccessKey"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete access key with id",
+        "tags": [
+          "Key"
+        ],
+        "operationId": "DELETERemove Access Key",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "key_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/memberships": {
+      "get": {
+        "description": "Get user teams",
+        "tags": [
+          "Team"
+        ],
+        "operationId": "GETGet User Teams",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Team"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/audits": {
+      "get": {
+        "description": "Get audits",
+        "tags": [
+          "Audit"
+        ],
+        "operationId": "GETGet Audits",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64",
+            "description": "Page number"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64",
+            "description": "Results per page"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "action",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "enum": [
+              "AUTHENTICATED",
+              "CREATED",
+              "MODIFIED",
+              "DELETED",
+              "INSTALLED",
+              "OTHER"
+            ],
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "actingUserId",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "targetId",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "targetType",
+            "in": "query",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Audit"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/projects": {
+      "get": {
+        "description": "Get projects",
+        "tags": [
+          "Project"
+        ],
+        "operationId": "GETGet Projects",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Project"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "post": {
+        "description": "Create a new Project",
+        "tags": [
+          "Project"
+        ],
+        "operationId": "POSTAdd Project",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "schema": {
+              "$ref": "#/definitions/Project"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Project"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/projects/{project_id}": {
+      "get": {
+        "description": "Get user with id",
+        "tags": [
+          "Project"
+        ],
+        "operationId": "GETGet Project",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Project"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "Update a project with id",
+        "tags": [
+          "Project"
+        ],
+        "operationId": "PUTUpdate Project",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "project",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "schema": {
+              "$ref": "#/definitions/Project"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Project"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete project with id",
+        "tags": [
+          "Project"
+        ],
+        "operationId": "DELETERemove Project",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/teams/{team_id}/projects": {
+      "get": {
+        "description": "Get a list of team projects",
+        "tags": [
+          "Project"
+        ],
+        "operationId": "GETGet Team Projects",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "team_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Project"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/teams/{team_id}/projects/{project_id}": {
+      "put": {
+        "description": "Add a project to a team",
+        "tags": [
+          "Project"
+        ],
+        "operationId": "PUTAdd Project to Team",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "team_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete a project from a team",
+        "tags": [
+          "Project"
+        ],
+        "operationId": "DELETERemove Project from Team",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "team_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/projects/{project_id}/teams": {
+      "get": {
+        "description": "Get a list of project teams",
+        "tags": [
+          "Team"
+        ],
+        "operationId": "GETGet Project Teams",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "fileds",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Team"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/projects/{project_id}/sectors/{sector_id}": {
+      "put": {
+        "description": "Add a sector to a project",
+        "tags": [
+          "Sector"
+        ],
+        "operationId": "PUTAdd Sector to Project",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "sector_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete a sector from a project",
+        "tags": [
+          "Sector"
+        ],
+        "operationId": "DELETERemove Sector from Project",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "sector_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/projects/{project_id}/sectors": {
+      "get": {
+        "description": "Get the sectors for a project",
+        "tags": [
+          "Sector"
+        ],
+        "operationId": "GETGet Project Sectors",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Sector"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/sectors/{sector_id}/projects": {
+      "get": {
+        "description": "Get projects for a sector",
+        "tags": [
+          "Project"
+        ],
+        "operationId": "GETGet Sector Projects",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sector_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Project"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/engines": {
+      "get": {
+        "description": "Get a list of registered engines",
+        "tags": [
+          "Engine"
+        ],
+        "operationId": "GETGet Engines",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Engine"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/engines/{engine_id}/nodes": {
+      "get": {
+        "description": "Get a list of nodes supported by the engine",
+        "tags": [
+          "Engine"
+        ],
+        "operationId": "GETGet Engine Nodes",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "engine_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Node"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/engines/{engine_id}/structures": {
+      "get": {
+        "description": "Get a list of node hierarchal relationship structures supported by the engine",
+        "tags": [
+          "Engine"
+        ],
+        "operationId": "GETGet Engine Structures",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "engine_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/extensions/{extension_id}/settings": {
+      "get": {
+        "description": "Get a collection of all settings for an extension",
+        "tags": [
+          "Setting"
+        ],
+        "operationId": "GETGet Extension Settings",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "extension_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Setting"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/extensions/{extension_id}/settings/{setting_id}": {
+      "get": {
+        "description": "Get a collection of fields that make up an extension setting",
+        "tags": [
+          "Setting"
+        ],
+        "operationId": "GETGet Extension Setting",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "extension_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "setting_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SettingField"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "Update an extension setting field",
+        "tags": [
+          "Setting"
+        ],
+        "operationId": "PUTUpdate Extension Setting",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "extension_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "setting_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "field",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "schema": {
+              "$ref": "#/definitions/SettingField"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SettingField"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/dispatchers": {
+      "get": {
+        "description": "Get a collection of system dispatchers",
+        "tags": [
+          "Dispatch"
+        ],
+        "operationId": "GETGet Dispatchers",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Dispatcher"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/dispatchers/{dispatcher_id}/protocols": {
+      "get": {
+        "description": "Get a collection of all protocols for a dispatcher",
+        "tags": [
+          "Dispatch"
+        ],
+        "operationId": "GETGet Dispatcher Protocols",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "dispatcher_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DispatcherProtocol"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/subscriptions": {
+      "get": {
+        "description": "Get subscription",
+        "tags": [
+          "Subscription"
+        ],
+        "operationId": "GETGet Subscriptions",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Subscription"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "post": {
+        "description": "Create a new Subscription",
+        "tags": [
+          "Subscription"
+        ],
+        "operationId": "POSTAdd Subscription",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "subscription",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "schema": {
+              "$ref": "#/definitions/Subscription"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Subscription"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/subscriptions/{subscription_id}": {
+      "get": {
+        "description": "Get a subscription",
+        "tags": [
+          "Subscription"
+        ],
+        "operationId": "GETGet Subscription",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "subscription_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Subscription"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "Update a subscription",
+        "tags": [
+          "Subscription"
+        ],
+        "operationId": "PUTUpdate Subscription",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "subscription_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "subscription",
+            "in": "body",
+            "required": true,
+            "x-is-map": false,
+            "schema": {
+              "$ref": "#/definitions/Subscription"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Subscription"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delect a subscription with id",
+        "tags": [
+          "Subscription"
+        ],
+        "operationId": "DELETERemove Subscription",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "subscription_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/incidents/{incident_id}": {
+      "get": {
+        "description": "Get an incident",
+        "tags": [
+          "Incident"
+        ],
+        "operationId": "GETGet Incident",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "incident_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Incident"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/sectors/{sector_id}/nodes/{node_index}/firmwares/{firmware_id}": {
+      "put": {
+        "description": "Update node firmware",
+        "tags": [
+          "Firmware"
+        ],
+        "operationId": "PUTUpdate Node Firmware",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sector_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "node_index",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          },
+          {
+            "name": "firmware_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/firmwares": {
+      "get": {
+        "description": "Get a collection of registered firmware packages",
+        "tags": [
+          "Firmware"
+        ],
+        "operationId": "GETGet Firmwares",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Firmware"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "post": {
+        "description": "Upload new firmware package",
+        "tags": [
+          "Firmware"
+        ],
+        "operationId": "POSTUpload Firmware",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/firmwares/{firmware_id}": {
+      "get": {
+        "description": "Get a firmware representation",
+        "tags": [
+          "Firmware"
+        ],
+        "operationId": "GETGet Firmware",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "firmware_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Firmware"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete a firmware representation",
+        "tags": [
+          "Firmware"
+        ],
+        "operationId": "DELETERemove Firmware",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "firmware_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "DispatcherProtocol": {
+      "title": "Dispatcher Protocol",
+      "description": "Representation of a dispatcher protocol",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SettingFieldType"
+          }
+        }
+      }
+    },
+    "SubscriptionType": {
+      "title": "Subscription Type",
+      "description": "The type of subscription",
+      "type": "string",
+      "enum": [
+        "PUBLIC",
+        "PRIVATE"
+      ]
+    },
+    "PropertyType": {
+      "title": "Property Type",
+      "description": "The class type of given property",
+      "type": "string",
+      "enum": [
+        "NUMBER",
+        "PRECISION",
+        "BOOLEAN",
+        "STRING"
+      ]
+    },
+    "Dispatcher": {
+      "title": "Dispatcher",
+      "description": "Representation of a Dispatcher",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "SettingField": {
+      "title": "Setting Field",
+      "description": "Representation of a setting field",
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/SettingFieldType"
+        },
+        "name": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "min": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "max": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "maxLength": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "step": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "pattern": {
+          "type": "string"
+        },
+        "readOnly": {
+          "type": "boolean"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "checked": {
+          "type": "boolean"
+        },
+        "value": {
+          "type": "string"
+        },
+        "order": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SettingField"
+          }
+        }
+      }
+    },
+    "SettingFieldType": {
+      "title": "Setting Field Type",
+      "description": "Type of setting field",
+      "type": "string",
+      "enum": [
+        "TEXT",
+        "PASSWORD",
+        "TEL",
+        "URL",
+        "EMAIL",
+        "BOOLEAN",
+        "RADIO",
+        "CHECKBOX",
+        "LIST",
+        "COLOR",
+        "DATE",
+        "DATE_TIME",
+        "TIME",
+        "NUMBER",
+        "RANGE"
+      ]
+    },
+    "Subscription": {
+      "title": "Subscription",
+      "description": "Representation of a subscription",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "topics": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dispatcher": {
+          "type": "string"
+        },
+        "protocol": {
+          "$ref": "#/definitions/DispatcherProtocol"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Extra": {
+      "title": "Extra",
+      "description": "Custom information in the form of a key value ",
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "key",
+        "values"
+      ]
+    },
+    "NodeFunction": {
+      "title": "Node Function",
+      "description": "A node function",
+      "type": "string",
+      "enum": [
+        "OTHER",
+        "ANTENNA"
+      ]
+    },
+    "IncidentDetail": {
+      "title": "Incident Detail",
+      "description": "Representation of an details of an incident definition.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "A convenient identifying name. This is a human assignable value for convenience and is not unique.",
+          "type": "string"
+        },
+        "cause": {
+          "description": "A description of the conditions that would cause this alarm definition to become active.",
+          "type": "string"
+        },
+        "impact": {
+          "description": "A description of the impacts that would result in this alarm definition becoming active.",
+          "type": "string"
+        },
+        "remedy": {
+          "description": "A description of the remedy that would resolve this alarm definition if it becomes active.",
+          "type": "string"
+        },
+        "serviceImpact": {
+          "type": "boolean"
+        },
+        "cascadingImpact": {
+          "type": "boolean"
+        }
+      }
+    },
+    "PersonState": {
+      "title": "Person State",
+      "description": "The account state of a person",
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "PENDING",
+        "SUSPENDED"
+      ]
+    },
+    "Person": {
+      "title": "Person",
+      "description": "Representation of a Person",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "bio": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        },
+        "secret": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/PersonState"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "admin": {
+          "type": "boolean"
+        },
+        "username": {
+          "type": "string"
+        }
+      }
+    },
+    "Team": {
+      "title": "Team",
+      "description": "Representation of a Team",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "permissions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "NodeState": {
+      "title": "Node State",
+      "description": "Operational state of a node",
+      "type": "string",
+      "enum": [
+        "GREEN",
+        "YELLOW",
+        "ORANGE",
+        "RED"
+      ]
+    },
+    "SectorState": {
+      "title": "Sector State",
+      "description": "Operational state of a sector",
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "PASSIVE"
+      ]
+    },
+    "Setting": {
+      "title": "Setting",
+      "description": "Representation of a setting",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "extension": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "AdminFunction": {
+      "title": "Admin Function",
+      "description": "Administrative functions",
+      "type": "string",
+      "enum": [
+        "update",
+        "initSectors",
+        "initAlarms",
+        "setClock",
+        "reboot"
+      ]
+    },
+    "AccessKeyState": {
+      "title": "Access Key State",
+      "description": "The state of a Persons Access Key",
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "INACTIVE"
+      ]
+    },
+    "AccessKey": {
+      "title": "Access Key",
+      "description": "Representation of an Access Key definition.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "publicKey": {
+          "type": "string"
+        },
+        "privateKey": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "status": {
+          "$ref": "#/definitions/AccessKeyState"
+        }
+      }
+    },
+    "IncidentState": {
+      "title": "Incident State",
+      "description": "The state of an incident",
+      "type": "string",
+      "enum": [
+        "GREEN",
+        "YELLOW",
+        "RED"
+      ]
+    },
+    "ExtensionState": {
+      "title": "Extension State",
+      "description": "The execution state of an extension",
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "INACTIVE"
+      ]
+    },
+    "Extension": {
+      "title": "Extension",
+      "description": "Representation of an Extension",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "license": {
+          "type": "string"
+        },
+        "frameworks": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "homepage": {
+          "type": "string"
+        },
+        "repository": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/ExtensionState"
+        },
+        "icon": {}
+      }
+    },
+    "Incident": {
+      "title": "Incident",
+      "description": "Representation of an Incident",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "silenced": {
+          "type": "boolean"
+        },
+        "guiltySector": {
+          "$ref": "#/definitions/Sector"
+        },
+        "guiltyNode": {
+          "$ref": "#/definitions/Node"
+        },
+        "guiltyProperty": {
+          "$ref": "#/definitions/Property"
+        },
+        "history": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IncidentEvent"
+          }
+        },
+        "details": {
+          "$ref": "#/definitions/IncidentDetail"
+        },
+        "status": {
+          "$ref": "#/definitions/IncidentState"
+        }
+      }
+    },
+    "AuditAction": {
+      "title": "Audit Action",
+      "description": "Actions that can be audited",
+      "type": "string",
+      "enum": [
+        "AUTHENTICATED",
+        "CREATED",
+        "MODIFIED",
+        "DELETED",
+        "INSTALLED",
+        "OTHER"
+      ]
+    },
+    "Audit": {
+      "title": "Audit",
+      "description": "Representation of an Audit",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "action": {
+          "$ref": "#/definitions/AuditAction"
+        },
+        "title": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "pre": {
+          "type": "string"
+        },
+        "post": {
+          "type": "string"
+        },
+        "actionIp": {
+          "type": "string"
+        },
+        "actingUserId": {
+          "type": "string"
+        },
+        "actingUserEmail": {
+          "type": "string"
+        },
+        "targetId": {
+          "type": "string"
+        },
+        "targetType": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Project": {
+      "title": "Project",
+      "description": "Representation of a Person",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Engine": {
+      "title": "Engine",
+      "description": "Representation of an Engine",
+      "type": "object",
+      "properties": {
+        "manufacturer": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "Node": {
+      "title": "Node",
+      "description": "Representation of a Node",
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "silent": {
+          "type": "boolean"
+        },
+        "firmware": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/NodeState"
+        },
+        "reachable": {
+          "type": "boolean"
+        },
+        "installedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "id": {
+          "type": "string"
+        },
+        "extra": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Extra"
+          }
+        },
+        "functions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NodeFunction"
+          }
+        }
+      }
+    },
+    "Sector": {
+      "title": "Sector",
+      "description": "Representation of a Sector",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string"
+        },
+        "addresses": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "proxy": {
+          "$ref": "#/definitions/Proxy"
+        },
+        "manufacturer": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/SectorState"
+        },
+        "silent": {
+          "type": "boolean"
+        },
+        "engineId": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "extra": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Extra"
+          }
+        }
+      },
+      "required": [
+        "extra"
+      ]
+    },
+    "IncidentEvent": {
+      "title": "Incident Event",
+      "description": "Representation of an Incident Event",
+      "type": "object",
+      "properties": {
+        "time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "type": {
+          "$ref": "#/definitions/IncidentEventType"
+        },
+        "status": {
+          "$ref": "#/definitions/IncidentState"
+        },
+        "details": {
+          "type": "string"
+        }
+      }
+    },
+    "IncidentEventType": {
+      "title": "Incident Event Type",
+      "description": "The type of event that occurred in an incident event",
+      "type": "string",
+      "enum": [
+        "STARTED",
+        "CHANGED",
+        "ENDED"
+      ]
+    },
+    "Property": {
+      "title": "Property",
+      "description": "Representation of a Property",
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/PropertyType"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "unitDisplay": {
+          "type": "string"
+        },
+        "unitDescription": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "maxOperationalValue": {
+          "type": "string"
+        },
+        "minOperationalValue": {
+          "type": "string"
+        },
+        "maxAssignableValue": {
+          "type": "string"
+        },
+        "minAssignableValue": {
+          "type": "string"
+        },
+        "readOnly": {
+          "type": "boolean"
+        },
+        "sensitivity": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "recentValues": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "silent": {
+          "type": "boolean"
+        },
+        "maxAlertValue": {
+          "type": "string"
+        },
+        "minAlertValue": {
+          "type": "string"
+        },
+        "alertValue": {
+          "type": "string"
+        },
+        "extra": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Extra"
+          }
+        }
+      }
+    },
+    "Proxy": {
+      "title": "Proxy",
+      "description": "A proxy server",
+      "type": "object",
+      "properties": {
+        "active": {
+          "type": "boolean"
+        },
+        "host": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "authentication": {
+          "type": "boolean"
+        },
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "Message": {
+      "title": "Message",
+      "description": "An alert message",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "read": {
+          "type": "boolean"
+        },
+        "sender": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Firmware": {
+      "title": "Firmware",
+      "description": "A firmware metadata representation",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "manufacturer": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string"
+        },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "version"
+      ]
+    }
+  }
+}

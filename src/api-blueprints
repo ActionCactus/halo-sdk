@@ -1,0 +1,1460 @@
+FORMAT: 1A
+HOST: http://localhost:8080/api
+
+# Halo
+Software Development Kit (SDK) to access the Halo RESTful API.
+
+## Authentication
+This API uses Basic Authentication for its authentication.
+
+# Group Admin
+
+## API Settings By Setting Id [/@/settings/{setting_id}]
+
++ Parameters
+    + setting_id (string, required)
+
+
+### Get Setting [GET]
+Get the fields that constitute the setting
+
++ Response 200 (application/json)
+    + Attributes (array[Setting Field])
+
+### Update Settings [PUT]
+Update settings
+
++ Request (application/json)
+    + Attributes (Setting Field)
+
++ Response 200 (application/json)
+    + Attributes (Setting Field)
+
+
+## API Functions By Function [/@/functions/{function}]
+
++ Parameters
+    + function (enum[string], required)
+
+        The administrative function to be executed
+
+        + Members
+            + `update` 
+            + `initSectors` 
+            + `initAlarms` 
+            + `setClock` 
+            + `reboot` 
+
+
+### Execute Function [PUT]
+Execute admin function
+
+
+## API Settings [/@/settings]
+
+### Get Settings [GET]
+Get system settings
+
++ Response 200 (application/json)
+    + Attributes (array[Setting])
+
+
+
+# Group Message
+
+## Messages By Message Id [/messages/{message_id}]
+
++ Parameters
+    + message_id (string, required)
+
+
+### Get User Message [GET]
+Get a specific user alert message
+
++ Response 200 (application/json)
+    + Attributes (Message)
+
+### Remove User Message [DELETE]
+Delete user message
+
+### Update User Message [PUT]
+Update user message
+
++ Request (application/json)
+    + Attributes (Message)
+
++ Response 200 (application/json)
+    + Attributes (Message)
+
+
+## Messages [/messages{?page,perPage,fields,sort}]
+
+### Get User Messages [GET]
+Get user messages
++ Parameters
+    + page (number, optional)
+
+        Page number
+
+    + perPage (number, optional)
+
+        Results per page
+
+    + fields (string, optional)
+
+    + sort (string, optional)
+
+
++ Response 200 (application/json)
+    + Attributes (array[Message])
+
+
+
+# Group User
+
+## Teams Members By Team Id And User Id [/teams/{team_id}/members/{user_id}]
+
++ Parameters
+    + team_id (string, required)
+
+    + user_id (string, required)
+
+
+### Add User to Team [PUT]
+Add a member to a team
+
+### Remove User from Team [DELETE]
+Remove a member from a team
+
+
+## Users [/users{?page,perPage,fields,sort}]
+
+### Add User [POST]
+Create a user
+
++ Request (application/json)
+    + Attributes (Person)
+
++ Response 200 (application/json)
+    + Attributes (Person)
+
+### Get Users [GET]
+Get users
++ Parameters
+    + page (number, optional)
+
+        Page number
+
+    + perPage (number, optional)
+
+        Results per page
+
+    + fields (string, optional)
+
+    + sort (string, optional)
+
+
++ Response 200 (application/json)
+    + Attributes (array[Person])
+
+
+## Users By User Id [/users/{user_id}]
+
++ Parameters
+    + user_id (string, required)
+
+
+### Get User [GET]
+Get user with id
+
++ Response 200 (application/json)
+    + Attributes (Person)
+
+### Update User [PUT]
+Update user with id
+
++ Request (application/json)
+    + Attributes (Person)
+
++ Response 200 (application/json)
+    + Attributes (Person)
+
+### Remove User [DELETE]
+Delete user with id
+
+
+## Teams Members By Team Id [/teams/{team_id}/members{?page,perPage,fields,sort}]
+
++ Parameters
+    + team_id (string, required)
+
+
+### Get Team Users [GET]
+Get team users
++ Parameters
+    + page (number, optional)
+
+        Page number
+
+    + perPage (number, optional)
+
+        Results per page
+
+    + fields (string, optional)
+
+    + sort (string, optional)
+
+
++ Response 200 (application/json)
+    + Attributes (array[Person])
+
+
+
+# Group Team
+
+## Teams [/teams{?page,perPage,fields,sort}]
+
+### Add Team [POST]
+Create team
+
++ Request (application/json)
+    + Attributes (Team)
+
++ Response 200 (application/json)
+    + Attributes (Team)
+
+### Get Teams [GET]
+Get teams
++ Parameters
+    + page (number, optional)
+
+        Page number
+
+    + perPage (number, optional)
+
+        Results per page
+
+    + fields (string, optional)
+
+    + sort (string, optional)
+
+
++ Response 200 (application/json)
+    + Attributes (array[Team])
+
+
+## Teams By Team Id [/teams/{team_id}]
+
++ Parameters
+    + team_id (string, required)
+
+
+### Get Team [GET]
+Get team with id
+
++ Response 200 (application/json)
+    + Attributes (Team)
+
+### Update Team [PUT]
+Update team with id
+
++ Request (application/json)
+    + Attributes (Team)
+
++ Response 200 (application/json)
+    + Attributes (Team)
+
+### Remove Team [DELETE]
+Delete team with id
+
+
+## Memberships [/memberships{?page,perPage,fields,sort}]
+
+### Get User Teams [GET]
+Get user teams
++ Parameters
+    + page (number, optional)
+
+    + perPage (number, optional)
+
+    + fields (string, optional)
+
+    + sort (string, optional)
+
+
++ Response 200 (application/json)
+    + Attributes (array[Team])
+
+
+## Projects Teams By Project Id [/projects/{project_id}/teams{?page,perPage,fileds,sort}]
+
++ Parameters
+    + project_id (string, required)
+
+
+### Get Project Teams [GET]
+Get a list of project teams
++ Parameters
+    + page (number, optional)
+
+    + perPage (number, optional)
+
+    + fileds (string, optional)
+
+    + sort (string, optional)
+
+
++ Response 200 (application/json)
+    + Attributes (array[Team])
+
+
+
+# Group Property
+
+## Sectors Nodes Properties Property Id [/sectors/{sector_id}/nodes/{node_id}/properties/{property_id}]
+
++ Parameters
+    + sector_id (string, required)
+
+    + node_id (string, required)
+
+    + property_id (string, required)
+
+
+### Update Sector Node Property [PUT]
+Update property with name
+
++ Request (application/json)
+    + Attributes (Property)
+
++ Response 200 (application/json)
+    + Attributes (Property)
+
+### Get Sector Node Property [GET]
+Get property with name
+
++ Response 200 (application/json)
+    + Attributes (Property)
+
+
+## Sectors Nodes Properties By Sector Id [/sectors/{sector_id}/nodes/{node_id}/properties{?page,perPage,fields,sort}]
+
++ Parameters
+    + sector_id (string, required)
+
+    + node_id (string, required)
+
+
+### Get Sector Node Properties [GET]
+Get sector node properties
++ Parameters
+    + page (number, optional)
+
+        Page number
+
+    + perPage (number, optional)
+
+        Results per page
+
+    + fields (string, optional)
+
+    + sort (string, optional)
+
+
++ Response 200 (application/json)
+    + Attributes (array[Property])
+
+
+
+# Group Node
+
+## Sectors Nodes By Sector Id [/sectors/{sector_id}/nodes{?page,perPage,fields,sort}]
+
++ Parameters
+    + sector_id (string, required)
+
+
+### Add Sector Node [POST]
+Create and add a node to a sector
+
++ Request (application/json)
+    + Attributes (Node)
+
++ Response 200 (application/json)
+    + Attributes (Node)
+
+### Get Sector Nodes [GET]
+Get nodes
++ Parameters
+    + page (number, optional)
+
+        Page number
+
+    + perPage (number, optional)
+
+        Results per page
+
+    + fields (string, optional)
+
+    + sort (string, optional)
+
+
++ Response 200 (application/json)
+    + Attributes (array[Node])
+
+
+## Sectors Nodes By Sector Id And Node Id [/sectors/{sector_id}/nodes/{node_id}]
+
++ Parameters
+    + sector_id (string, required)
+
+    + node_id (string, required)
+
+
+### Get Sector Node [GET]
+Get sector node with index
+
++ Response 200 (application/json)
+    + Attributes (Node)
+
+### Remove Sector Node [DELETE]
+Delete node from sector with index
+
+### Update Sector Node [PUT]
+Update node with index
+
++ Request (application/json)
+    + Attributes (Node)
+
++ Response 200 (application/json)
+    + Attributes (Node)
+
+
+
+# Group Sector
+
+## Sectors [/sectors{?page,perPage,fields,sort}]
+
+### Add Sector [POST]
+Create a sector
+
++ Request (application/json)
+    + Attributes (Sector)
+
++ Response 200 (application/json)
+    + Attributes (Sector)
+
+### Get Sectors [GET]
+Get sectors
++ Parameters
+    + page (number, optional)
+
+        Page number
+
+    + perPage (number, optional)
+
+        Results per page
+
+    + fields (string, optional)
+
+    + sort (string, optional)
+
+
++ Response 200 (application/json)
+    + Attributes (array[Sector])
+
+
+## Sectors By Sector Id [/sectors/{sector_id}]
+
++ Parameters
+    + sector_id (string, required)
+
+
+### Get Sector [GET]
+Get sector with id
+
++ Response 200 (application/json)
+    + Attributes (Sector)
+
+### Update Sector [PUT]
+Update sector with id
+
++ Request (application/json)
+    + Attributes (Sector)
+
++ Response 200 (application/json)
+    + Attributes (Sector)
+
+### Remove Sector [DELETE]
+Delete sector with id
+
+
+## Projects Sectors By Project Id [/projects/{project_id}/sectors/{sector_id}]
+
++ Parameters
+    + project_id (string, required)
+
+    + sector_id (string, required)
+
+
+### Add Sector to Project [PUT]
+Add a sector to a project
+
++ Response 200 
+    + Attributes (string)
+
+### Remove Sector from Project [DELETE]
+Delete a sector from a project
+
++ Response 200 
+    + Attributes (string)
+
+
+## Projects Sectors By Project Id [/projects/{project_id}/sectors{?page,perPage,fields,sort}]
+
++ Parameters
+    + project_id (string, required)
+
+
+### Get Project Sectors [GET]
+Get the sectors for a project
++ Parameters
+    + page (number, optional)
+
+    + perPage (number, optional)
+
+    + fields (string, optional)
+
+    + sort (string, optional)
+
+
++ Response 200 (application/json)
+    + Attributes (array[Sector])
+
+
+
+# Group Incident
+
+## Incidents [/incidents{?page,perPage,fields,sort,from,to}]
+
+### Get Incidents [GET]
+Get incidents
++ Parameters
+    + page (number, optional)
+
+        Page number
+
+    + perPage (number, optional)
+
+        Results per page
+
+    + fields (string, optional)
+
+    + sort (string, optional)
+
+    + from (string, optional)
+
+    + to (string, optional)
+
+
++ Response 200 (application/json)
+    + Attributes (array[Incident])
+
+
+## Incidents By Incident Id [/incidents/{incident_id}]
+
++ Parameters
+    + incident_id (string, required)
+
+
+### Get Incident [GET]
+Get an incident
+
++ Response 200 (application/json)
+    + Attributes (Incident)
+
+
+
+# Group Extension
+
+## Extensions By Extension Id [/extensions/{extension_id}]
+
++ Parameters
+    + extension_id (string, required)
+
+
+### Get Extension [GET]
+Get extention with specified id
+
++ Response 200 (application/json)
+    + Attributes (Extension)
+
+### Update Extension [PUT]
+Update extension with id
+
++ Request (application/json)
+    + Attributes (Extension)
+
++ Response 200 (application/json)
+    + Attributes (Extension)
+
+### Remove Extension [DELETE]
+Delete extension with id
+
++ Response 200 
+    + Attributes (string)
+
+
+## Extensions [/extensions{?page,perPage,fields,sort}]
+
+### Add Extension [POST]
+Create extension
+
++ Response 200 (application/json)
+    + Attributes (Extension)
+
+### Get Extensions [GET]
+Get extensions
++ Parameters
+    + page (number, optional)
+
+        Page number
+
+    + perPage (number, optional)
+
+        Results per page
+
+    + fields (string, optional)
+
+    + sort (string, optional)
+
+
++ Response 200 (application/json)
+    + Attributes (array[Extension])
+
+
+
+# Group Key
+
+## Keys [/keys{?page,perPage,fields,sort}]
+
+### Get Access Keys [GET]
+Get user access keys
++ Parameters
+    + page (number, optional)
+
+    + perPage (number, optional)
+
+    + fields (string, optional)
+
+    + sort (string, optional)
+
+
++ Response 200 (application/json)
+    + Attributes (array[Access Key])
+
+
+## Keys [/keys]
+
+### Add Access Key [POST]
+Create an access key for a user
+
++ Response 200 (application/json)
+    + Attributes (Access Key)
+
+
+## Keys By Key Id [/keys/{key_id}]
+
++ Parameters
+    + key_id (string, required)
+
+
+### Get Access Key [GET]
+Get access key with id
+
++ Response 200 (application/json)
+    + Attributes (Access Key)
+
+### Remove Access Key [DELETE]
+Delete access key with id
+
++ Response 200 
+    + Attributes (string)
+
+### Update Access Key [PUT]
+Update access key with id
+
++ Request (application/json)
+    + Attributes (Access Key)
+
++ Response 200 (application/json)
+    + Attributes (Access Key)
+
+
+
+# Group Audit
+
+## Audits [/audits{?page,perPage,fields,sort,to,from,action,title,category,actingUserId,targetId,targetType}]
+
+### Get Audits [GET]
+Get audits
++ Parameters
+    + page (number, optional)
+
+        Page number
+
+    + perPage (number, optional)
+
+        Results per page
+
+    + fields (string, optional)
+
+    + sort (string, optional)
+
+    + to (string, optional)
+
+    + from (string, optional)
+
+    + action (enum[string], optional)
+
+        + Members
+            + `AUTHENTICATED` 
+            + `CREATED` 
+            + `MODIFIED` 
+            + `DELETED` 
+            + `INSTALLED` 
+            + `OTHER` 
+
+    + title (string, optional)
+
+    + category (string, optional)
+
+    + actingUserId (string, optional)
+
+    + targetId (string, optional)
+
+    + targetType (string, required)
+
+
++ Response 200 (application/json)
+    + Attributes (array[Audit])
+
+
+
+# Group Project
+
+## Projects [/projects{?page,perPage,fields,sort}]
+
+### Add Project [POST]
+Create a new Project
+
++ Request (application/json)
+    + Attributes (Project)
+
++ Response 200 (application/json)
+    + Attributes (Project)
+
+### Get Projects [GET]
+Get projects
++ Parameters
+    + page (number, optional)
+
+    + perPage (number, optional)
+
+    + fields (string, optional)
+
+    + sort (string, optional)
+
+
++ Response 200 (application/json)
+    + Attributes (array[Project])
+
+
+## Projects By Project Id [/projects/{project_id}]
+
++ Parameters
+    + project_id (string, required)
+
+
+### Get Project [GET]
+Get user with id
+
++ Response 200 (application/json)
+    + Attributes (Project)
+
+### Update Project [PUT]
+Update a project with id
+
++ Request (application/json)
+    + Attributes (Project)
+
++ Response 200 (application/json)
+    + Attributes (Project)
+
+### Remove Project [DELETE]
+Delete project with id
+
++ Response 200 
+    + Attributes (string)
+
+
+## Teams Projects By Team Id [/teams/{team_id}/projects{?page,perPage,fields,sort}]
+
++ Parameters
+    + team_id (string, required)
+
+
+### Get Team Projects [GET]
+Get a list of team projects
++ Parameters
+    + page (number, optional)
+
+    + perPage (number, optional)
+
+    + fields (string, optional)
+
+    + sort (string, optional)
+
+
++ Response 200 (application/json)
+    + Attributes (array[Project])
+
+
+## Teams Projects By Team Id And Project Id [/teams/{team_id}/projects/{project_id}]
+
++ Parameters
+    + project_id (string, required)
+
+    + team_id (string, required)
+
+
+### Add Project to Team [PUT]
+Add a project to a team
+
++ Response 200 
+    + Attributes (string)
+
+### Remove Project from Team [DELETE]
+Delete a project from a team
+
+
+## Sectors Projects By Sector Id [/sectors/{sector_id}/projects{?page,perPage,fields,sort}]
+
++ Parameters
+    + sector_id (string, required)
+
+
+### Get Sector Projects [GET]
+Get projects for a sector
++ Parameters
+    + page (number, optional)
+
+    + perPage (number, optional)
+
+    + fields (string, optional)
+
+    + sort (string, optional)
+
+
++ Response 200 (application/json)
+    + Attributes (array[Project])
+
+
+
+# Group Engine
+
+## Engines [/engines]
+
+### Get Engines [GET]
+Get a list of registered engines
+
++ Response 200 (application/json)
+    + Attributes (array[Engine])
+
+
+## Engines Nodes By Engine Id [/engines/{engine_id}/nodes]
+
++ Parameters
+    + engine_id (string, required)
+
+
+### Get Engine Nodes [GET]
+Get a list of nodes supported by the engine
+
++ Response 200 (application/json)
+    + Attributes (array[Node])
+
+
+## Engines Structures By Engine Id [/engines/{engine_id}/structures]
+
++ Parameters
+    + engine_id (string, required)
+
+
+### Get Engine Structures [GET]
+Get a list of node hierarchal relationship structures supported by the engine
+
++ Response 200 
+    + Attributes (object)
+
+
+
+# Group Setting
+
+## Extensions Settings By Extension Id [/extensions/{extension_id}/settings{?page,perPage,fields,sort}]
+
++ Parameters
+    + extension_id (string, required)
+
+
+### Get Extension Settings [GET]
+Get a collection of all settings for an extension
++ Parameters
+    + page (string, optional)
+
+    + perPage (string, optional)
+
+    + fields (string, optional)
+
+    + sort (string, optional)
+
+
++ Response 200 (application/json)
+    + Attributes (array[Setting])
+
+
+## Extensions Settings By Extension Id [/extensions/{extension_id}/settings/{setting_id}]
+
++ Parameters
+    + extension_id (string, required)
+
+    + setting_id (string, required)
+
+
+### Get Extension Setting [GET]
+Get a collection of fields that make up an extension setting
+
++ Response 200 (application/json)
+    + Attributes (array[Setting Field])
+
+### Update Extension Setting [PUT]
+Update an extension setting field
+
++ Request (application/json)
+    + Attributes (Setting Field)
+
++ Response 200 (application/json)
+    + Attributes (Setting Field)
+
+
+
+# Group Dispatch
+
+## Dispatchers [/dispatchers]
+
+### Get Dispatchers [GET]
+Get a collection of system dispatchers
+
++ Response 200 (application/json)
+    + Attributes (array[Dispatcher])
+
+
+## Dispatchers Protocols By Dispatcher Id [/dispatchers/{dispatcher_id}/protocols]
+
++ Parameters
+    + dispatcher_id (string, required)
+
+
+### Get Dispatcher Protocols [GET]
+Get a collection of all protocols for a dispatcher
+
++ Response 200 (application/json)
+    + Attributes (array[Dispatcher Protocol])
+
+
+
+# Group Subscription
+
+## Subscriptions [/subscriptions{?page,perPage,fields,sort}]
+
+### Get Subscriptions [GET]
+Get subscription
++ Parameters
+    + page (number, optional)
+
+    + perPage (number, optional)
+
+    + fields (string, optional)
+
+    + sort (string, optional)
+
+
++ Response 200 (application/json)
+    + Attributes (array[Subscription])
+
+
+## Subscriptions [/subscriptions]
+
+### Add Subscription [POST]
+Create a new Subscription
+
++ Request (application/json)
+    + Attributes (Subscription)
+
++ Response 200 (application/json)
+    + Attributes (Subscription)
+
+
+## Subscriptions By Subscription Id [/subscriptions/{subscription_id}]
+
++ Parameters
+    + subscription_id (string, required)
+
+
+### Get Subscription [GET]
+Get a subscription
+
++ Response 200 (application/json)
+    + Attributes (Subscription)
+
+### Update Subscription [PUT]
+Update a subscription
+
++ Request (application/json)
+    + Attributes (Subscription)
+
++ Response 200 (application/json)
+    + Attributes (Subscription)
+
+### Remove Subscription [DELETE]
+Delect a subscription with id
+
++ Response 200 
+    + Attributes (string)
+
+
+
+# Group Firmware
+
+## Sectors Nodes Firmwares Firmware Id [/sectors/{sector_id}/nodes/{node_index}/firmwares/{firmware_id}]
+
++ Parameters
+    + sector_id (string, required)
+
+    + node_index (string, required)
+
+    + firmware_id (string, required)
+
+
+### Update Node Firmware [PUT]
+Update node firmware
+
+
+## Firmwares [/firmwares{?page,perPage,fields,sort}]
+
+### Upload Firmware [POST]
+Upload new firmware package
+
+### Get Firmwares [GET]
+Get a collection of registered firmware packages
++ Parameters
+    + page (number, optional)
+
+    + perPage (number, optional)
+
+    + fields (string, optional)
+
+    + sort (string, optional)
+
+
++ Response 200 (application/json)
+    + Attributes (array[Firmware])
+
+
+## Firmwares By Firmware Id [/firmwares/{firmware_id}]
+
++ Parameters
+    + firmware_id (string, required)
+
+
+### Get Firmware [GET]
+Get a firmware representation
+
++ Response 200 (application/json)
+    + Attributes (Firmware)
+
+### Remove Firmware [DELETE]
+Delete a firmware representation
+
++ Response 200 
+    + Attributes (string)
+
+
+
+# Data Structures
+
+## Dispatcher Protocol (object)
+Representation of a dispatcher protocol
+
+### Properties
++ `type` (string, optional) 
++ `options` (array[enum], optional) 
+    + `TEXT`
+    + `PASSWORD`
+    + `TEL`
+    + `URL`
+    + `EMAIL`
+    + `BOOLEAN`
+    + `RADIO`
+    + `CHECKBOX`
+    + `LIST`
+    + `COLOR`
+    + `DATE`
+    + `DATE_TIME`
+    + `TIME`
+    + `NUMBER`
+    + `RANGE`
+
+
+## Dispatcher (object)
+Representation of a Dispatcher
+
+### Properties
++ `id` (string, optional) 
++ `name` (string, optional) 
++ `description` (string, optional) 
+
+
+## Setting Field (object)
+Representation of a setting field
+
+### Properties
++ `type` (enum, optional) 
+    + `TEXT`
+    + `PASSWORD`
+    + `TEL`
+    + `URL`
+    + `EMAIL`
+    + `BOOLEAN`
+    + `RADIO`
+    + `CHECKBOX`
+    + `LIST`
+    + `COLOR`
+    + `DATE`
+    + `DATE_TIME`
+    + `TIME`
+    + `NUMBER`
+    + `RANGE`
++ `name` (string, optional) 
++ `label` (string, optional) 
++ `min` (number, optional) 
++ `max` (number, optional) 
++ `maxLength` (number, optional) 
++ `step` (number, optional) 
++ `pattern` (string, optional) 
++ `readOnly` (boolean, optional) 
++ `required` (boolean, optional) 
++ `checked` (boolean, optional) 
++ `value` (string, optional) 
++ `order` (number, optional) 
++ `options` (array[Setting Field], optional) 
+
+
+## Subscription (object)
+Representation of a subscription
+
+### Properties
++ `id` (string, optional) 
++ `name` (string, optional) 
++ `description` (string, optional) 
++ `topics` (array[string], optional) 
++ `dispatcher` (string, optional) 
++ `protocol` (Dispatcher Protocol, optional) 
++ `createdAt` (string, optional) 
++ `updatedAt` (string, optional) 
+
+
+## Extra (object)
+Custom information in the form of a key value 
+
+### Properties
++ `key` (string, required) 
++ `values` (array[string], required) 
+
+
+## Incident Detail (object)
+Representation of an details of an incident definition.
+
+### Properties
++ `name` (string, optional) - A convenient identifying name. This is a human assignable value for convenience and is not unique.
++ `cause` (string, optional) - A description of the conditions that would cause this alarm definition to become active.
++ `impact` (string, optional) - A description of the impacts that would result in this alarm definition becoming active.
++ `remedy` (string, optional) - A description of the remedy that would resolve this alarm definition if it becomes active.
++ `serviceImpact` (boolean, optional) 
++ `cascadingImpact` (boolean, optional) 
+
+
+## Person (object)
+Representation of a Person
+
+### Properties
++ `id` (string, optional) 
++ `name` (string, optional) 
++ `email` (string, optional) 
++ `bio` (string, optional) 
++ `company` (string, optional) 
++ `secret` (string, optional) 
++ `status` (enum, optional) 
+    + `ACTIVE`
+    + `PENDING`
+    + `SUSPENDED`
++ `createdAt` (string, optional) 
++ `updatedAt` (string, optional) 
++ `admin` (boolean, optional) 
++ `username` (string, optional) 
+
+
+## Team (object)
+Representation of a Team
+
+### Properties
++ `id` (string, optional) 
++ `name` (string, optional) 
++ `description` (string, optional) 
++ `updatedAt` (string, optional) 
++ `createdAt` (string, optional) 
++ `permissions` (array[string], optional) 
+
+
+## Setting (object)
+Representation of a setting
+
+### Properties
++ `id` (string, optional) 
++ `extension` (string, optional) 
++ `description` (string, optional) 
+
+
+## Access Key (object)
+Representation of an Access Key definition.
+
+### Properties
++ `id` (string, optional) 
++ `publicKey` (string, optional) 
++ `privateKey` (string, optional) 
++ `createdAt` (string, optional) 
++ `status` (enum, optional) 
+    + `ACTIVE`
+    + `INACTIVE`
+
+
+## Extension (object)
+Representation of an Extension
+
+### Properties
++ `id` (string, optional) 
++ `title` (string, optional) 
++ `name` (string, optional) 
++ `description` (string, optional) 
++ `author` (string, optional) 
++ `version` (string, optional) 
++ `license` (string, optional) 
++ `frameworks` (string, optional) 
++ `category` (string, optional) 
++ `homepage` (string, optional) 
++ `repository` (string, optional) 
++ `status` (enum, optional) 
+    + `ACTIVE`
+    + `INACTIVE`
++ `icon` (Binary, optional) 
+
+
+## Incident (object)
+Representation of an Incident
+
+### Properties
++ `id` (string, optional) 
++ `silenced` (boolean, optional) 
++ `guiltySector` (Sector, optional) 
++ `guiltyNode` (Node, optional) 
++ `guiltyProperty` (Property, optional) 
++ `history` (array[Incident Event], optional) 
++ `details` (Incident Detail, optional) 
++ `status` (enum, optional) 
+    + `GREEN`
+    + `YELLOW`
+    + `RED`
+
+
+## Audit (object)
+Representation of an Audit
+
+### Properties
++ `id` (string, optional) 
++ `action` (enum, optional) 
+    + `AUTHENTICATED`
+    + `CREATED`
+    + `MODIFIED`
+    + `DELETED`
+    + `INSTALLED`
+    + `OTHER`
++ `title` (string, optional) 
++ `summary` (string, optional) 
++ `category` (string, optional) 
++ `pre` (string, optional) 
++ `post` (string, optional) 
++ `actionIp` (string, optional) 
++ `actingUserId` (string, optional) 
++ `actingUserEmail` (string, optional) 
++ `targetId` (string, optional) 
++ `targetType` (string, optional) 
++ `createdAt` (string, optional) 
+
+
+## Project (object)
+Representation of a Person
+
+### Properties
++ `name` (string, optional) 
++ `description` (string, optional) 
++ `createdAt` (string, optional) 
++ `updatedAt` (string, optional) 
+
+
+## Engine (object)
+Representation of an Engine
+
+### Properties
++ `manufacturer` (string, optional) 
++ `model` (string, optional) 
++ `description` (string, optional) 
+
+
+## Node (object)
+Representation of a Node
+
+### Properties
++ `index` (string, optional) 
++ `name` (string, optional) 
++ `description` (string, optional) 
++ `type` (string, optional) 
++ `silent` (boolean, optional) 
++ `firmware` (string, optional) 
++ `status` (enum, optional) 
+    + `GREEN`
+    + `YELLOW`
+    + `ORANGE`
+    + `RED`
++ `reachable` (boolean, optional) 
++ `installedAt` (string, optional) 
++ `updatedAt` (string, optional) 
++ `id` (string, optional) 
++ `extra` (array[Extra], optional) 
++ `functions` (array[enum], optional) 
+    + `OTHER`
+    + `ANTENNA`
+
+
+## Sector (object)
+Representation of a Sector
+
+### Properties
++ `id` (string, optional) 
++ `name` (string, optional) 
++ `description` (string, optional) 
++ `model` (string, optional) 
++ `addresses` (array[string], optional) 
++ `proxy` (Proxy, optional) 
++ `manufacturer` (string, optional) 
++ `status` (enum, optional) 
+    + `ACTIVE`
+    + `PASSIVE`
++ `silent` (boolean, optional) 
++ `engineId` (string, optional) 
++ `createdAt` (string, optional) 
++ `updatedAt` (string, optional) 
++ `extra` (array[Extra], required) 
+
+
+## Incident Event (object)
+Representation of an Incident Event
+
+### Properties
++ `time` (string, optional) 
++ `type` (enum, optional) 
+    + `STARTED`
+    + `CHANGED`
+    + `ENDED`
++ `status` (enum, optional) 
+    + `GREEN`
+    + `YELLOW`
+    + `RED`
++ `details` (string, optional) 
+
+
+## Property (object)
+Representation of a Property
+
+### Properties
++ `type` (enum, optional) 
+    + `NUMBER`
+    + `PRECISION`
+    + `BOOLEAN`
+    + `STRING`
++ `name` (string, optional) 
++ `description` (string, optional) 
++ `unitDisplay` (string, optional) 
++ `unitDescription` (string, optional) 
++ `value` (string, optional) 
++ `maxOperationalValue` (string, optional) 
++ `minOperationalValue` (string, optional) 
++ `maxAssignableValue` (string, optional) 
++ `minAssignableValue` (string, optional) 
++ `readOnly` (boolean, optional) 
++ `sensitivity` (number, optional) 
++ `recentValues` (array[string], optional) 
++ `silent` (boolean, optional) 
++ `maxAlertValue` (string, optional) 
++ `minAlertValue` (string, optional) 
++ `alertValue` (string, optional) 
++ `extra` (array[Extra], optional) 
+
+
+## Proxy (object)
+A proxy server
+
+### Properties
++ `active` (boolean, optional) 
++ `host` (string, optional) 
++ `port` (number, optional) 
++ `authentication` (boolean, optional) 
++ `username` (string, optional) 
++ `password` (string, optional) 
+
+
+## Message (object)
+An alert message
+
+### Properties
++ `id` (string, optional) 
++ `read` (boolean, optional) 
++ `sender` (string, optional) 
++ `subject` (string, optional) 
++ `message` (string, optional) 
++ `tags` (array[string], optional) 
++ `categories` (array[string], optional) 
++ `createdAt` (string, optional) 
++ `updatedAt` (string, optional) 
+
+
+## Firmware (object)
+A firmware metadata representation
+
+### Properties
++ `id` (string, optional) 
++ `name` (string, optional) 
++ `description` (string, optional) 
++ `manufacturer` (string, optional) 
++ `model` (string, optional) 
++ `nodes` (array[string], optional) 
++ `version` (string, required) 
