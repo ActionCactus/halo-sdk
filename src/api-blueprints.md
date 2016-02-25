@@ -1734,6 +1734,9 @@ Get a collection of system audits. See the Audit model for more information.
 
 # Data Structures
 
+## Setting Field (object)
+This model represents an HTML field representation.
+
 ### Properties
 + `type` (enum, optional) - The HTML input tag type. See the Setting Field Type model for more information.
     + `TEXT`
