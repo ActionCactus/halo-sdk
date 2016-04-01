@@ -16,19 +16,19 @@ This API uses Basic Authentication for its authentication.
 
 
 ### Get Setting [GET]
-Get the fields that constitute the setting
+Get the system setting
 
 + Response 200 (application/json)
-    + Attributes (array[Setting Field])
+    + Attributes (Setting)
 
-### Update Settings [PUT]
-Update settings
+### Update Setting [PUT]
+Update system setting
 
 + Request (application/json)
-    + Attributes (Setting Field)
+    + Attributes (Setting)
 
 + Response 200 (application/json)
-    + Attributes (Setting Field)
+    + Attributes (Setting)
 
 
 ## API Functions By Function [/@/functions/{function}]
@@ -62,19 +62,13 @@ Get system settings
 
 # Group Message
 
-## Messages By Message Id [/messages/{message_id}]
+## Messages By Message Id [/messages/{message_id}{?fields}]
 
 + Parameters
     + message_id (string, required)
 
         The URI path must specify the message ID.
 
-
-### Get Message [GET]
-Get a message. See the Message model for more information.
-
-+ Response 200 (application/json)
-    + Attributes (Message)
 
 ### Remove Message [DELETE]
 Delete a message.  See the Message model for more information.
@@ -84,6 +78,17 @@ Update a message.  See the Message model for more information.
 
 + Request (application/json)
     + Attributes (Message)
+
++ Response 200 (application/json)
+    + Attributes (Message)
+
+### Get Message [GET]
+Get a message. See the Message model for more information.
++ Parameters
+    + fields (string, optional)
+
+        It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt
+
 
 + Response 200 (application/json)
     + Attributes (Message)
@@ -213,19 +218,13 @@ Get a collection of teams. See the Team model for more information.
     + Attributes (array[Team])
 
 
-## Teams By Team Id [/teams/{team_id}]
+## Teams By Team Id [/teams/{team_id}{?fields}]
 
 + Parameters
     + team_id (string, required)
 
         The URI path must specify the team ID.
 
-
-### Get Team [GET]
-Get a team. See the Team model for more information.
-
-+ Response 200 (application/json)
-    + Attributes (Team)
 
 ### Remove Team [DELETE]
 Delete a team. See the Team model for more information.
@@ -235,6 +234,17 @@ Update a team. See the Team model for more information.
 
 + Request (application/json)
     + Attributes (Team)
+
++ Response 200 (application/json)
+    + Attributes (Team)
+
+### Get Team [GET]
+Get a team. See the Team model for more information.
++ Parameters
+    + fields (string, optional)
+
+        It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt
+
 
 + Response 200 (application/json)
     + Attributes (Team)
@@ -299,7 +309,7 @@ Get a collection of teams associated with a project. See the Team model for more
 
 # Group Property
 
-## Sectors Nodes Properties Property Id [/sectors/{sector_id}/nodes/{node_id}/properties/{property_id}]
+## Sectors Nodes Properties Property Id [/sectors/{sector_id}/nodes/{node_id}/properties/{property_id}{?fields,at}]
 
 + Parameters
     + sector_id (string, required)
@@ -326,6 +336,15 @@ Update a node property.  See the Property model for more information.
 
 ### Get Node Property [GET]
 Get a node property. See the Property model for more information.
++ Parameters
+    + fields (string, optional)
+
+        It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt
+
+    + at (string, optional)
+
+        Obtain a copy of a node at a specific moment in time. A timestamp, either as a unix epoch (in seconds) or in the format of: "yyyy-MM-dd'T'HH:mm:ssZ" e.g. "2016-02-14T16:32:47-0500"
+
 
 + Response 200 (application/json)
     + Attributes (Property)
@@ -436,121 +455,6 @@ Get a collection of properties for a node. See the Property model for more infor
 
 
 
-# Group Node
-
-## Sectors Nodes By Sector Id And Node Id [/sectors/{sector_id}/nodes/{node_id}]
-
-+ Parameters
-    + sector_id (string, required)
-
-        The URI path must specify the parent sector ID.
-
-    + node_id (string, required)
-
-        The URI path must specify the node ID.
-
-
-### Get Sector Node [GET]
-Get a node. See the Node model for more information.
-
-+ Response 200 (application/json)
-    + Attributes (Node)
-
-### Update Sector Node [PUT]
-Update a node.  See the Node model for more information.
-
-+ Request (application/json)
-    + Attributes (Node)
-
-+ Response 200 (application/json)
-    + Attributes (Node)
-
-### Remove Sector Node [DELETE]
-Create a request to manually uninstall a node.  See the Node model for more information.
-
-
-## Sectors Nodes By Sector Id [/sectors/{sector_id}/nodes{?page,perPage,fields,sort,id,name,description,type,silent,firmware,status,reachable,installedAt,updatedAt}]
-
-+ Parameters
-    + sector_id (string, required)
-
-        The URI path must specify the parent sector ID.
-
-
-### Add Sector Node [POST]
-Creates a request to manually install a node into a sector. See the Node model for more information.
-
-+ Request (application/json)
-    + Attributes (Node)
-
-+ Response 200 (application/json)
-    + Attributes (Node)
-
-### Get Sector Nodes [GET]
-Get a collection of nodes. See the Node model for more information.
-+ Parameters
-    + page (number, optional)
-
-        Endpoints that return collections are automatically paginated and the first page of results is returned. The desired page number can be targeted using this parameter. e.g. page=2 would return the second page of results.
-
-    + perPage (number, optional)
-
-        Endpoints that return collections are automatically paginated with 10 results per page . The desired number of results per page can be set using this parameter. e.g. perPage=20 would return the 20 results on each page.
-
-    + fields (string, optional)
-
-        It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt
-
-    + sort (string, optional)
-
-        The response collection can be sorted into an order based on a specific field value.  The parameter expects a field name from the response model. It is possible to prefix the field name with a minus sign (-) to invert the sort order. e.g. sort=createdAt or sort=-createdAt 
-
-    + id (string, optional)
-
-        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
-
-    + name (string, optional)
-
-        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
-
-    + description (string, optional)
-
-        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
-
-    + type (string, optional)
-
-        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
-
-    + silent (string, optional)
-
-        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
-
-    + firmware (string, optional)
-
-        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
-
-    + status (string, optional)
-
-        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
-
-    + reachable (string, optional)
-
-        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
-
-    + installedAt (string, optional)
-
-        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
-
-    + updatedAt (string, optional)
-
-        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
-
-
-+ Response 200 (application/json)
-    + Attributes (array[Node])
-
-
-
 # Group Sector
 
 ## Sectors [/sectors{?page,perPage,fields,sort,id,name,description,model,addresses,manufacturer,status,silent,engineId,createdAt,updatedAt}]
@@ -610,19 +514,13 @@ Get a collection of sectors. See the Sector model for more information.
     + Attributes (array[Sector])
 
 
-## Sectors By Sector Id [/sectors/{sector_id}]
+## Sectors By Sector Id [/sectors/{sector_id}{?fields}]
 
 + Parameters
     + sector_id (string, required)
 
         The URI path must specify the sector ID.
 
-
-### Get Sector [GET]
-Get a Sector. See the Sector model for more information.
-
-+ Response 200 (application/json)
-    + Attributes (Sector)
 
 ### Remove Sector [DELETE]
 Delete a sector. Only owned or authorized sectors can be deleted. See the Sector model for more information.
@@ -632,6 +530,17 @@ Update a sector.  See the Sector model for more information.
 
 + Request (application/json)
     + Attributes (Sector)
+
++ Response 200 (application/json)
+    + Attributes (Sector)
+
+### Get Sector [GET]
+Get a Sector. See the Sector model for more information.
++ Parameters
+    + fields (string, optional)
+
+        It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt
+
 
 + Response 200 (application/json)
     + Attributes (Sector)
@@ -816,19 +725,13 @@ Get a collection of users. Requests made from administrative accounts return com
     + Attributes (array[Person])
 
 
-## Users By User Id [/users/{user_id}]
+## Users By User Id [/users/{user_id}{?fields}]
 
 + Parameters
     + user_id (string, required)
 
         The URI path must specify the person ID.
 
-
-### Get User [GET]
-Get a user. Non administrative requests can only access users liked through a team relationship. See the Person model for more information.
-
-+ Response 200 (application/json)
-    + Attributes (Person)
 
 ### Remove User [DELETE]
 Delete a user. Only administrative requests can delete users. It is not possible to delete the account of the requesting user. See the Person model for more information.
@@ -838,6 +741,17 @@ Update a user. For non administrative requests only self updates are permitted. 
 
 + Request (application/json)
     + Attributes (Person)
+
++ Response 200 (application/json)
+    + Attributes (Person)
+
+### Get User [GET]
+Get a user. Non administrative requests can only access users liked through a team relationship. See the Person model for more information.
++ Parameters
+    + fields (string, optional)
+
+        It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt
+
 
 + Response 200 (application/json)
     + Attributes (Person)
@@ -935,45 +849,67 @@ Get a collection of users associated with a team. See the Person model for more 
 
 
 
-# Group Extension
+# Group Node
 
-## Extensions By Extension Id [/extensions/{extension_id}]
+## Sectors Nodes By Sector Id And Node Id [/sectors/{sector_id}/nodes/{node_id}{?fields,at}]
 
 + Parameters
-    + extension_id (string, required)
+    + sector_id (string, required)
 
-        The URI path must specify the extension ID.
+        The URI path must specify the parent sector ID.
+
+    + node_id (string, required)
+
+        The URI path must specify the node ID.
 
 
-### Get Extension [GET]
-Get an extension.  See the Extension model for more information.
-
-+ Response 200 (application/json)
-    + Attributes (Extension)
-
-### Remove Extension [DELETE]
-Delete an extension. See the Extension model for more information.
-
-### Update Extension [PUT]
-Update an extension. See the Extension model for more information.
+### Update Sector Node [PUT]
+Update a node.  See the Node model for more information.
 
 + Request (application/json)
-    + Attributes (Extension)
+    + Attributes (Node)
 
 + Response 200 (application/json)
-    + Attributes (Extension)
+    + Attributes (Node)
 
+### Remove Sector Node [DELETE]
+Create a request to manually uninstall a node.  See the Node model for more information.
 
-## Extensions [/extensions{?page,perPage,fields,sort}]
+### Get Sector Node [GET]
+Get a node. See the Node model for more information.
++ Parameters
+    + fields (string, optional)
 
-### Upload Extension [POST]
-Upload an extension. The extension must be in its native format. Do not wrap it in a ZIP or TAR.
+        It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt
+
+    + at (string, optional)
+
+        Obtain a copy of a node at a specific moment in time. A timestamp, either as a unix epoch (in seconds) or in the format of: "yyyy-MM-dd'T'HH:mm:ssZ" e.g. "2016-02-14T16:32:47-0500"
+
 
 + Response 200 (application/json)
-    + Attributes (Extension)
+    + Attributes (Node)
 
-### Get Extensions [GET]
-Get a collection of all extensions. See the Extension model for more information.
+
+## Sectors Nodes By Sector Id [/sectors/{sector_id}/nodes{?page,perPage,fields,sort,id,name,description,type,silent,firmware,status,reachable,installedAt,updatedAt}]
+
++ Parameters
+    + sector_id (string, required)
+
+        The URI path must specify the parent sector ID.
+
+
+### Add Sector Node [POST]
+Creates a request to manually install a node into a sector. See the Node model for more information.
+
++ Request (application/json)
+    + Attributes (Node)
+
++ Response 200 (application/json)
+    + Attributes (Node)
+
+### Get Sector Nodes [GET]
+Get a collection of nodes. See the Node model for more information.
 + Parameters
     + page (number, optional)
 
@@ -991,9 +927,280 @@ Get a collection of all extensions. See the Extension model for more information
 
         The response collection can be sorted into an order based on a specific field value.  The parameter expects a field name from the response model. It is possible to prefix the field name with a minus sign (-) to invert the sort order. e.g. sort=createdAt or sort=-createdAt 
 
+    + id (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + name (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + description (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + type (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + silent (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + firmware (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + status (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + reachable (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + installedAt (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + updatedAt (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
 
 + Response 200 (application/json)
-    + Attributes (array[Extension])
+    + Attributes (array[Node])
+
+
+
+# Group Plugin
+
+## Plugins By Plugin Id [/plugins/{plugin_id}]
+
++ Parameters
+    + plugin_id (string, required)
+
+        The URI path must specify the plugin ID.
+
+
+### Get Plugin [GET]
+Get a plugin.  See the Plugin model for more information.
+
++ Response 200 (application/json)
+    + Attributes (Plugin)
+
+### Remove Plugin [DELETE]
+Delete a plugin. See the Plugin model for more information.
+
+### Update Plugin [PUT]
+Update a plugin. See the Plugin model for more information.
+
++ Request (application/json)
+    + Attributes (Plugin)
+
++ Response 200 (application/json)
+    + Attributes (Plugin)
+
+### Upgrade Plugin [PUT]
+Upgrade a plugin.  The plugin must be in its native format.
+
++ Response 200 (application/json)
+    + Attributes (Plugin)
+
+
+## Plugins [/plugins{?page,perPage,fields,sort,id,global,name,title,description,homepage,license,provider,categories,version,status,createdAt,updatedAt}]
+
+### Upload Plugin [POST]
+Upload a plugin. The plugin must be in its native format.
+
++ Response 200 (application/json)
+    + Attributes (Plugin)
+
+### Get Plugins [GET]
+Get a collection of all plugins. See the Plugin model for more information.
++ Parameters
+    + page (number, optional)
+
+        Endpoints that return collections are automatically paginated and the first page of results is returned. The desired page number can be targeted using this parameter. e.g. page=2 would return the second page of results.
+
+    + perPage (number, optional)
+
+        Endpoints that return collections are automatically paginated with 10 results per page . The desired number of results per page can be set using this parameter. e.g. perPage=20 would return the 20 results on each page.
+
+    + fields (string, optional)
+
+        It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt
+
+    + sort (string, optional)
+
+        The response collection can be sorted into an order based on a specific field value.  The parameter expects a field name from the response model. It is possible to prefix the field name with a minus sign (-) to invert the sort order. e.g. sort=createdAt or sort=-createdAt 
+
+    + id (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + global (boolean, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + name (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + title (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + description (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + homepage (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + license (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + provider (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + categories (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + version (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + status (enum[string], optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+        + Members
+            + `ACTIVE` - Specifies an plugin status as being enabled. In this state the plugin will work.
+            + `INACTIVE` - Specifies an plugin status as being disabled. In this state the plugin will not work.
+
+    + createdAt (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + updatedAt (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+
++ Response 200 (application/json)
+    + Attributes (array[Plugin])
+
+
+## Projects Plugins By Project Id [/projects/{project_id}/plugins/{plugin_id}]
+
++ Parameters
+    + project_id (string, required)
+
+        The URI path must specify the project ID.
+
+    + plugin_id (string, required)
+
+        The URI path must specify the plugin ID.
+
+
+### Add Plugin to Project [PUT]
+Add a plugin to a project. Only owned plugins can be added to owned projects. See the Project and Plugin models for more information.
+
+### Remove Plugin from Project [DELETE]
+Remove a plugin from a project. Only owned plugins can be removed from owned projects.
+
+
+## Projects Plugins By Project Id [/projects/{project_id}/plugins{?page,perPage,fields,sort,id,global,name,title,description,homepage,license,provider,categories,version,status,updatedAt,createdAt}]
+
++ Parameters
+    + project_id (string, required)
+
+        The URI path must specify the project ID.
+
+
+### Get Project Plugins [GET]
+Get a collection of plugins associated with a project. See the Plugin model for more information.
++ Parameters
+    + page (string, optional)
+
+        Endpoints that return collections are automatically paginated and the first page of results is returned. The desired page number can be targeted using this parameter. e.g. page=2 would return the second page of results.
+
+    + perPage (string, optional)
+
+        Endpoints that return collections are automatically paginated with 10 results per page . The desired number of results per page can be set using this parameter. e.g. perPage=20 would return the 20 results on each page.
+
+    + fields (string, optional)
+
+        It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt
+
+    + sort (string, optional)
+
+        The response collection can be sorted into an order based on a specific field value.  The parameter expects a field name from the response model. It is possible to prefix the field name with a minus sign (-) to invert the sort order. e.g. sort=createdAt or sort=-createdAt 
+
+    + id (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + global (boolean, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + name (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + title (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + description (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + homepage (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + license (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + provider (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + categories (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + version (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + status (enum[string], optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+        + Members
+            + `ACTIVE` - Specifies an plugin status as being enabled. In this state the plugin will work.
+            + `INACTIVE` - Specifies an plugin status as being disabled. In this state the plugin will not work.
+
+    + updatedAt (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + createdAt (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+
++ Response 200 (application/json)
+    + Attributes (array[Plugin])
 
 
 
@@ -1047,19 +1254,13 @@ Get a collection of all access keys. See the Access Key model for more informati
     + Attributes (array[Access Key])
 
 
-## Keys By Key Id [/keys/{key_id}]
+## Keys By Key Id [/keys/{key_id}{?fields}]
 
 + Parameters
     + key_id (string, required)
 
         The URI path must specify the access key ID.
 
-
-### Get Access Key [GET]
-Get an access key. See the Access Key model for more information.
-
-+ Response 200 (application/json)
-    + Attributes (Access Key)
 
 ### Remove Access Key [DELETE]
 Delete an access key.  See the Access Key model for more information.
@@ -1069,6 +1270,17 @@ Update access key.  See the Access Key model for more information.
 
 + Request (application/json)
     + Attributes (Access Key)
+
++ Response 200 (application/json)
+    + Attributes (Access Key)
+
+### Get Access Key [GET]
+Get an access key. See the Access Key model for more information.
++ Parameters
+    + fields (string, optional)
+
+        It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt
+
 
 + Response 200 (application/json)
     + Attributes (Access Key)
@@ -1132,19 +1344,13 @@ Get a collection of projects. See the Project model for more information.
     + Attributes (array[Project])
 
 
-## Projects By Project Id [/projects/{project_id}]
+## Projects By Project Id [/projects/{project_id}{?fields}]
 
 + Parameters
     + project_id (string, required)
 
         The URI path must specify the project ID.
 
-
-### Get Project [GET]
-Get a Project. See the Project model for more information.
-
-+ Response 200 (application/json)
-    + Attributes (Project)
 
 ### Remove Project [DELETE]
 Delete a project. Only owned projects can be deleted. See the Project model for more information.
@@ -1157,6 +1363,17 @@ Update a project.  See the Project model for more information.
 
 + Request (application/json)
     + Attributes (Project)
+
++ Response 200 (application/json)
+    + Attributes (Project)
+
+### Get Project [GET]
+Get a Project. See the Project model for more information.
++ Parameters
+    + fields (string, optional)
+
+        It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt
+
 
 + Response 200 (application/json)
     + Attributes (Project)
@@ -1285,6 +1502,58 @@ Add a project to a team. Only owned projects can be added to owned teams. See th
 Remove a project from a team. Only owned projects can be removed from owned teams.
 
 
+## Plugins Projects By Plugin Id [/plugins/{plugin_id}/projects{?page,perPage,fields,sort,id,name,description,createdAt,updatedAt}]
+
++ Parameters
+    + plugin_id (string, required)
+
+        The URI path must specify the parent plugin ID.
+
+
+### Get Plugin Projects [GET]
+Get a collection of projects associated with a plugin. See the Project model for more information.
++ Parameters
+    + page (string, optional)
+
+        Endpoints that return collections are automatically paginated and the first page of results is returned. The desired page number can be targeted using this parameter. e.g. page=2 would return the second page of results.
+
+    + perPage (string, optional)
+
+        Endpoints that return collections are automatically paginated with 10 results per page . The desired number of results per page can be set using this parameter. e.g. perPage=20 would return the 20 results on each page.
+
+    + fields (string, optional)
+
+        It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt
+
+    + sort (string, optional)
+
+        The response collection can be sorted into an order based on a specific field value.  The parameter expects a field name from the response model. It is possible to prefix the field name with a minus sign (-) to invert the sort order. e.g. sort=createdAt or sort=-createdAt 
+
+    + id (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + name (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + description (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + createdAt (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + updatedAt (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+
++ Response 200 (application/json)
+    + Attributes (array[Project])
+
+
 
 # Group Engine
 
@@ -1321,53 +1590,73 @@ Get a list of node hierarchal relationship structures supported by the engine.
 ## Engines [/engines]
 
 ### Get Engines [GET]
-Get a list of registered engines. See the Engine model for more information.
+Get a list of registered engines. See the Extension model for more information.
 
 + Response 200 (application/json)
-    + Attributes (array[Engine])
+    + Attributes (array[Extension])
+
+
+## Engines By Engine Id [/engines/{engine_id}]
+
++ Parameters
+    + engine_id (string, required)
+
+        The URI path must specify the parent engine ID.
+
+
+### Get Engine [GET]
+Get a registered engine. See the Extension model for more information.
+
++ Response 200 (application/json)
+    + Attributes (Extension)
 
 
 
 # Group Setting
 
-## Extensions Settings By Extension Id [/extensions/{extension_id}/settings/{setting_id}]
+## Plugins Settings By Plugin Id [/plugins/{plugin_id}/settings/{setting_id}{?fields}]
 
 + Parameters
-    + extension_id (string, required)
+    + plugin_id (string, required)
 
-        The URI path must specify the parent extension ID.
+        The URI path must specify the parent plugin ID.
 
     + setting_id (string, required)
 
         The URI path must specify the parent setting ID.
 
 
-### Update Extension Setting [PUT]
-Update an extension setting field.  See the Setting Field model for more information.
+### Update Plugin Setting [PUT]
+Update a plugin setting.  See the Setting model for more information.
 
 + Request (application/json)
-    + Attributes (Setting Field)
+    + Attributes (Setting)
 
 + Response 200 (application/json)
-    + Attributes (Setting Field)
+    + Attributes (Setting)
 
-### Get Extension Setting [GET]
-Get a collection of fields that make up an extension setting. See the Setting Field model for more information.
+### Get Plugin Setting [GET]
+Get plugin setting . See the Setting Field model for more information.
++ Parameters
+    + fields (string, optional)
+
+        It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt
+
 
 + Response 200 (application/json)
-    + Attributes (array[Setting Field])
+    + Attributes (Setting)
 
 
-## Extensions Settings By Extension Id [/extensions/{extension_id}/settings{?page,perPage,fields,sort}]
+## Plugins Settings By Plugin Id [/plugins/{plugin_id}/settings{?page,perPage,fields,sort}]
 
 + Parameters
-    + extension_id (string, required)
+    + plugin_id (string, required)
 
-        The URI path must specify the extension ID.
+        The URI path must specify the plugin ID.
 
 
-### Get Extension Settings [GET]
-Get a collection of all settings for an extension. See the Setting model for more information.
+### Get Plugin Settings [GET]
+Get a collection of all settings for a plugin. See the Setting model for more information.
 + Parameters
     + page (string, optional)
 
@@ -1396,10 +1685,10 @@ Get a collection of all settings for an extension. See the Setting model for mor
 ## Dispatchers [/dispatchers]
 
 ### Get Dispatchers [GET]
-Get a collection of system dispatchers. See the Dispatcher model for more information.
+Get a collection of system dispatchers. See the Extension model for more information.
 
 + Response 200 (application/json)
-    + Attributes (array[Dispatcher])
+    + Attributes (array[Extension])
 
 
 ## Dispatchers Protocols By Dispatcher Id [/dispatchers/{dispatcher_id}/protocols]
@@ -1411,10 +1700,25 @@ Get a collection of system dispatchers. See the Dispatcher model for more inform
 
 
 ### Get Dispatcher Protocols [GET]
-Get a collection of all protocols for a dispatcher. See the Dispatcher Protocol model for more information.
+Get a collection of all protocols for a dispatcher. See the Setting model for more information.
 
 + Response 200 (application/json)
-    + Attributes (array[Dispatcher Protocol])
+    + Attributes (array[Setting])
+
+
+## Dispatchers By Dispatcher Id [/dispatchers/{dispatcher_id}]
+
++ Parameters
+    + dispatcher_id (string, required)
+
+        The URI path must specify the dispacther ID.
+
+
+### Get Dispatcher [GET]
+Get a  system dispatcher. See the Extension model for more information.
+
++ Response 200 (application/json)
+    + Attributes (Extension)
 
 
 
@@ -1483,19 +1787,13 @@ Get a collection of subscriptions. See the Subscriptions model for more informat
     + Attributes (array[Subscription])
 
 
-## Subscriptions By Subscription Id [/subscriptions/{subscription_id}]
+## Subscriptions By Subscription Id [/subscriptions/{subscription_id}{?fields}]
 
 + Parameters
     + subscription_id (string, required)
 
         The URI path must specify the subscription ID.
 
-
-### Get Subscription [GET]
-Get a subscription. See the Subscription model for more information.
-
-+ Response 200 (application/json)
-    + Attributes (Subscription)
 
 ### Remove Subscription [DELETE]
 Delete a subscription. See the Subscription model for more information.
@@ -1512,81 +1810,16 @@ Update a subscription.  See the Subscription model for more information.
 + Response 200 (application/json)
     + Attributes (Subscription)
 
-
-
-# Group Incident
-
-## Incidents By Incident Id [/incidents/{incident_id}]
-
+### Get Subscription [GET]
+Get a subscription. See the Subscription model for more information.
 + Parameters
-    + incident_id (string, required)
-
-        The URI path must specify the incident ID.
-
-
-### Get Incident [GET]
-Get an incident. See the Incident model for more information.
-
-+ Response 200 (application/json)
-    + Attributes (Incident)
-
-
-## Incidents [/incidents{?page,perPage,fields,sort,from,to,id,silenced,guiltySectorId,guiltyNodeId,guiltyPropertyId,status}]
-
-### Get Incidents [GET]
-Get a collection of all incidents. See the Incident model for more information.
-+ Parameters
-    + page (number, optional)
-
-        Endpoints that return collections are automatically paginated and the first page of results is returned. The desired page number can be targeted using this parameter. e.g. page=2 would return the second page of results.
-
-    + perPage (number, optional)
-
-        Endpoints that return collections are automatically paginated with 10 results per page . The desired number of results per page can be set using this parameter. e.g. perPage=20 would return the 20 results on each page.
-
     + fields (string, optional)
 
         It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt
 
-    + sort (string, optional)
-
-        The response collection can be sorted into an order based on a specific field value.  The parameter expects a field name from the response model. It is possible to prefix the field name with a minus sign (-) to invert the sort order. e.g. sort=createdAt or sort=-createdAt 
-
-    + from (string, optional)
-
-        The earliest point in time that the results should include. By default this value is set to 10080 mins prior to the time of the request. The value can be specified either as a unix epoch timestamp or in the string format "yyyy-MM-dd'T'HH:mm:ssZ" e.g. "2016-02-14T16:32:47-0500"
-
-    + to (string, optional)
-
-        The latest point in time that the results should include. By default this value is set to the time of the request. The value can be specified either as a unix epoch timestamp or in the string format "yyyy-MM-dd'T'HH:mm:ssZ" e.g. "2016-02-14T16:32:47-0500"
-
-    + id (string, optional)
-
-        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
-
-    + silenced (string, optional)
-
-        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
-
-    + guiltySectorId (string, optional)
-
-        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
-
-    + guiltyNodeId (string, optional)
-
-        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
-
-    + guiltyPropertyId (string, optional)
-
-        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
-
-    + status (string, optional)
-
-        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
-
 
 + Response 200 (application/json)
-    + Attributes (array[Incident])
+    + Attributes (Subscription)
 
 
 
@@ -1612,10 +1845,22 @@ Get a collection of all incidents. See the Incident model for more information.
 Instruct a hardware node to be updated with a firmware package.
 
 
-## Firmwares [/firmwares{?page,perPage,fields,sort}]
+## Firmwares By Firmware Id [/firmwares/{firmware_id}]
 
-### Upload Firmware [POST]
-Upload new firmware package.
++ Parameters
+    + firmware_id (string, required)
+
+        The URI path must specify the firmware ID.
+
+
+### Get Firmware [GET]
+Get a firmware metadata model. See the Firmware model for more information.
+
++ Response 200 (application/json)
+    + Attributes (Extension)
+
+
+## Firmwares [/firmwares{?page,perPage,fields,sort}]
 
 ### Get Firmwares [GET]
 Get a collection of registered firmware packages. See the Firmware model for more information.
@@ -1638,28 +1883,7 @@ Get a collection of registered firmware packages. See the Firmware model for mor
 
 
 + Response 200 (application/json)
-    + Attributes (array[Firmware])
-
-
-## Firmwares By Firmware Id [/firmwares/{firmware_id}]
-
-+ Parameters
-    + firmware_id (string, required)
-
-        The URI path must specify the firmware ID.
-
-
-### Get Firmware [GET]
-Get a firmware metadata model. See the Firmware model for more information.
-
-+ Response 200 (application/json)
-    + Attributes (Firmware)
-
-### Remove Firmware [DELETE]
-Delete a firmware metadata model. See the Firmware model for more information.
-
-+ Response 200 
-    + Attributes (string)
+    + Attributes (array[Extension])
 
 
 
@@ -1732,42 +1956,88 @@ Get a collection of system audits. See the Audit model for more information.
 
 
 
+# Group Incident
+
+## Incidents [/incidents{?page,perPage,fields,sort,from,to,id,silenced,guiltySectorId,guiltyNodeId,guiltyPropertyId,status}]
+
+### Get Incidents [GET]
+Get a collection of all incidents. See the Incident model for more information.
++ Parameters
+    + page (number, optional)
+
+        Endpoints that return collections are automatically paginated and the first page of results is returned. The desired page number can be targeted using this parameter. e.g. page=2 would return the second page of results.
+
+    + perPage (number, optional)
+
+        Endpoints that return collections are automatically paginated with 10 results per page . The desired number of results per page can be set using this parameter. e.g. perPage=20 would return the 20 results on each page.
+
+    + fields (string, optional)
+
+        It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt
+
+    + sort (string, optional)
+
+        The response collection can be sorted into an order based on a specific field value.  The parameter expects a field name from the response model. It is possible to prefix the field name with a minus sign (-) to invert the sort order. e.g. sort=createdAt or sort=-createdAt 
+
+    + from (string, optional)
+
+        The earliest point in time that the results should include. By default this value is set to 10080 mins prior to the time of the request. The value can be specified either as a unix epoch timestamp or in the string format "yyyy-MM-dd'T'HH:mm:ssZ" e.g. "2016-02-14T16:32:47-0500"
+
+    + to (string, optional)
+
+        The latest point in time that the results should include. By default this value is set to the time of the request. The value can be specified either as a unix epoch timestamp or in the string format "yyyy-MM-dd'T'HH:mm:ssZ" e.g. "2016-02-14T16:32:47-0500"
+
+    + id (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + silenced (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + guiltySectorId (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + guiltyNodeId (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + guiltyPropertyId (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+    + status (string, optional)
+
+        Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'.
+
+
++ Response 200 (application/json)
+    + Attributes (array[Incident])
+
+
+## Incidents By Incident Id [/incidents/{incident_id}{?fields}]
+
++ Parameters
+    + incident_id (string, required)
+
+        The URI path must specify the incident ID.
+
+
+### Get Incident [GET]
+Get an incident. See the Incident model for more information.
++ Parameters
+    + fields (string, optional)
+
+        It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt
+
+
++ Response 200 (application/json)
+    + Attributes (Incident)
+
+
+
 # Data Structures
-
-## Setting Field (object)
-This model represents an HTML field representation.
-
-### Properties
-+ `type` (enum, optional) - The HTML input tag type. See the Setting Field Type model for more information.
-    + `TEXT`
-    + `PASSWORD`
-    + `TEL`
-    + `URL`
-    + `EMAIL`
-    + `BOOLEAN`
-    + `RADIO`
-    + `CHECKBOX`
-    + `LIST`
-    + `COLOR`
-    + `DATE`
-    + `DATE_TIME`
-    + `TIME`
-    + `NUMBER`
-    + `RANGE`
-+ `name` (string, optional) - Specifies the name of an <input> element.
-+ `label` (string, optional) - Specifies the label of an <input> element.
-+ `min` (number, optional) - Specifies a minimum value for an <input> element.
-+ `max` (number, optional) - Specifies the maximum value for an <input> element.
-+ `maxLength` (number, optional) - Specifies the maximum number of characters allowed in an <input> element.
-+ `step` (number, optional) - Specifies the legal number intervals for an input field.
-+ `pattern` (string, optional) - Specifies a regular expression that an <input> element's value is checked against.
-+ `readOnly` (boolean, optional) - Specifies that an input field is read-only.
-+ `required` (boolean, optional) - Specifies that an input field must be filled out before submitting the form.
-+ `checked` (boolean, optional) - Specifies that an <input> element should be pre-selected when the page loads (for type="checkbox" or type="radio").
-+ `value` (string, optional) - Specifies the value of an <input> element.
-+ `order` (number, optional) - The order that the field should be displayed in relative to other fields.
-+ `options` (array[Setting Field], optional) - For fields that define collections the options for the fields are contained here.
-
 
 ## Person (object)
 Each user in Halo is defined as a person.
@@ -1817,67 +2087,36 @@ Messages are the end product of the delivery process from the Halo internal mess
 + `updatedAt` (string, optional) - A timestamp of when the resource was last updated. The format is: "yyyy-MM-dd'T'HH:mm:ssZ" e.g. "2016-02-14T16:32:47-0500"
 
 
-## Dispatcher (object)
-Halo provides internal hooks that broadcast events on defined 'channels'. Dispatchers provide a dynamic delivery mechanism that will dispatch messages in a specific medium.
+## Extension (object)
+Plugins can define extension points that implement service interfaces from the core. These extension points are automatically filtered into their appropriate categories but are returned from their respective endpoints as extensions.
 
 ### Properties
 + `id` (string, optional) - A unique, system assigned record identifier. Dispatchers are extension based resources and so this ID does not conform to standard system resource ID formats. This is a 10 character alpha-numeric ID.
 + `name` (string, optional) - A human readable name assigned to the dispatcher.
 + `description` (string, optional) - A human readable description assigned to the dispatcher.
++ `meta` (object, optional) - Metadata attached to the extension. This data will vary depending on the type of extension.
 
 
-## Dispatcher Protocol (object)
-Dispatchers need to define a minimum of 1 protocol. Protocols define the delivery protocols defined by the dispatcher.
-
-### Properties
-+ `type` (string, optional) - The type name assigned to the dispatcher protocol.
-+ `options` (enum, optional) - An optional collection of the protocol definition options required to make the dispatcher function as a dispatcher. Note that this is the definition not the actual stored value. e.g. An email dispatcher needs the user to define the email addresses that the message should be dispatched to.
-    + `TEXT`
-    + `PASSWORD`
-    + `TEL`
-    + `URL`
-    + `EMAIL`
-    + `BOOLEAN`
-    + `RADIO`
-    + `CHECKBOX`
-    + `LIST`
-    + `COLOR`
-    + `DATE`
-    + `DATE_TIME`
-    + `TIME`
-    + `NUMBER`
-    + `RANGE`
-
-
-## Engine (object)
-Engines are a type of extension that provide Halo support for specific hardware. Engines are generally proprietary extensions provided by the manufacturers to allow Halo support for their internal communication protocols. 
+## Plugin (object)
+Plugin are independent packages that can be installed/removed at runtime by users to extend the core Halo functionality. 
 
 ### Properties
-+ `manufacturer` (string, optional) - The manufacturer of the hardware that the engine provides support for.
-+ `model` (string, optional) - The model of the hardware that the engine provides support for.
-+ `description` (string, optional) - A human readable description of the engine.
-+ `id` (string, optional) - A unique, system assigned record identifier. Engines are extension based resources and so this ID does not conform to standard system resource ID formats. This is a 10 character alpha-numeric ID.
-
-
-## Extension (object)
-Extension are independent packages that can be installed/removed at runtime by users to extend the core Halo functionality. 
-
-### Properties
-+ `id` (string, optional) - A unique, system assigned record identifier. Engines are extension based resources and so this ID does not conform to standard system resource ID formats. This is a 10 character alpha-numeric ID.
-+ `title` (string, optional) - A human readable title assigned to the extension.
-+ `name` (string, optional) - A unique package name assigned to the extension. This is usually a code based workspace assignment.
-+ `description` (string, optional) - A human readable description of the extension.
-+ `author` (string, optional) - The extension author.
-+ `version` (string, optional) - The extension version. Although no format is imposed on extension versions, developers are encouraged to use semantic format.  For more info see http://semver.org/
-+ `license` (string, optional) - The type of license that the extension id published under.
-+ `frameworks` (string, optional) - A description of the supported core Halo framework versions that are supported by the extension. This takes the format '<comparator><major>.<minor>.<patch>'. e.g. '>=1.0.0'
-+ `category` (string, optional) - The category that the extension is categorised under.
++ `id` (string, optional) - A unique, system assigned record identifier. The ID format is made up as follows: : where cluster-id is the id of the cluster. Halo can have a maximum of 32,767 clusters (2^15-1). The cluster-position is the position of the record inside the cluster. Each cluster can handle up to 9,223,372,036,854,780,000 (2^63) records, namely 9,223,372 Trillion of records!
++ `global` (boolean, optional) - A flag indicating whether the plugin is globally accessible. Globally accessible plugins can be accessed for usage by all system users. Non global plugins are context sensitive resources and must be shared via teams and projects.
++ `name` (string, optional) - A unique name assigned to the plugin.
++ `title` (string, optional) - A human readable title for the plugin.
++ `description` (string, optional) - A human readable title for the plugin.
 + `homepage` (string, optional) - An optional URL of the extension homepage.
-+ `repository` (string, optional) - An optional URL of the extension repository.
-+ `status` (enum, optional) - The status of the extension determines whether the extension is enabled. See Extension State model for more information.
++ `license` (string, optional) - The type of license that the plugin is published under.
++ `provider` (string, optional) - The plugin provider or author.
++ `categories` (array[string], required) - The category that the extension is categorised under.
++ `version` (string, optional) - The plugin semantical release version.
++ `status` (enum, optional) - The status of the plugin determines whether it is enabled. See Plugin State model for more information.
     + `ACTIVE`
     + `INACTIVE`
-+ `icon` (binary, optional) - An optional Base64 encoded icon.
++ `owner` (Person, optional) - Plugins are context sensitive and always have an owner (even globally accessible plugins).
++ `createdAt` (string, optional) - An optional Base64 encoded icon.
++ `updatedAt` (string, optional) 
 
 
 ## Incident (object)
@@ -1942,7 +2181,7 @@ Properties are the variables that make up nodes. These are the readable and writ
 + `minAssignableValue` (string, optional) - The optional minimum value that can be assigned to the property if it can have a value assigned to it. Due the way that different languages handle polymorphism and for the convenience of the SDK compatibility all values are represented as String and the actual type is independently specified in the type field.
 + `readOnly` (boolean, optional) - A flag specifying whether the value can only be read or whether it can also be written to.
 + `sensitivity` (number, optional) - Halo uses smoothing algorithms to control the sensitivity of property value interpretation. This sensitivity value must be between 0 and 100. The closer to 100, the more sensitive Halo's interpretation of the true values. The closer to 0 the greater the smoothing effect.
-+ `recentValues` (array[string], optional) - A collection of the value over the last 30 mins.  Due the way that different languages handle polymorphism and for the convenience of the SDK compatibility all values are represented as String and the actual type is independently specified in the type field.
++ `recentValues` (array[Property Recent Value], optional) - A collection of the value over the last 30 mins.  Due the way that different languages handle polymorphism and for the convenience of the SDK compatibility all values are represented as String and the actual type is independently specified in the type field.
 + `silent` (boolean, optional) - A flag specifying whether the property should be treated as silent. This flag does not alter any behaviour in the system. It simply propagates its value to incidents that originate from this property. This propagated flag can optionally be included in searches, reporting etc.
 + `maxAlertValue` (string, optional) - The optional maximum value that can be reached by the property value before it will instigate an enquiry into the suspect behaviour. Due the way that different languages handle polymorphism and for the convenience of the SDK compatibility all values are represented as String and the actual type is independently specified in the type field.
 + `minAlertValue` (string, optional) - The optional minimum value that can be reached by the property value before it will instigate an enquiry into the suspect behaviour. Due the way that different languages handle polymorphism and for the convenience of the SDK compatibility all values are represented as String and the actual type is independently specified in the type field.
@@ -1958,15 +2197,13 @@ Sectors represent a single head end node (with optional multiple failover head n
 + `id` (string, optional) - A unique, system assigned record identifier. The ID format is made up as follows: <cluster-id>:<cluster-position> where cluster-id is the id of the cluster. Halo can have a maximum of 32,767 clusters (2^15-1). The cluster-position is the position of the record inside the cluster. Each cluster can handle up to 9,223,372,036,854,780,000 (2^63) records, namely 9,223,372 Trillion of records!
 + `name` (string, optional) - A human readable name assigned to the project. Required to create.
 + `description` (string, optional) - An optional human readable description assigned to the project.
-+ `model` (string, optional) - The engine model that the sector is hosting. This must match the model specified in the active engine extension exactly. See Engine model for more information.  Required to create.
++ `engine` (Extension, optional) - The engine that the sector is hosting. See Extension model for more information.  Required to create.
 + `addresses` (array[string], optional) - A collection of IPv4 or IPv6 addresses (or sockets) for the destination hardware headend  node. The first address in the collection is treated as the primary head end node. All subsequent addresses are treated as failover head end nodes. e.g. 1.1.1.1 or 1.1.1.1:222 or 2001:0db8:0a0b:12f0:0000:0000:0000:0001 or 2001:0db8:0a0b:12f0:0000:0000:0000:0001::80.  Required to create.
 + `proxy` (Proxy, optional) - The optional http(s) proxy server used for connections to the hardware. See Proxy model for more information.
-+ `manufacturer` (string, optional) - The engine manufacturer that the sector is hosting. This must match the manufacturer specified in the active engine extension exactly. See Engine model for more information.  Required to create.
 + `status` (enum, optional) - The current status of the sector. See the Sector State model for more information.
     + `ACTIVE`
     + `PASSIVE`
 + `silent` (boolean, optional) - A flag specifying whether the sector should be treated as silent. This flag does not alter any behaviour in the system. It simply propagates its value to incidents that originate from this sector. This propagated flag can optionally be included in searches, reporting etc.
-+ `engineId` (string, optional) - The engine ID that the sector is hosting. See Engine model for more information.
 + `createdAt` (string, optional) - A timestamp of when the resource was created. The format is: "yyyy-MM-dd'T'HH:mm:ssZ" e.g. "2016-02-14T16:32:47-0500"
 + `updatedAt` (string, optional) - A timestamp of when the resource was last updated. The format is: "yyyy-MM-dd'T'HH:mm:ssZ" e.g. "2016-02-14T16:32:47-0500"
 + `extra` (array[Extra], optional) - A collection of custom data that can be bound to the node. See the Extra model for more information.
@@ -1981,8 +2218,8 @@ Subscriptions are the binding model that connects system topic broadcasts with d
 + `name` (string, optional) - A human readable name assigned to the project. Required to create.
 + `description` (string, optional) - An optional human readable description assigned to the project.
 + `topics` (array[string], optional) - A collection of topics that the subscription should listen for. Required to create.
-+ `dispatcher` (string, optional) - The ID of the dispatcher that the broadcast messages should be passed to. Required to create.
-+ `protocol` (Dispatcher Protocol, optional) - The dispatcher protocol settings that should be passed to the dispatcher with the broadcast message. See Dispatcher Protocol model for more information.
++ `dispatcher` (Extension, optional) - The dispatcher extension that the broadcast messages should be passed to. Required to create.
++ `protocol` (Setting, optional) - The dispatcher protocol settings that should be passed to the dispatcher with the broadcast message. See Dispatcher Protocol model for more information.
 + `createdAt` (string, optional) - A timestamp of when the resource was created. The format is: "yyyy-MM-dd'T'HH:mm:ssZ" e.g. "2016-02-14T16:32:47-0500"
 + `updatedAt` (string, optional) - A timestamp of when the resource was last updated. The format is: "yyyy-MM-dd'T'HH:mm:ssZ" e.g. "2016-02-14T16:32:47-0500"
 
@@ -2013,12 +2250,13 @@ Actionable information pertaining to an incident.
 
 
 ## Setting (object)
-All Halo settings are defined via extensions. This model does not contain the actual settings, instead it is the parent meta model that defines whether settings exist.
+All Halo settings are defined via plugins and use the Angular Formly API to define the form under the fields property and the values are stored under the model property.
 
 ### Properties
 + `id` (string, optional) - A unique, system assigned record identifier. Engines are extension based resources and so this ID does not conform to standard system resource ID formats. This is a 10 character alpha-numeric ID.
-+ `extension` (string, optional) - The ID of the extension that the settings belong to.
-+ `description` (string, optional) - A human readable description of the extension setting.
++ `name` (string, optional) - A human readable name of the extension setting.
++ `model` (object, optional) - A dynamic set of model values as specified by the Angular Formly API. For more information see: http://docs.angular-formly.com/docs
++ `fields` (object, optional) - A dynamic set of form field definition as specified by the Angular Formly API. For more information see: http://docs.angular-formly.com/docs
 
 
 ## Audit (object)
@@ -2093,14 +2331,9 @@ A proxy server is a server that acts as an intermediary for Halo requests. Halo 
 + `password` (string, optional) - The optional credential password to pass to the proxy server for authentication.
 
 
-## Firmware (object)
-Halo provides the ability to control engine hardware firmware versions. This model is not the actual firmware but rather a representation of the firmware metadata.
+## Property Recent Value (object)
+Recent values in properties are made up of a timestamp and the value represented as a string.
 
 ### Properties
-+ `id` (string, optional) - A unique, system assigned record identifier. Engines are extension based resources and so this ID does not conform to standard system resource ID formats. This is a 10 character alpha-numeric ID.
-+ `name` (string, optional) - The firmware package human readable name.
-+ `description` (string, optional) - The firmware package human readable description.
-+ `manufacturer` (string, optional) - The manufacturer of the hardware supported by the firmware package.
-+ `model` (string, optional) - The model of the hardware supported by the firmware package.
-+ `nodes` (array[string], optional) - A collection of node types that this firmware is compatible with. These nodes match the node types defined by the engine supporting the target hardware.
-+ `version` (string, optional) - The version of the firmware defined in the firmware package .
++ `value` (string, optional) 
++ `date` (string, optional) 

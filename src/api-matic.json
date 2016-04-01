@@ -3,7 +3,7 @@
   "BaseUri": "http://localhost:8080/api",
   "ImageUri": "https://cloud.githubusercontent.com/assets/7042623/11058972/1934eda0-8797-11e5-91b8-852e15655949.png",
   "Description": "Software Development Kit (SDK) to access the Halo RESTful API.",
-  "Version": "1.0.3",
+  "Version": "1.0.6",
   "AdditionalHeaders": [],
   "Authentication": {
     "Type": "Basic",
@@ -13,49 +13,14 @@
   "Endpoints": [
     {
       "Name": "Get Setting",
-      "Description": "Get the fields that constitute the setting",
+      "Description": "Get the system setting",
       "HTTPMethod": "GET",
       "Group": "Admin",
       "RequiresAuthentication": true,
       "Route": "/@/settings/{setting_id}",
       "Response": {
         "Optional": false,
-        "Type": "Setting Field",
-        "Constant": false,
-        "IsStream": false,
-        "IsAttribute": false,
-        "IsArray": true,
-        "IsMap": false,
-        "Name": "response"
-      },
-      "HasOptionalQueryParams": false,
-      "HasOptionalFieldParams": false,
-      "CollectParameters": false,
-      "Parameters": [
-        {
-          "ParamFormat": "Template",
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "setting_id"
-        }
-      ],
-      "Errors": []
-    },
-    {
-      "Name": "Get Message",
-      "Description": "Get a message. See the Message model for more information.",
-      "HTTPMethod": "GET",
-      "Group": "Message",
-      "RequiresAuthentication": true,
-      "Route": "/messages/{message_id}",
-      "Response": {
-        "Optional": false,
-        "Type": "Message",
+        "Type": "Setting",
         "Constant": false,
         "IsStream": false,
         "IsAttribute": false,
@@ -76,8 +41,7 @@
           "IsAttribute": false,
           "IsArray": false,
           "IsMap": false,
-          "Name": "message_id",
-          "Description": "The URI path must specify the message ID."
+          "Name": "setting_id"
         }
       ],
       "Errors": []
@@ -178,15 +142,15 @@
       "Errors": []
     },
     {
-      "Name": "Update Settings",
-      "Description": "Update settings",
+      "Name": "Update Setting",
+      "Description": "Update system setting",
       "HTTPMethod": "PUT",
       "Group": "Admin",
       "RequiresAuthentication": true,
       "Route": "/@/settings/{setting_id}",
       "Response": {
         "Optional": false,
-        "Type": "Setting Field",
+        "Type": "Setting",
         "Constant": false,
         "IsStream": false,
         "IsAttribute": false,
@@ -212,13 +176,13 @@
         {
           "ParamFormat": "Body",
           "Optional": false,
-          "Type": "Setting Field",
+          "Type": "Setting",
           "Constant": false,
           "IsStream": false,
           "IsAttribute": false,
           "IsArray": false,
           "IsMap": false,
-          "Name": "field"
+          "Name": "setting"
         }
       ],
       "Errors": []
@@ -255,42 +219,6 @@
           "IsMap": false,
           "Name": "team",
           "Description": "The team model specifying the values of the object to create. It is not a requirement to construct a complete model object."
-        }
-      ],
-      "Errors": []
-    },
-    {
-      "Name": "Get Team",
-      "Description": "Get a team. See the Team model for more information.",
-      "HTTPMethod": "GET",
-      "Group": "Team",
-      "RequiresAuthentication": true,
-      "Route": "/teams/{team_id}",
-      "Response": {
-        "Optional": false,
-        "Type": "Team",
-        "Constant": false,
-        "IsStream": false,
-        "IsAttribute": false,
-        "IsArray": false,
-        "IsMap": false,
-        "Name": "response"
-      },
-      "HasOptionalQueryParams": false,
-      "HasOptionalFieldParams": false,
-      "CollectParameters": false,
-      "Parameters": [
-        {
-          "ParamFormat": "Template",
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "team_id",
-          "Description": "The URI path must specify the team ID."
         }
       ],
       "Errors": []
@@ -404,54 +332,6 @@
       "Errors": []
     },
     {
-      "Name": "Get Sector Node",
-      "Description": "Get a node. See the Node model for more information.",
-      "HTTPMethod": "GET",
-      "Group": "Node",
-      "RequiresAuthentication": true,
-      "Route": "/sectors/{sector_id}/nodes/{node_id}",
-      "Response": {
-        "Optional": false,
-        "Type": "Node",
-        "Constant": false,
-        "IsStream": false,
-        "IsAttribute": false,
-        "IsArray": false,
-        "IsMap": false,
-        "Name": "response"
-      },
-      "HasOptionalQueryParams": false,
-      "HasOptionalFieldParams": false,
-      "CollectParameters": false,
-      "Parameters": [
-        {
-          "ParamFormat": "Template",
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "sector_id",
-          "Description": "The URI path must specify the parent sector ID."
-        },
-        {
-          "ParamFormat": "Template",
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "node_id",
-          "Description": "The URI path must specify the node ID."
-        }
-      ],
-      "Errors": []
-    },
-    {
       "Name": "Add Sector",
       "Description": "Create a Sector.  See the Sector model for more information.",
       "HTTPMethod": "POST",
@@ -483,42 +363,6 @@
           "IsMap": false,
           "Name": "sector",
           "Description": "The sector model specifying the values of the object to create. It is not a requirement to construct a complete model object."
-        }
-      ],
-      "Errors": []
-    },
-    {
-      "Name": "Get Sector",
-      "Description": "Get a Sector. See the Sector model for more information.",
-      "HTTPMethod": "GET",
-      "Group": "Sector",
-      "RequiresAuthentication": true,
-      "Route": "/sectors/{sector_id}",
-      "Response": {
-        "Optional": false,
-        "Type": "Sector",
-        "Constant": false,
-        "IsStream": false,
-        "IsAttribute": false,
-        "IsArray": false,
-        "IsMap": false,
-        "Name": "response"
-      },
-      "HasOptionalQueryParams": false,
-      "HasOptionalFieldParams": false,
-      "CollectParameters": false,
-      "Parameters": [
-        {
-          "ParamFormat": "Template",
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "sector_id",
-          "Description": "The URI path must specify the sector ID."
         }
       ],
       "Errors": []
@@ -591,42 +435,6 @@
           "IsMap": false,
           "Name": "user",
           "Description": "The person model specifying the values of the object to create. It is not a requirement to construct a complete model object."
-        }
-      ],
-      "Errors": []
-    },
-    {
-      "Name": "Get User",
-      "Description": "Get a user. Non administrative requests can only access users liked through a team relationship. See the Person model for more information.",
-      "HTTPMethod": "GET",
-      "Group": "User",
-      "RequiresAuthentication": true,
-      "Route": "/users/{user_id}",
-      "Response": {
-        "Optional": false,
-        "Type": "Person",
-        "Constant": false,
-        "IsStream": false,
-        "IsAttribute": false,
-        "IsArray": false,
-        "IsMap": false,
-        "Name": "response"
-      },
-      "HasOptionalQueryParams": false,
-      "HasOptionalFieldParams": false,
-      "CollectParameters": false,
-      "Parameters": [
-        {
-          "ParamFormat": "Template",
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "user_id",
-          "Description": "The URI path must specify the person ID."
         }
       ],
       "Errors": []
@@ -783,20 +591,44 @@
           "IsMap": false,
           "Name": "property_id",
           "Description": "The URI path must specify the property ID."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "fields",
+          "Description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "at",
+          "Description": "Obtain a copy of a node at a specific moment in time. A timestamp, either as a unix epoch (in seconds) or in the format of: \"yyyy-MM-dd'T'HH:mm:ssZ\" e.g. \"2016-02-14T16:32:47-0500\""
         }
       ],
       "Errors": []
     },
     {
-      "Name": "Get Extension",
-      "Description": "Get an extension.  See the Extension model for more information.",
+      "Name": "Get Plugin",
+      "Description": "Get a plugin.  See the Plugin model for more information.",
       "HTTPMethod": "GET",
-      "Group": "Extension",
+      "Group": "Plugin",
       "RequiresAuthentication": true,
-      "Route": "/extensions/{extension_id}",
+      "Route": "/plugins/{plugin_id}",
       "Response": {
         "Optional": false,
-        "Type": "Extension",
+        "Type": "Plugin",
         "Constant": false,
         "IsStream": false,
         "IsAttribute": false,
@@ -817,19 +649,19 @@
           "IsAttribute": false,
           "IsArray": false,
           "IsMap": false,
-          "Name": "extension_id",
-          "Description": "The URI path must specify the extension ID."
+          "Name": "plugin_id",
+          "Description": "The URI path must specify the plugin ID."
         }
       ],
       "Errors": []
     },
     {
-      "Name": "Remove Extension",
-      "Description": "Delete an extension. See the Extension model for more information.",
+      "Name": "Remove Plugin",
+      "Description": "Delete a plugin. See the Plugin model for more information.",
       "HTTPMethod": "DELETE",
-      "Group": "Extension",
+      "Group": "Plugin",
       "RequiresAuthentication": true,
-      "Route": "/extensions/{extension_id}",
+      "Route": "/plugins/{plugin_id}",
       "Response": {
         "Optional": false,
         "Type": "Void",
@@ -853,8 +685,8 @@
           "IsAttribute": false,
           "IsArray": false,
           "IsMap": false,
-          "Name": "extension_id",
-          "Description": "The URI path must specify the extension ID."
+          "Name": "plugin_id",
+          "Description": "The URI path must specify the plugin ID."
         }
       ],
       "Errors": []
@@ -880,42 +712,6 @@
       "HasOptionalFieldParams": false,
       "CollectParameters": false,
       "Parameters": [],
-      "Errors": []
-    },
-    {
-      "Name": "Get Access Key",
-      "Description": "Get an access key. See the Access Key model for more information.",
-      "HTTPMethod": "GET",
-      "Group": "Key",
-      "RequiresAuthentication": true,
-      "Route": "/keys/{key_id}",
-      "Response": {
-        "Optional": false,
-        "Type": "Access Key",
-        "Constant": false,
-        "IsStream": false,
-        "IsAttribute": false,
-        "IsArray": false,
-        "IsMap": false,
-        "Name": "response"
-      },
-      "HasOptionalQueryParams": false,
-      "HasOptionalFieldParams": false,
-      "CollectParameters": false,
-      "Parameters": [
-        {
-          "ParamFormat": "Template",
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "key_id",
-          "Description": "The URI path must specify the access key ID."
-        }
-      ],
       "Errors": []
     },
     {
@@ -986,42 +782,6 @@
           "IsMap": false,
           "Name": "project",
           "Description": "The project model specifying the values of the object to create. It is not a requirement to construct a complete model object."
-        }
-      ],
-      "Errors": []
-    },
-    {
-      "Name": "Get Project",
-      "Description": "Get a Project. See the Project model for more information.",
-      "HTTPMethod": "GET",
-      "Group": "Project",
-      "RequiresAuthentication": true,
-      "Route": "/projects/{project_id}",
-      "Response": {
-        "Optional": false,
-        "Type": "Project",
-        "Constant": false,
-        "IsStream": false,
-        "IsAttribute": false,
-        "IsArray": false,
-        "IsMap": false,
-        "Name": "response"
-      },
-      "HasOptionalQueryParams": false,
-      "HasOptionalFieldParams": false,
-      "CollectParameters": false,
-      "Parameters": [
-        {
-          "ParamFormat": "Template",
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "project_id",
-          "Description": "The URI path must specify the project ID."
         }
       ],
       "Errors": []
@@ -1135,15 +895,15 @@
       "Errors": []
     },
     {
-      "Name": "Update Extension Setting",
-      "Description": "Update an extension setting field.  See the Setting Field model for more information.",
+      "Name": "Update Plugin Setting",
+      "Description": "Update a plugin setting.  See the Setting model for more information.",
       "HTTPMethod": "PUT",
       "Group": "Setting",
       "RequiresAuthentication": true,
-      "Route": "/extensions/{extension_id}/settings/{setting_id}",
+      "Route": "/plugins/{plugin_id}/settings/{setting_id}",
       "Response": {
         "Optional": false,
-        "Type": "Setting Field",
+        "Type": "Setting",
         "Constant": false,
         "IsStream": false,
         "IsAttribute": false,
@@ -1164,8 +924,8 @@
           "IsAttribute": false,
           "IsArray": false,
           "IsMap": false,
-          "Name": "extension_id",
-          "Description": "The URI path must specify the parent extension ID."
+          "Name": "plugin_id",
+          "Description": "The URI path must specify the parent plugin ID."
         },
         {
           "ParamFormat": "Template",
@@ -1182,28 +942,28 @@
         {
           "ParamFormat": "Body",
           "Optional": false,
-          "Type": "Setting Field",
+          "Type": "Setting",
           "Constant": false,
           "IsStream": false,
           "IsAttribute": false,
           "IsArray": false,
           "IsMap": false,
-          "Name": "field",
-          "Description": "The setting field model specifying the values to be updated. It is not a requirement to construct a complete model object. Fields not set will be ignored and existing values will persist. "
+          "Name": "setting",
+          "Description": "The setting model specifying the values to be updated. It is not a requirement to construct a complete model object. Fields not set will be ignored and existing values will persist. "
         }
       ],
       "Errors": []
     },
     {
       "Name": "Get Dispatchers",
-      "Description": "Get a collection of system dispatchers. See the Dispatcher model for more information.",
+      "Description": "Get a collection of system dispatchers. See the Extension model for more information.",
       "HTTPMethod": "GET",
       "Group": "Dispatch",
       "RequiresAuthentication": true,
       "Route": "/dispatchers",
       "Response": {
         "Optional": false,
-        "Type": "Dispatcher",
+        "Type": "Extension",
         "Constant": false,
         "IsStream": false,
         "IsAttribute": false,
@@ -1219,14 +979,14 @@
     },
     {
       "Name": "Get Dispatcher Protocols",
-      "Description": "Get a collection of all protocols for a dispatcher. See the Dispatcher Protocol model for more information.",
+      "Description": "Get a collection of all protocols for a dispatcher. See the Setting model for more information.",
       "HTTPMethod": "GET",
       "Group": "Dispatch",
       "RequiresAuthentication": true,
       "Route": "/dispatchers/{dispatcher_id}/protocols",
       "Response": {
         "Optional": false,
-        "Type": "Dispatcher Protocol",
+        "Type": "Setting",
         "Constant": false,
         "IsStream": false,
         "IsAttribute": false,
@@ -1290,42 +1050,6 @@
       "Errors": []
     },
     {
-      "Name": "Get Subscription",
-      "Description": "Get a subscription. See the Subscription model for more information.",
-      "HTTPMethod": "GET",
-      "Group": "Subscription",
-      "RequiresAuthentication": true,
-      "Route": "/subscriptions/{subscription_id}",
-      "Response": {
-        "Optional": false,
-        "Type": "Subscription",
-        "Constant": false,
-        "IsStream": false,
-        "IsAttribute": false,
-        "IsArray": false,
-        "IsMap": false,
-        "Name": "response"
-      },
-      "HasOptionalQueryParams": false,
-      "HasOptionalFieldParams": false,
-      "CollectParameters": false,
-      "Parameters": [
-        {
-          "ParamFormat": "Template",
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "subscription_id",
-          "Description": "The URI path must specify the subscription ID."
-        }
-      ],
-      "Errors": []
-    },
-    {
       "Name": "Remove Subscription",
       "Description": "Delete a subscription. See the Subscription model for more information. ",
       "HTTPMethod": "DELETE",
@@ -1357,42 +1081,6 @@
           "IsMap": false,
           "Name": "subscription_id",
           "Description": "The URI path must specify the subscription ID."
-        }
-      ],
-      "Errors": []
-    },
-    {
-      "Name": "Get Incident",
-      "Description": "Get an incident. See the Incident model for more information.",
-      "HTTPMethod": "GET",
-      "Group": "Incident",
-      "RequiresAuthentication": true,
-      "Route": "/incidents/{incident_id}",
-      "Response": {
-        "Optional": false,
-        "Type": "Incident",
-        "Constant": false,
-        "IsStream": false,
-        "IsAttribute": false,
-        "IsArray": false,
-        "IsMap": false,
-        "Name": "response"
-      },
-      "HasOptionalQueryParams": false,
-      "HasOptionalFieldParams": false,
-      "CollectParameters": false,
-      "Parameters": [
-        {
-          "ParamFormat": "Template",
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "incident_id",
-          "Description": "The URI path must specify the incident ID."
         }
       ],
       "Errors": []
@@ -1554,29 +1242,6 @@
       "Errors": []
     },
     {
-      "Name": "Upload Firmware",
-      "Description": "Upload new firmware package.",
-      "HTTPMethod": "POST",
-      "Group": "Firmware",
-      "RequiresAuthentication": true,
-      "Route": "/firmwares",
-      "Response": {
-        "Optional": false,
-        "Type": "Void",
-        "Constant": false,
-        "IsStream": true,
-        "IsAttribute": false,
-        "IsArray": false,
-        "IsMap": false,
-        "Name": "response"
-      },
-      "HasOptionalQueryParams": false,
-      "HasOptionalFieldParams": false,
-      "CollectParameters": false,
-      "Parameters": [],
-      "Errors": []
-    },
-    {
       "Name": "Get Firmware",
       "Description": "Get a firmware metadata model. See the Firmware model for more information.",
       "HTTPMethod": "GET",
@@ -1585,43 +1250,7 @@
       "Route": "/firmwares/{firmware_id}",
       "Response": {
         "Optional": false,
-        "Type": "Firmware",
-        "Constant": false,
-        "IsStream": false,
-        "IsAttribute": false,
-        "IsArray": false,
-        "IsMap": false,
-        "Name": "response"
-      },
-      "HasOptionalQueryParams": false,
-      "HasOptionalFieldParams": false,
-      "CollectParameters": false,
-      "Parameters": [
-        {
-          "ParamFormat": "Template",
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "firmware_id",
-          "Description": "The URI path must specify the firmware ID."
-        }
-      ],
-      "Errors": []
-    },
-    {
-      "Name": "Remove Firmware",
-      "Description": "Delete a firmware metadata model. See the Firmware model for more information.",
-      "HTTPMethod": "DELETE",
-      "Group": "Firmware",
-      "RequiresAuthentication": true,
-      "Route": "/firmwares/{firmware_id}",
-      "Response": {
-        "Optional": false,
-        "Type": "String",
+        "Type": "Extension",
         "Constant": false,
         "IsStream": false,
         "IsAttribute": false,
@@ -1818,14 +1447,14 @@
     },
     {
       "Name": "Get Engines",
-      "Description": "Get a list of registered engines. See the Engine model for more information.",
+      "Description": "Get a list of registered engines. See the Extension model for more information.",
       "HTTPMethod": "GET",
       "Group": "Engine",
       "RequiresAuthentication": true,
       "Route": "/engines",
       "Response": {
         "Optional": false,
-        "Type": "Engine",
+        "Type": "Extension",
         "Constant": false,
         "IsStream": false,
         "IsAttribute": false,
@@ -1840,15 +1469,15 @@
       "Errors": []
     },
     {
-      "Name": "Upload Extension",
-      "Description": "Upload an extension. The extension must be in its native format. Do not wrap it in a ZIP or TAR.",
+      "Name": "Upload Plugin",
+      "Description": "Upload a plugin. The plugin must be in its native format.",
       "HTTPMethod": "POST",
-      "Group": "Extension",
+      "Group": "Plugin",
       "RequiresAuthentication": true,
-      "Route": "/extensions",
+      "Route": "/plugins",
       "Response": {
         "Optional": false,
-        "Type": "Extension",
+        "Type": "Plugin",
         "Constant": false,
         "IsStream": true,
         "IsAttribute": false,
@@ -1863,87 +1492,15 @@
       "Errors": []
     },
     {
-      "Name": "Get Extensions",
-      "Description": "Get a collection of all extensions. See the Extension model for more information.",
-      "HTTPMethod": "GET",
-      "Group": "Extension",
-      "RequiresAuthentication": true,
-      "Route": "/extensions",
-      "Response": {
-        "Optional": false,
-        "Type": "Extension",
-        "Constant": false,
-        "IsStream": false,
-        "IsAttribute": false,
-        "IsArray": true,
-        "IsMap": false,
-        "Name": "response"
-      },
-      "HasOptionalQueryParams": true,
-      "HasOptionalFieldParams": false,
-      "CollectParameters": false,
-      "Parameters": [
-        {
-          "ParamFormat": "Query",
-          "Optional": true,
-          "Type": "Number",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "page",
-          "Description": "Endpoints that return collections are automatically paginated and the first page of results is returned. The desired page number can be targeted using this parameter. e.g. page=2 would return the second page of results."
-        },
-        {
-          "ParamFormat": "Query",
-          "Optional": true,
-          "Type": "Number",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "perPage",
-          "Description": "Endpoints that return collections are automatically paginated with 10 results per page . The desired number of results per page can be set using this parameter. e.g. perPage=20 would return the 20 results on each page."
-        },
-        {
-          "ParamFormat": "Query",
-          "Optional": true,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": true,
-          "IsMap": false,
-          "Name": "fields",
-          "Description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
-        },
-        {
-          "ParamFormat": "Query",
-          "Optional": true,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "sort",
-          "Description": "The response collection can be sorted into an order based on a specific field value.  The parameter expects a field name from the response model. It is possible to prefix the field name with a minus sign (-) to invert the sort order. e.g. sort=createdAt or sort=-createdAt "
-        }
-      ],
-      "Errors": []
-    },
-    {
-      "Name": "Update Extension",
-      "Description": "Update an extension. See the Extension model for more information.",
+      "Name": "Update Plugin",
+      "Description": "Update a plugin. See the Plugin model for more information.",
       "HTTPMethod": "PUT",
-      "Group": "Extension",
+      "Group": "Plugin",
       "RequiresAuthentication": true,
-      "Route": "/extensions/{extension_id}",
+      "Route": "/plugins/{plugin_id}",
       "Response": {
         "Optional": false,
-        "Type": "Extension",
+        "Type": "Plugin",
         "Constant": false,
         "IsStream": false,
         "IsAttribute": false,
@@ -1964,20 +1521,20 @@
           "IsAttribute": false,
           "IsArray": false,
           "IsMap": false,
-          "Name": "extension_id",
-          "Description": "The URI path must specify the extension ID."
+          "Name": "plugin_id",
+          "Description": "The URI path must specify the plugin ID."
         },
         {
           "ParamFormat": "Body",
           "Optional": false,
-          "Type": "Extension",
+          "Type": "Plugin",
           "Constant": false,
           "IsStream": false,
           "IsAttribute": false,
           "IsArray": false,
           "IsMap": false,
-          "Name": "extension",
-          "Description": "The extension model specifying the values to be updated. It is not a requirement to construct a complete model object. Fields not set will be ignored and existing values will persist. "
+          "Name": "plugin",
+          "Description": "The plugin model specifying the values to be updated. It is not a requirement to construct a complete model object. Fields not set will be ignored and existing values will persist. "
         }
       ],
       "Errors": []
@@ -1991,7 +1548,7 @@
       "Route": "/firmwares",
       "Response": {
         "Optional": false,
-        "Type": "Firmware",
+        "Type": "Extension",
         "Constant": false,
         "IsStream": false,
         "IsAttribute": false,
@@ -4240,19 +3797,19 @@
       "Errors": []
     },
     {
-      "Name": "Get Extension Setting",
-      "Description": "Get a collection of fields that make up an extension setting. See the Setting Field model for more information.",
+      "Name": "Get Plugin Setting",
+      "Description": "Get plugin setting . See the Setting Field model for more information.",
       "HTTPMethod": "GET",
       "Group": "Setting",
       "RequiresAuthentication": true,
-      "Route": "/extensions/{extension_id}/settings/{setting_id}",
+      "Route": "/plugins/{plugin_id}/settings/{setting_id}",
       "Response": {
         "Optional": false,
-        "Type": "Setting Field",
+        "Type": "Setting",
         "Constant": false,
         "IsStream": false,
         "IsAttribute": false,
-        "IsArray": true,
+        "IsArray": false,
         "IsMap": false,
         "Name": "response"
       },
@@ -4269,8 +3826,8 @@
           "IsAttribute": false,
           "IsArray": false,
           "IsMap": false,
-          "Name": "extension_id",
-          "Description": "The URI path must specify the parent extension ID."
+          "Name": "plugin_id",
+          "Description": "The URI path must specify the parent plugin ID."
         },
         {
           "ParamFormat": "Template",
@@ -4283,17 +3840,29 @@
           "IsMap": false,
           "Name": "setting_id",
           "Description": "The URI path must specify the setting ID."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "fields",
+          "Description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
         }
       ],
       "Errors": []
     },
     {
-      "Name": "Get Extension Settings",
-      "Description": "Get a collection of all settings for an extension. See the Setting model for more information.",
+      "Name": "Get Plugin Settings",
+      "Description": "Get a collection of all settings for a plugin. See the Setting model for more information.",
       "HTTPMethod": "GET",
       "Group": "Setting",
       "RequiresAuthentication": true,
-      "Route": "/extensions/{extension_id}/settings",
+      "Route": "/plugins/{plugin_id}/settings",
       "Response": {
         "Optional": false,
         "Type": "Setting",
@@ -4317,8 +3886,8 @@
           "IsAttribute": false,
           "IsArray": false,
           "IsMap": false,
-          "Name": "extension_id",
-          "Description": "The URI path must specify the extension ID."
+          "Name": "plugin_id",
+          "Description": "The URI path must specify the plugin ID."
         },
         {
           "ParamFormat": "Query",
@@ -5462,6 +5031,1277 @@
         }
       ],
       "Errors": []
+    },
+    {
+      "Name": "Get Sector Node",
+      "Description": "Get a node. See the Node model for more information.",
+      "HTTPMethod": "GET",
+      "Group": "Node",
+      "RequiresAuthentication": true,
+      "Route": "/sectors/{sector_id}/nodes/{node_id}",
+      "Response": {
+        "Optional": false,
+        "Type": "Node",
+        "Constant": false,
+        "IsStream": false,
+        "IsAttribute": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "sector_id",
+          "Description": "The URI path must specify the parent sector ID."
+        },
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "node_id",
+          "Description": "The URI path must specify the node ID."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "fields",
+          "Description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "at",
+          "Description": "Obtain a copy of a node at a specific moment in time. A timestamp, either as a unix epoch (in seconds) or in the format of: \"yyyy-MM-dd'T'HH:mm:ssZ\" e.g. \"2016-02-14T16:32:47-0500\""
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Get Incident",
+      "Description": "Get an incident. See the Incident model for more information.",
+      "HTTPMethod": "GET",
+      "Group": "Incident",
+      "RequiresAuthentication": true,
+      "Route": "/incidents/{incident_id}",
+      "Response": {
+        "Optional": false,
+        "Type": "Incident",
+        "Constant": false,
+        "IsStream": false,
+        "IsAttribute": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "incident_id",
+          "Description": "The URI path must specify the incident ID."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "fields",
+          "Description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Get Access Key",
+      "Description": "Get an access key. See the Access Key model for more information.",
+      "HTTPMethod": "GET",
+      "Group": "Key",
+      "RequiresAuthentication": true,
+      "Route": "/keys/{key_id}",
+      "Response": {
+        "Optional": false,
+        "Type": "Access Key",
+        "Constant": false,
+        "IsStream": false,
+        "IsAttribute": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "key_id",
+          "Description": "The URI path must specify the access key ID."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "fields",
+          "Description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Get Message",
+      "Description": "Get a message. See the Message model for more information.",
+      "HTTPMethod": "GET",
+      "Group": "Message",
+      "RequiresAuthentication": true,
+      "Route": "/messages/{message_id}",
+      "Response": {
+        "Optional": false,
+        "Type": "Message",
+        "Constant": false,
+        "IsStream": false,
+        "IsAttribute": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "message_id",
+          "Description": "The URI path must specify the message ID."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "fields",
+          "Description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Get Project",
+      "Description": "Get a Project. See the Project model for more information.",
+      "HTTPMethod": "GET",
+      "Group": "Project",
+      "RequiresAuthentication": true,
+      "Route": "/projects/{project_id}",
+      "Response": {
+        "Optional": false,
+        "Type": "Project",
+        "Constant": false,
+        "IsStream": false,
+        "IsAttribute": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "project_id",
+          "Description": "The URI path must specify the project ID."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "fields",
+          "Description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Get Sector",
+      "Description": "Get a Sector. See the Sector model for more information.",
+      "HTTPMethod": "GET",
+      "Group": "Sector",
+      "RequiresAuthentication": true,
+      "Route": "/sectors/{sector_id}",
+      "Response": {
+        "Optional": false,
+        "Type": "Sector",
+        "Constant": false,
+        "IsStream": false,
+        "IsAttribute": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "sector_id",
+          "Description": "The URI path must specify the sector ID."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "fields",
+          "Description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Get Subscription",
+      "Description": "Get a subscription. See the Subscription model for more information.",
+      "HTTPMethod": "GET",
+      "Group": "Subscription",
+      "RequiresAuthentication": true,
+      "Route": "/subscriptions/{subscription_id}",
+      "Response": {
+        "Optional": false,
+        "Type": "Subscription",
+        "Constant": false,
+        "IsStream": false,
+        "IsAttribute": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "subscription_id",
+          "Description": "The URI path must specify the subscription ID."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "fields",
+          "Description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Get Team",
+      "Description": "Get a team. See the Team model for more information.",
+      "HTTPMethod": "GET",
+      "Group": "Team",
+      "RequiresAuthentication": true,
+      "Route": "/teams/{team_id}",
+      "Response": {
+        "Optional": false,
+        "Type": "Team",
+        "Constant": false,
+        "IsStream": false,
+        "IsAttribute": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "team_id",
+          "Description": "The URI path must specify the team ID."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "fields",
+          "Description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Get User",
+      "Description": "Get a user. Non administrative requests can only access users liked through a team relationship. See the Person model for more information.",
+      "HTTPMethod": "GET",
+      "Group": "User",
+      "RequiresAuthentication": true,
+      "Route": "/users/{user_id}",
+      "Response": {
+        "Optional": false,
+        "Type": "Person",
+        "Constant": false,
+        "IsStream": false,
+        "IsAttribute": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "user_id",
+          "Description": "The URI path must specify the person ID."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "fields",
+          "Description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Get Dispatcher",
+      "Description": "Get a  system dispatcher. See the Extension model for more information.",
+      "HTTPMethod": "GET",
+      "Group": "Dispatch",
+      "RequiresAuthentication": true,
+      "Route": "/dispatchers/{dispatcher_id}",
+      "Response": {
+        "Optional": false,
+        "Type": "Extension",
+        "Constant": false,
+        "IsStream": false,
+        "IsAttribute": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "dispatcher_id",
+          "Description": "The URI path must specify the dispacther ID."
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Get Engine",
+      "Description": "Get a registered engine. See the Extension model for more information.",
+      "HTTPMethod": "GET",
+      "Group": "Engine",
+      "RequiresAuthentication": true,
+      "Route": "/engines/{engine_id}",
+      "Response": {
+        "Optional": false,
+        "Type": "Extension",
+        "Constant": false,
+        "IsStream": false,
+        "IsAttribute": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "engine_id",
+          "Description": "The URI path must specify the parent engine ID."
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Add Plugin to Project",
+      "Description": "Add a plugin to a project. Only owned plugins can be added to owned projects. See the Project and Plugin models for more information.",
+      "HTTPMethod": "PUT",
+      "Group": "Plugin",
+      "RequiresAuthentication": true,
+      "Route": "/projects/{project_id}/plugins/{plugin_id}",
+      "Response": {
+        "Optional": false,
+        "Type": "Void",
+        "Constant": false,
+        "IsStream": false,
+        "IsAttribute": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "project_id",
+          "Description": "The URI path must specify the project ID."
+        },
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "plugin_id",
+          "Description": "The URI path must specify the plugin ID."
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Remove Plugin from Project",
+      "Description": "Remove a plugin from a project. Only owned plugins can be removed from owned projects.",
+      "HTTPMethod": "DELETE",
+      "Group": "Plugin",
+      "RequiresAuthentication": true,
+      "Route": "/projects/{project_id}/plugins/{plugin_id}",
+      "Response": {
+        "Optional": false,
+        "Type": "Void",
+        "Constant": false,
+        "IsStream": false,
+        "IsAttribute": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "project_id",
+          "Description": "The URI path must specify the project ID."
+        },
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "plugin_id",
+          "Description": "The URI path must specify the plugin ID."
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Upgrade Plugin",
+      "Description": "Upgrade a plugin.  The plugin must be in its native format.",
+      "HTTPMethod": "PUT",
+      "Group": "Plugin",
+      "RequiresAuthentication": true,
+      "Route": "/plugins/{plugin_id}",
+      "Response": {
+        "Optional": false,
+        "Type": "Plugin",
+        "Constant": false,
+        "IsStream": true,
+        "IsAttribute": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "plugin_id"
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Get Plugin Projects",
+      "Description": "Get a collection of projects associated with a plugin. See the Project model for more information.",
+      "HTTPMethod": "GET",
+      "Group": "Project",
+      "RequiresAuthentication": true,
+      "Route": "/plugins/{plugin_id}/projects",
+      "Response": {
+        "Optional": false,
+        "Type": "Project",
+        "Constant": false,
+        "IsStream": false,
+        "IsAttribute": false,
+        "IsArray": true,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "plugin_id",
+          "Description": "The URI path must specify the parent plugin ID."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "page",
+          "Description": "Endpoints that return collections are automatically paginated and the first page of results is returned. The desired page number can be targeted using this parameter. e.g. page=2 would return the second page of results."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "perPage",
+          "Description": "Endpoints that return collections are automatically paginated with 10 results per page . The desired number of results per page can be set using this parameter. e.g. perPage=20 would return the 20 results on each page."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "fields",
+          "Description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "sort",
+          "Description": "The response collection can be sorted into an order based on a specific field value.  The parameter expects a field name from the response model. It is possible to prefix the field name with a minus sign (-) to invert the sort order. e.g. sort=createdAt or sort=-createdAt "
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "id",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "name",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "description",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "DateTime",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "createdAt",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "DateTime",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "updatedAt",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Get Project Plugins",
+      "Description": "Get a collection of plugins associated with a project. See the Plugin model for more information.",
+      "HTTPMethod": "GET",
+      "Group": "Plugin",
+      "RequiresAuthentication": true,
+      "Route": "/projects/{project_id}/plugins",
+      "Response": {
+        "Optional": false,
+        "Type": "Plugin",
+        "Constant": false,
+        "IsStream": false,
+        "IsAttribute": false,
+        "IsArray": true,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "project_id",
+          "Description": "The URI path must specify the project ID."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "page",
+          "Description": "Endpoints that return collections are automatically paginated and the first page of results is returned. The desired page number can be targeted using this parameter. e.g. page=2 would return the second page of results."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "perPage",
+          "Description": "Endpoints that return collections are automatically paginated with 10 results per page . The desired number of results per page can be set using this parameter. e.g. perPage=20 would return the 20 results on each page."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "fields",
+          "Description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "sort",
+          "Description": "The response collection can be sorted into an order based on a specific field value.  The parameter expects a field name from the response model. It is possible to prefix the field name with a minus sign (-) to invert the sort order. e.g. sort=createdAt or sort=-createdAt "
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "id",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Boolean",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "global",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "name",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "title",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "description",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "homepage",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "license",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "provider",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "categories",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "version",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Plugin State",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "status",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "DateTime",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "updatedAt",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "DateTime",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "createdAt",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        }
+      ],
+      "Errors": []
+    },
+    {
+      "Name": "Get Plugins",
+      "Description": "Get a collection of all plugins. See the Plugin model for more information.",
+      "HTTPMethod": "GET",
+      "Group": "Plugin",
+      "RequiresAuthentication": true,
+      "Route": "/plugins",
+      "Response": {
+        "Optional": false,
+        "Type": "Plugin",
+        "Constant": false,
+        "IsStream": false,
+        "IsAttribute": false,
+        "IsArray": true,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": true,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "page",
+          "Description": "Endpoints that return collections are automatically paginated and the first page of results is returned. The desired page number can be targeted using this parameter. e.g. page=2 would return the second page of results."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Number",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "perPage",
+          "Description": "Endpoints that return collections are automatically paginated with 10 results per page . The desired number of results per page can be set using this parameter. e.g. perPage=20 would return the 20 results on each page."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "fields",
+          "Description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "sort",
+          "Description": "The response collection can be sorted into an order based on a specific field value.  The parameter expects a field name from the response model. It is possible to prefix the field name with a minus sign (-) to invert the sort order. e.g. sort=createdAt or sort=-createdAt "
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "id",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Boolean",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "global",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "name",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "title",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "description",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "homepage",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "license",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "provider",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "categories",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "version",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "Plugin State",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "status",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "DateTime",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "createdAt",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        },
+        {
+          "ParamFormat": "Query",
+          "Optional": true,
+          "Type": "DateTime",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "updatedAt",
+          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+        }
+      ],
+      "Errors": []
     }
   ],
   "CustomTypes": [
@@ -5491,339 +6331,6 @@
           "IsMap": false,
           "Name": "INACTIVE",
           "Description": "Specifies an access key status as being disabled. In this state the access key will NOT work."
-        }
-      ]
-    },
-    {
-      "Name": "Setting Field",
-      "ImplementationType": "Structure",
-      "Description": "@ Deprecated - This model is scheduled to be replaced with a simpler design. | This model represents an HTML field representation.",
-      "Fields": [
-        {
-          "Optional": true,
-          "Type": "Setting Field Type",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "type",
-          "Description": "The HTML input tag type. See the Setting Field Type model for more information.  "
-        },
-        {
-          "Optional": true,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "name",
-          "Description": "Specifies the name of an <input> element."
-        },
-        {
-          "Optional": true,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "label",
-          "Description": "Specifies the label of an <input> element."
-        },
-        {
-          "Optional": true,
-          "Type": "Number",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "min",
-          "Description": "Specifies a minimum value for an <input> element."
-        },
-        {
-          "Optional": true,
-          "Type": "Number",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "max",
-          "Description": "Specifies the maximum value for an <input> element."
-        },
-        {
-          "Optional": true,
-          "Type": "Number",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "maxLength",
-          "Description": "Specifies the maximum number of characters allowed in an <input> element."
-        },
-        {
-          "Optional": true,
-          "Type": "Number",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "step",
-          "Description": "Specifies the legal number intervals for an input field."
-        },
-        {
-          "Optional": true,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "pattern",
-          "Description": "Specifies a regular expression that an <input> element's value is checked against."
-        },
-        {
-          "Optional": true,
-          "Type": "Boolean",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "readOnly",
-          "Description": "Specifies that an input field is read-only."
-        },
-        {
-          "Optional": true,
-          "Type": "Boolean",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "required",
-          "Description": "Specifies that an input field must be filled out before submitting the form."
-        },
-        {
-          "Optional": true,
-          "Type": "Boolean",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "checked",
-          "Description": "Specifies that an <input> element should be pre-selected when the page loads (for type=\"checkbox\" or type=\"radio\")."
-        },
-        {
-          "Optional": true,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "value",
-          "Description": "Specifies the value of an <input> element."
-        },
-        {
-          "Optional": true,
-          "Type": "Number",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "order",
-          "Description": "The order that the field should be displayed in relative to other fields."
-        },
-        {
-          "Optional": true,
-          "Type": "Setting Field",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": true,
-          "IsMap": false,
-          "Name": "options",
-          "Description": "For fields that define collections the options for the fields are contained here."
-        }
-      ]
-    },
-    {
-      "Name": "Setting Field Type",
-      "ImplementationType": "Enumeration",
-      "Description": "A collection of values that can be used to define a setting field type. This model describes the input types of the <input> element.",
-      "Fields": [
-        {
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "TEXT",
-          "Description": "<input type=\"text\"> defines a one-line input field for text input."
-        },
-        {
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "PASSWORD",
-          "Description": "<input type=\"password\"> defines a password field."
-        },
-        {
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "TEL",
-          "Description": "The <input type=\"tel\"> is used for input fields that should contain a telephone number."
-        },
-        {
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "URL",
-          "Description": "The <input type=\"url\"> is used for input fields that should contain a URL address."
-        },
-        {
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "EMAIL",
-          "Description": "The <input type=\"email\"> is used for input fields that should contain an e-mail address."
-        },
-        {
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "BOOLEAN",
-          "Description": "A simple boolean 'true' or 'false' field."
-        },
-        {
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "RADIO",
-          "Description": "<input type=\"radio\"> defines a radio button."
-        },
-        {
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "CHECKBOX",
-          "Description": "<input type=\"checkbox\"> defines a checkbox."
-        },
-        {
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "LIST",
-          "Description": "A collection."
-        },
-        {
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "COLOR",
-          "Description": "The <input type=\"color\"> is used for input fields that should contain a color."
-        },
-        {
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "DATE",
-          "Description": "The <input type=\"date\"> is used for input fields that should contain a date."
-        },
-        {
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "DATE_TIME",
-          "Description": "The <input type=\"datetime\"> allows the user to select a date and time (with time zone)."
-        },
-        {
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "TIME",
-          "Description": "The <input type=\"time\"> allows the user to select a time (no time zone)."
-        },
-        {
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "NUMBER",
-          "Description": "The <input type=\"number\"> is used for input fields that should contain a numeric value."
-        },
-        {
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "RANGE",
-          "Description": "The <input type=\"range\"> is used for input fields that should contain a value within a range."
         }
       ]
     },
@@ -6197,9 +6704,9 @@
       ]
     },
     {
-      "Name": "Dispatcher",
+      "Name": "Extension",
       "ImplementationType": "Structure",
-      "Description": "Halo provides internal hooks that broadcast events on defined 'channels'. Dispatchers provide a dynamic delivery mechanism that will dispatch messages in a specific medium.",
+      "Description": "Plugins can define extension points that implement service interfaces from the core. These extension points are automatically filtered into their appropriate categories but are returned from their respective endpoints as extensions.",
       "Fields": [
         {
           "Optional": true,
@@ -6233,93 +6740,24 @@
           "IsMap": false,
           "Name": "description",
           "Description": "A human readable description assigned to the dispatcher."
+        },
+        {
+          "Optional": true,
+          "Type": "Object",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": true,
+          "Name": "meta",
+          "Description": "Metadata attached to the extension. This data will vary depending on the type of extension."
         }
       ]
     },
     {
-      "Name": "Dispatcher Protocol",
+      "Name": "Plugin",
       "ImplementationType": "Structure",
-      "Description": "Dispatchers need to define a minimum of 1 protocol. Protocols define the delivery protocols defined by the dispatcher.",
-      "Fields": [
-        {
-          "Optional": true,
-          "Type": "String",
-          "Constant": true,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "type",
-          "Description": "The type name assigned to the dispatcher protocol."
-        },
-        {
-          "Optional": true,
-          "Type": "Setting Field Type",
-          "Constant": true,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "options",
-          "Description": "An optional collection of the protocol definition options required to make the dispatcher function as a dispatcher. Note that this is the definition not the actual stored value. e.g. An email dispatcher needs the user to define the email addresses that the message should be dispatched to."
-        }
-      ]
-    },
-    {
-      "Name": "Engine",
-      "ImplementationType": "Structure",
-      "Description": "Engines are a type of extension that provide Halo support for specific hardware. Engines are generally proprietary extensions provided by the manufacturers to allow Halo support for their internal communication protocols. ",
-      "Fields": [
-        {
-          "Optional": true,
-          "Type": "String",
-          "Constant": true,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "manufacturer",
-          "Description": "The manufacturer of the hardware that the engine provides support for."
-        },
-        {
-          "Optional": true,
-          "Type": "String",
-          "Constant": true,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "model",
-          "Description": "The model of the hardware that the engine provides support for."
-        },
-        {
-          "Optional": true,
-          "Type": "String",
-          "Constant": true,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "description",
-          "Description": "A human readable description of the engine."
-        },
-        {
-          "Optional": true,
-          "Type": "String",
-          "Constant": true,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "id",
-          "Description": "A unique, system assigned record identifier. Engines are extension based resources and so this ID does not conform to standard system resource ID formats. This is a 10 character alpha-numeric ID. "
-        }
-      ]
-    },
-    {
-      "Name": "Extension",
-      "ImplementationType": "Structure",
-      "Description": "Extension are independent packages that can be installed/removed at runtime by users to extend the core Halo functionality. ",
+      "Description": "Plugin are independent packages that can be installed/removed at runtime by users to extend the core Halo functionality. ",
       "Fields": [
         {
           "Optional": true,
@@ -6330,18 +6768,18 @@
           "IsArray": false,
           "IsMap": false,
           "Name": "id",
-          "Description": "A unique, system assigned record identifier. Engines are extension based resources and so this ID does not conform to standard system resource ID formats. This is a 10 character alpha-numeric ID. "
+          "Description": "A unique, system assigned record identifier. The ID format is made up as follows: : where cluster-id is the id of the cluster. Halo can have a maximum of 32,767 clusters (2^15-1). The cluster-position is the position of the record inside the cluster. Each cluster can handle up to 9,223,372,036,854,780,000 (2^63) records, namely 9,223,372 Trillion of records!"
         },
         {
           "Optional": true,
-          "Type": "String",
+          "Type": "Boolean",
           "Constant": true,
           "IsStream": false,
           "IsAttribute": false,
           "IsArray": false,
           "IsMap": false,
-          "Name": "title",
-          "Description": "A human readable title assigned to the extension."
+          "Name": "global",
+          "Description": "A flag indicating whether the plugin is globally accessible. Globally accessible plugins can be accessed for usage by all system users. Non global plugins are context sensitive resources and must be shared via teams and projects."
         },
         {
           "Optional": true,
@@ -6352,7 +6790,18 @@
           "IsArray": false,
           "IsMap": false,
           "Name": "name",
-          "Description": "A unique package name assigned to the extension. This is usually a code based workspace assignment."
+          "Description": "A unique name assigned to the plugin."
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": true,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "title",
+          "Description": "A human readable title for the plugin."
         },
         {
           "Optional": true,
@@ -6363,62 +6812,7 @@
           "IsArray": false,
           "IsMap": false,
           "Name": "description",
-          "Description": "A human readable description of the extension."
-        },
-        {
-          "Optional": true,
-          "Type": "String",
-          "Constant": true,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "author",
-          "Description": "The extension author."
-        },
-        {
-          "Optional": true,
-          "Type": "String",
-          "Constant": true,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "version",
-          "Description": "The extension version. Although no format is imposed on extension versions, developers are encouraged to use semantic format.  For more info see http://semver.org/"
-        },
-        {
-          "Optional": true,
-          "Type": "String",
-          "Constant": true,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "license",
-          "Description": "The type of license that the extension id published under."
-        },
-        {
-          "Optional": true,
-          "Type": "String",
-          "Constant": true,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "frameworks",
-          "Description": "A description of the supported core Halo framework versions that are supported by the extension. This takes the format '<comparator><major>.<minor>.<patch>'. e.g. '>=1.0.0'"
-        },
-        {
-          "Optional": true,
-          "Type": "String",
-          "Constant": true,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "category",
-          "Description": "The category that the extension is categorised under."
+          "Description": "A human readable title for the plugin."
         },
         {
           "Optional": true,
@@ -6439,30 +6833,84 @@
           "IsAttribute": false,
           "IsArray": false,
           "IsMap": false,
-          "Name": "repository",
-          "Description": "An optional URL of the extension repository."
+          "Name": "license",
+          "Description": "The type of license that the plugin is published under."
         },
         {
           "Optional": true,
-          "Type": "Extension State",
+          "Type": "String",
+          "Constant": true,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "provider",
+          "Description": "The plugin provider or author."
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "categories",
+          "Description": "The category that the extension is categorised under."
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": true,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "version",
+          "Description": "The plugin semantical release version."
+        },
+        {
+          "Optional": true,
+          "Type": "Plugin State",
           "Constant": true,
           "IsStream": false,
           "IsAttribute": false,
           "IsArray": false,
           "IsMap": false,
           "Name": "status",
-          "Description": "The status of the extension determines whether the extension is enabled. See Extension State model for more information."
+          "Description": "The status of the plugin determines whether it is enabled. See Plugin State model for more information."
         },
         {
           "Optional": true,
-          "Type": "Binary",
+          "Type": "Person",
           "Constant": true,
           "IsStream": false,
           "IsAttribute": false,
           "IsArray": false,
           "IsMap": false,
-          "Name": "icon",
+          "Name": "owner",
+          "Description": "Plugins are context sensitive and always have an owner (even globally accessible plugins)."
+        },
+        {
+          "Optional": true,
+          "Type": "DateTime",
+          "Constant": true,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "createdAt",
           "Description": "An optional Base64 encoded icon."
+        },
+        {
+          "Optional": true,
+          "Type": "DateTime",
+          "Constant": true,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "updatedAt"
         }
       ]
     },
@@ -6941,7 +7389,7 @@
         },
         {
           "Optional": true,
-          "Type": "String",
+          "Type": "Property Recent Value",
           "Constant": false,
           "IsStream": false,
           "IsAttribute": false,
@@ -7109,14 +7557,14 @@
         },
         {
           "Optional": true,
-          "Type": "String",
+          "Type": "Extension",
           "Constant": false,
           "IsStream": false,
           "IsAttribute": false,
           "IsArray": false,
           "IsMap": false,
-          "Name": "model",
-          "Description": "The engine model that the sector is hosting. This must match the model specified in the active engine extension exactly. See Engine model for more information.  Required to create."
+          "Name": "engine",
+          "Description": "The engine that the sector is hosting. See Extension model for more information.  Required to create."
         },
         {
           "Optional": true,
@@ -7142,17 +7590,6 @@
         },
         {
           "Optional": true,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "manufacturer",
-          "Description": "The engine manufacturer that the sector is hosting. This must match the manufacturer specified in the active engine extension exactly. See Engine model for more information.  Required to create."
-        },
-        {
-          "Optional": true,
           "Type": "Sector State",
           "Constant": false,
           "IsStream": false,
@@ -7172,17 +7609,6 @@
           "IsMap": false,
           "Name": "silent",
           "Description": "A flag specifying whether the sector should be treated as silent. This flag does not alter any behaviour in the system. It simply propagates its value to incidents that originate from this sector. This propagated flag can optionally be included in searches, reporting etc."
-        },
-        {
-          "Optional": true,
-          "Type": "String",
-          "Constant": true,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "engineId",
-          "Description": "The engine ID that the sector is hosting. See Engine model for more information. "
         },
         {
           "Optional": true,
@@ -7310,18 +7736,18 @@
         },
         {
           "Optional": true,
-          "Type": "String",
+          "Type": "Extension",
           "Constant": false,
           "IsStream": false,
           "IsAttribute": false,
           "IsArray": false,
           "IsMap": false,
           "Name": "dispatcher",
-          "Description": "The ID of the dispatcher that the broadcast messages should be passed to. Required to create."
+          "Description": "The dispatcher extension that the broadcast messages should be passed to. Required to create."
         },
         {
           "Optional": true,
-          "Type": "Dispatcher Protocol",
+          "Type": "Setting",
           "Constant": false,
           "IsStream": false,
           "IsAttribute": false,
@@ -7554,7 +7980,7 @@
     {
       "Name": "Setting",
       "ImplementationType": "Structure",
-      "Description": "All Halo settings are defined via extensions. This model does not contain the actual settings, instead it is the parent meta model that defines whether settings exist.",
+      "Description": "All Halo settings are defined via plugins and use the Angular Formly API to define the form under the fields property and the values are stored under the model property.",
       "Fields": [
         {
           "Optional": true,
@@ -7575,19 +8001,30 @@
           "IsAttribute": false,
           "IsArray": false,
           "IsMap": false,
-          "Name": "extension",
-          "Description": "The ID of the extension that the settings belong to."
+          "Name": "name",
+          "Description": "A human readable name of the extension setting."
         },
         {
           "Optional": true,
-          "Type": "String",
-          "Constant": true,
+          "Type": "Object",
+          "Constant": false,
           "IsStream": false,
           "IsAttribute": false,
           "IsArray": false,
-          "IsMap": false,
-          "Name": "description",
-          "Description": "A human readable description of the extension setting."
+          "IsMap": true,
+          "Name": "model",
+          "Description": "A dynamic set of model values as specified by the Angular Formly API. For more information see: http://docs.angular-formly.com/docs"
+        },
+        {
+          "Optional": true,
+          "Type": "Object",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": true,
+          "Name": "fields",
+          "Description": "A dynamic set of form field definition as specified by the Angular Formly API. For more information see: http://docs.angular-formly.com/docs"
         }
       ]
     },
@@ -7825,9 +8262,9 @@
       ]
     },
     {
-      "Name": "Extension State",
+      "Name": "Plugin State",
       "ImplementationType": "Enumeration",
-      "Description": "A collection of values that can be used to define an extension status.",
+      "Description": "A collection of values that can be used to define an plugin status.",
       "Fields": [
         {
           "Optional": false,
@@ -7838,7 +8275,7 @@
           "IsArray": false,
           "IsMap": false,
           "Name": "ACTIVE",
-          "Description": "Specifies an extension status as being enabled. In this state the extension will work."
+          "Description": "Specifies an plugin status as being enabled. In this state the plugin will work."
         },
         {
           "Optional": false,
@@ -7849,7 +8286,7 @@
           "IsArray": false,
           "IsMap": false,
           "Name": "INACTIVE",
-          "Description": "Specifies an extension status as being disabled. In this state the extension will not work."
+          "Description": "Specifies an plugin status as being disabled. In this state the plugin will not work."
         }
       ]
     },
@@ -8109,86 +8546,29 @@
       ]
     },
     {
-      "Name": "Firmware",
+      "Name": "Property Recent Value",
       "ImplementationType": "Structure",
-      "Description": "Halo provides the ability to control engine hardware firmware versions. This model is not the actual firmware but rather a representation of the firmware metadata.",
+      "Description": "Recent values in properties are made up of a timestamp and the value represented as a string.",
       "Fields": [
-        {
-          "Optional": true,
-          "Type": "String",
-          "Constant": true,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "id",
-          "Description": "A unique, system assigned record identifier. Engines are extension based resources and so this ID does not conform to standard system resource ID formats. This is a 10 character alpha-numeric ID. "
-        },
-        {
-          "Optional": true,
-          "Type": "String",
-          "Constant": true,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "name",
-          "Description": "The firmware package human readable name."
-        },
-        {
-          "Optional": true,
-          "Type": "String",
-          "Constant": true,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "description",
-          "Description": "The firmware package human readable description."
-        },
-        {
-          "Optional": true,
-          "Type": "String",
-          "Constant": true,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "manufacturer",
-          "Description": "The manufacturer of the hardware supported by the firmware package."
-        },
-        {
-          "Optional": true,
-          "Type": "String",
-          "Constant": true,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "model",
-          "Description": "The model of the hardware supported by the firmware package."
-        },
         {
           "Optional": true,
           "Type": "String",
           "Constant": false,
           "IsStream": false,
           "IsAttribute": false,
-          "IsArray": true,
+          "IsArray": false,
           "IsMap": false,
-          "Name": "nodes",
-          "Description": "A collection of node types that this firmware is compatible with. These nodes match the node types defined by the engine supporting the target hardware."
+          "Name": "value"
         },
         {
           "Optional": true,
-          "Type": "String",
-          "Constant": true,
+          "Type": "DateTime",
+          "Constant": false,
           "IsStream": false,
           "IsAttribute": false,
           "IsArray": false,
           "IsMap": false,
-          "Name": "version",
-          "Description": "The version of the firmware defined in the firmware package ."
+          "Name": "date"
         }
       ]
     }
@@ -8214,11 +8594,12 @@
     "PHPHttpClient": "UNIREST",
     "BrandLabel": "555 INC LTD",
     "ProjectName": "Halo SDK",
-    "EnableAdditionalModelProperties": false,
+    "EnableAdditionalModelProperties": true,
     "PreserveParameterOrder": false,
     "AppendContentHeaders": true,
     "GenerateInterfaces": false,
     "UseCommonSDKLibrary": false,
+    "ParameterArrayFormat": 2,
     "BodySerialization": 0
   },
   "Errors": []

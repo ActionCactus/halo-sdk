@@ -28,7 +28,7 @@
   "paths": {
     "/@/settings/{setting_id}": {
       "get": {
-        "description": "Get the fields that constitute the setting",
+        "description": "Get the system setting",
         "tags": [
           "Admin"
         ],
@@ -49,10 +49,7 @@
           "200": {
             "description": "",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/SettingField"
-              }
+              "$ref": "#/definitions/Setting"
             }
           }
         },
@@ -63,11 +60,11 @@
         ]
       },
       "put": {
-        "description": "Update settings",
+        "description": "Update system setting",
         "tags": [
           "Admin"
         ],
-        "operationId": "Update Settings_",
+        "operationId": "Update Setting_",
         "produces": [
           "application/json"
         ],
@@ -80,12 +77,12 @@
             "type": "string"
           },
           {
-            "name": "field",
+            "name": "setting",
             "in": "body",
             "required": true,
             "x-is-map": false,
             "schema": {
-              "$ref": "#/definitions/SettingField"
+              "$ref": "#/definitions/Setting"
             }
           }
         ],
@@ -93,7 +90,7 @@
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/SettingField"
+              "$ref": "#/definitions/Setting"
             }
           }
         },
@@ -122,6 +119,17 @@
             "x-is-map": false,
             "type": "string",
             "description": "The URI path must specify the message ID."
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
           }
         ],
         "responses": {
@@ -466,6 +474,17 @@
             "x-is-map": false,
             "type": "string",
             "description": "The URI path must specify the team ID."
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
           }
         ],
         "responses": {
@@ -590,6 +609,25 @@
             "x-is-map": false,
             "type": "string",
             "description": "The URI path must specify the property ID."
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
+          },
+          {
+            "name": "at",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string",
+            "description": "Obtain a copy of a node at a specific moment in time. A timestamp, either as a unix epoch (in seconds) or in the format of: \"yyyy-MM-dd'T'HH:mm:ssZ\" e.g. \"2016-02-14T16:32:47-0500\""
           }
         ],
         "responses": {
@@ -657,138 +695,6 @@
             "schema": {
               "$ref": "#/definitions/Property"
             }
-          }
-        },
-        "security": [
-          {
-            "auth": []
-          }
-        ]
-      }
-    },
-    "/sectors/{sector_id}/nodes/{node_id}": {
-      "get": {
-        "description": "Get a node. See the Node model for more information.",
-        "tags": [
-          "Node"
-        ],
-        "operationId": "Get Sector Node_",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "sector_id",
-            "in": "path",
-            "required": true,
-            "x-is-map": false,
-            "type": "string",
-            "description": "The URI path must specify the parent sector ID."
-          },
-          {
-            "name": "node_id",
-            "in": "path",
-            "required": true,
-            "x-is-map": false,
-            "type": "string",
-            "description": "The URI path must specify the node ID."
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/Node"
-            }
-          }
-        },
-        "security": [
-          {
-            "auth": []
-          }
-        ]
-      },
-      "put": {
-        "description": "Update a node.  See the Node model for more information.",
-        "tags": [
-          "Node"
-        ],
-        "operationId": "Update Sector Node_",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "sector_id",
-            "in": "path",
-            "required": true,
-            "x-is-map": false,
-            "type": "string",
-            "description": "The URI path must specify the parent sector ID."
-          },
-          {
-            "name": "node_id",
-            "in": "path",
-            "required": true,
-            "x-is-map": false,
-            "type": "string",
-            "description": "The URI path must specify the node ID."
-          },
-          {
-            "name": "node",
-            "in": "body",
-            "required": true,
-            "x-is-map": false,
-            "description": "The node model specifying the values to be updated. It is not a requirement to construct a complete model object. Fields not set will be ignored and existing values will persist. ",
-            "schema": {
-              "$ref": "#/definitions/Node"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/Node"
-            }
-          }
-        },
-        "security": [
-          {
-            "auth": []
-          }
-        ]
-      },
-      "delete": {
-        "description": "Create a request to manually uninstall a node.  See the Node model for more information.",
-        "tags": [
-          "Node"
-        ],
-        "operationId": "Remove Sector Node_",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "sector_id",
-            "in": "path",
-            "required": true,
-            "x-is-map": false,
-            "type": "string",
-            "description": "The URI path must specify the parent sector ID."
-          },
-          {
-            "name": "node_id",
-            "in": "path",
-            "required": true,
-            "x-is-map": false,
-            "type": "string",
-            "description": "The URI path must specify the node ID."
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
           }
         },
         "security": [
@@ -1028,6 +934,17 @@
             "x-is-map": false,
             "type": "string",
             "description": "The URI path must specify the sector ID."
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
           }
         ],
         "responses": {
@@ -1348,6 +1265,17 @@
             "x-is-map": false,
             "type": "string",
             "description": "The URI path must specify the person ID."
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
           }
         ],
         "responses": {
@@ -1438,31 +1366,58 @@
         ]
       }
     },
-    "/extensions/{extension_id}": {
+    "/sectors/{sector_id}/nodes/{node_id}": {
       "get": {
-        "description": "Get an extension.  See the Extension model for more information.",
+        "description": "Get a node. See the Node model for more information.",
         "tags": [
-          "Extension"
+          "Node"
         ],
-        "operationId": "Get Extension_",
+        "operationId": "Get Sector Node_",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
-            "name": "extension_id",
+            "name": "sector_id",
             "in": "path",
             "required": true,
             "x-is-map": false,
             "type": "string",
-            "description": "The URI path must specify the extension ID."
+            "description": "The URI path must specify the parent sector ID."
+          },
+          {
+            "name": "node_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string",
+            "description": "The URI path must specify the node ID."
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
+          },
+          {
+            "name": "at",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string",
+            "description": "Obtain a copy of a node at a specific moment in time. A timestamp, either as a unix epoch (in seconds) or in the format of: \"yyyy-MM-dd'T'HH:mm:ssZ\" e.g. \"2016-02-14T16:32:47-0500\""
           }
         ],
         "responses": {
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Extension"
+              "$ref": "#/definitions/Node"
             }
           }
         },
@@ -1473,31 +1428,39 @@
         ]
       },
       "put": {
-        "description": "Update an extension. See the Extension model for more information.",
+        "description": "Update a node.  See the Node model for more information.",
         "tags": [
-          "Extension"
+          "Node"
         ],
-        "operationId": "Update Extension_",
+        "operationId": "Update Sector Node_",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
-            "name": "extension_id",
+            "name": "sector_id",
             "in": "path",
             "required": true,
             "x-is-map": false,
             "type": "string",
-            "description": "The URI path must specify the extension ID."
+            "description": "The URI path must specify the parent sector ID."
           },
           {
-            "name": "extension",
+            "name": "node_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string",
+            "description": "The URI path must specify the node ID."
+          },
+          {
+            "name": "node",
             "in": "body",
             "required": true,
             "x-is-map": false,
-            "description": "The extension model specifying the values to be updated. It is not a requirement to construct a complete model object. Fields not set will be ignored and existing values will persist. ",
+            "description": "The node model specifying the values to be updated. It is not a requirement to construct a complete model object. Fields not set will be ignored and existing values will persist. ",
             "schema": {
-              "$ref": "#/definitions/Extension"
+              "$ref": "#/definitions/Node"
             }
           }
         ],
@@ -1505,7 +1468,7 @@
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Extension"
+              "$ref": "#/definitions/Node"
             }
           }
         },
@@ -1516,22 +1479,127 @@
         ]
       },
       "delete": {
-        "description": "Delete an extension. See the Extension model for more information.",
+        "description": "Create a request to manually uninstall a node.  See the Node model for more information.",
         "tags": [
-          "Extension"
+          "Node"
         ],
-        "operationId": "Remove Extension_",
+        "operationId": "Remove Sector Node_",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
-            "name": "extension_id",
+            "name": "sector_id",
             "in": "path",
             "required": true,
             "x-is-map": false,
             "type": "string",
-            "description": "The URI path must specify the extension ID."
+            "description": "The URI path must specify the parent sector ID."
+          },
+          {
+            "name": "node_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string",
+            "description": "The URI path must specify the node ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/plugins/{plugin_id}": {
+      "get": {
+        "description": "Get a plugin.  See the Plugin model for more information.",
+        "tags": [
+          "Plugin"
+        ],
+        "operationId": "Get Plugin_",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "plugin_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string",
+            "description": "The URI path must specify the plugin ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Plugin"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "Upgrade a plugin.  The plugin must be in its native format.",
+        "tags": [
+          "Plugin"
+        ],
+        "operationId": "Upgrade Plugin_",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "plugin_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Plugin"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete a plugin. See the Plugin model for more information.",
+        "tags": [
+          "Plugin"
+        ],
+        "operationId": "Remove Plugin_",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "plugin_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string",
+            "description": "The URI path must specify the plugin ID."
           }
         ],
         "responses": {
@@ -1699,6 +1767,17 @@
             "x-is-map": false,
             "type": "string",
             "description": "The URI path must specify the access key ID."
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
           }
         ],
         "responses": {
@@ -1964,6 +2043,17 @@
             "x-is-map": false,
             "type": "string",
             "description": "The URI path must specify the project ID."
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
           }
         ],
         "responses": {
@@ -2130,24 +2220,24 @@
         ]
       }
     },
-    "/extensions/{extension_id}/settings/{setting_id}": {
+    "/plugins/{plugin_id}/settings/{setting_id}": {
       "get": {
-        "description": "Get a collection of fields that make up an extension setting. See the Setting Field model for more information.",
+        "description": "Get plugin setting . See the Setting Field model for more information.",
         "tags": [
           "Setting"
         ],
-        "operationId": "Get Extension Setting_",
+        "operationId": "Get Plugin Setting_",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
-            "name": "extension_id",
+            "name": "plugin_id",
             "in": "path",
             "required": true,
             "x-is-map": false,
             "type": "string",
-            "description": "The URI path must specify the parent extension ID."
+            "description": "The URI path must specify the parent plugin ID."
           },
           {
             "name": "setting_id",
@@ -2156,16 +2246,24 @@
             "x-is-map": false,
             "type": "string",
             "description": "The URI path must specify the setting ID."
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
           }
         ],
         "responses": {
           "200": {
             "description": "",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/SettingField"
-              }
+              "$ref": "#/definitions/Setting"
             }
           }
         },
@@ -2176,22 +2274,22 @@
         ]
       },
       "put": {
-        "description": "Update an extension setting field.  See the Setting Field model for more information.",
+        "description": "Update a plugin setting.  See the Setting model for more information.",
         "tags": [
           "Setting"
         ],
-        "operationId": "Update Extension Setting_",
+        "operationId": "Update Plugin Setting_",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
-            "name": "extension_id",
+            "name": "plugin_id",
             "in": "path",
             "required": true,
             "x-is-map": false,
             "type": "string",
-            "description": "The URI path must specify the parent extension ID."
+            "description": "The URI path must specify the parent plugin ID."
           },
           {
             "name": "setting_id",
@@ -2202,13 +2300,13 @@
             "description": "The URI path must specify the parent setting ID."
           },
           {
-            "name": "field",
+            "name": "setting",
             "in": "body",
             "required": true,
             "x-is-map": false,
-            "description": "The setting field model specifying the values to be updated. It is not a requirement to construct a complete model object. Fields not set will be ignored and existing values will persist. ",
+            "description": "The setting model specifying the values to be updated. It is not a requirement to construct a complete model object. Fields not set will be ignored and existing values will persist. ",
             "schema": {
-              "$ref": "#/definitions/SettingField"
+              "$ref": "#/definitions/Setting"
             }
           }
         ],
@@ -2216,7 +2314,7 @@
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/SettingField"
+              "$ref": "#/definitions/Setting"
             }
           }
         },
@@ -2229,7 +2327,7 @@
     },
     "/dispatchers": {
       "get": {
-        "description": "Get a collection of system dispatchers. See the Dispatcher model for more information.",
+        "description": "Get a collection of system dispatchers. See the Extension model for more information.",
         "tags": [
           "Dispatch"
         ],
@@ -2244,7 +2342,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/Dispatcher"
+                "$ref": "#/definitions/Extension"
               }
             }
           }
@@ -2258,7 +2356,7 @@
     },
     "/dispatchers/{dispatcher_id}/protocols": {
       "get": {
-        "description": "Get a collection of all protocols for a dispatcher. See the Dispatcher Protocol model for more information.",
+        "description": "Get a collection of all protocols for a dispatcher. See the Setting model for more information.",
         "tags": [
           "Dispatch"
         ],
@@ -2282,7 +2380,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/DispatcherProtocol"
+                "$ref": "#/definitions/Setting"
               }
             }
           }
@@ -2491,6 +2589,17 @@
             "x-is-map": false,
             "type": "string",
             "description": "The URI path must specify the subscription ID."
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
           }
         ],
         "responses": {
@@ -2584,41 +2693,6 @@
         ]
       }
     },
-    "/incidents/{incident_id}": {
-      "get": {
-        "description": "Get an incident. See the Incident model for more information.",
-        "tags": [
-          "Incident"
-        ],
-        "operationId": "Get Incident_",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "incident_id",
-            "in": "path",
-            "required": true,
-            "x-is-map": false,
-            "type": "string",
-            "description": "The URI path must specify the incident ID."
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/Incident"
-            }
-          }
-        },
-        "security": [
-          {
-            "auth": []
-          }
-        ]
-      }
-    },
     "/sectors/{sector_id}/nodes/{node_id}/firmwares/{firmware_id}": {
       "put": {
         "description": "Instruct a hardware node to be updated with a firmware package.",
@@ -2667,94 +2741,6 @@
         ]
       }
     },
-    "/firmwares": {
-      "get": {
-        "description": "Get a collection of registered firmware packages. See the Firmware model for more information.",
-        "tags": [
-          "Firmware"
-        ],
-        "operationId": "Get Firmwares_",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "required": false,
-            "x-is-map": false,
-            "type": "integer",
-            "format": "int64",
-            "description": "Endpoints that return collections are automatically paginated and the first page of results is returned. The desired page number can be targeted using this parameter. e.g. page=2 would return the second page of results."
-          },
-          {
-            "name": "perPage",
-            "in": "query",
-            "required": false,
-            "x-is-map": false,
-            "type": "integer",
-            "format": "int64",
-            "description": "Endpoints that return collections are automatically paginated with 10 results per page . The desired number of results per page can be set using this parameter. e.g. perPage=20 would return the 20 results on each page."
-          },
-          {
-            "name": "fields",
-            "in": "query",
-            "required": false,
-            "x-is-map": false,
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
-          },
-          {
-            "name": "sort",
-            "in": "query",
-            "required": false,
-            "x-is-map": false,
-            "type": "string",
-            "description": "The response collection can be sorted into an order based on a specific field value.  The parameter expects a field name from the response model. It is possible to prefix the field name with a minus sign (-) to invert the sort order. e.g. sort=createdAt or sort=-createdAt "
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Firmware"
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "auth": []
-          }
-        ]
-      },
-      "post": {
-        "description": "Upload new firmware package.",
-        "tags": [
-          "Firmware"
-        ],
-        "operationId": "Upload Firmware_",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "auth": []
-          }
-        ]
-      }
-    },
     "/firmwares/{firmware_id}": {
       "get": {
         "description": "Get a firmware metadata model. See the Firmware model for more information.",
@@ -2779,40 +2765,7 @@
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Firmware"
-            }
-          }
-        },
-        "security": [
-          {
-            "auth": []
-          }
-        ]
-      },
-      "delete": {
-        "description": "Delete a firmware metadata model. See the Firmware model for more information.",
-        "tags": [
-          "Firmware"
-        ],
-        "operationId": "Remove Firmware_",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "firmware_id",
-            "in": "path",
-            "required": true,
-            "x-is-map": false,
-            "type": "string",
-            "description": "The URI path must specify the firmware ID."
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "type": "string"
+              "$ref": "#/definitions/Extension"
             }
           }
         },
@@ -2966,7 +2919,7 @@
     },
     "/engines": {
       "get": {
-        "description": "Get a list of registered engines. See the Engine model for more information.",
+        "description": "Get a list of registered engines. See the Extension model for more information.",
         "tags": [
           "Engine"
         ],
@@ -2981,7 +2934,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/Engine"
+                "$ref": "#/definitions/Extension"
               }
             }
           }
@@ -2993,13 +2946,251 @@
         ]
       }
     },
-    "/extensions": {
+    "/plugins": {
       "get": {
-        "description": "Get a collection of all extensions. See the Extension model for more information.",
+        "description": "Get a collection of all plugins. See the Plugin model for more information.",
         "tags": [
-          "Extension"
+          "Plugin"
         ],
-        "operationId": "Get Extensions_",
+        "operationId": "Get Plugins_",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64",
+            "description": "Endpoints that return collections are automatically paginated and the first page of results is returned. The desired page number can be targeted using this parameter. e.g. page=2 would return the second page of results."
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "integer",
+            "format": "int64",
+            "description": "Endpoints that return collections are automatically paginated with 10 results per page . The desired number of results per page can be set using this parameter. e.g. perPage=20 would return the 20 results on each page."
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string",
+            "description": "The response collection can be sorted into an order based on a specific field value.  The parameter expects a field name from the response model. It is possible to prefix the field name with a minus sign (-) to invert the sort order. e.g. sort=createdAt or sort=-createdAt "
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          },
+          {
+            "name": "global",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "boolean"
+            },
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          },
+          {
+            "name": "title",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          },
+          {
+            "name": "homepage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          },
+          {
+            "name": "license",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          },
+          {
+            "name": "provider",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          },
+          {
+            "name": "categories",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "enum": [
+              "ACTIVE",
+              "INACTIVE"
+            ],
+            "type": "string",
+            "items": {},
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          },
+          {
+            "name": "createdAt",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          },
+          {
+            "name": "updatedAt",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Plugin"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "post": {
+        "description": "Upload a plugin. The plugin must be in its native format.",
+        "tags": [
+          "Plugin"
+        ],
+        "operationId": "Upload Plugin_",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Plugin"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/firmwares": {
+      "get": {
+        "description": "Get a collection of registered firmware packages. See the Firmware model for more information.",
+        "tags": [
+          "Firmware"
+        ],
+        "operationId": "Get Firmwares_",
         "produces": [
           "application/json"
         ],
@@ -3050,30 +3241,6 @@
               "items": {
                 "$ref": "#/definitions/Extension"
               }
-            }
-          }
-        },
-        "security": [
-          {
-            "auth": []
-          }
-        ]
-      },
-      "post": {
-        "description": "Upload an extension. The extension must be in its native format. Do not wrap it in a ZIP or TAR.",
-        "tags": [
-          "Extension"
-        ],
-        "operationId": "Upload Extension_",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/Extension"
             }
           }
         },
@@ -4520,24 +4687,24 @@
         ]
       }
     },
-    "/extensions/{extension_id}/settings": {
+    "/plugins/{plugin_id}/settings": {
       "get": {
-        "description": "Get a collection of all settings for an extension. See the Setting model for more information.",
+        "description": "Get a collection of all settings for a plugin. See the Setting model for more information.",
         "tags": [
           "Setting"
         ],
-        "operationId": "Get Extension Settings_",
+        "operationId": "Get Plugin Settings_",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
-            "name": "extension_id",
+            "name": "plugin_id",
             "in": "path",
             "required": true,
             "x-is-map": false,
             "type": "string",
-            "description": "The URI path must specify the extension ID."
+            "description": "The URI path must specify the plugin ID."
           },
           {
             "name": "page",
@@ -4996,6 +5163,550 @@
           }
         ]
       }
+    },
+    "/incidents/{incident_id}": {
+      "get": {
+        "description": "Get an incident. See the Incident model for more information.",
+        "tags": [
+          "Incident"
+        ],
+        "operationId": "Get Incident_",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "incident_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string",
+            "description": "The URI path must specify the incident ID."
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Incident"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/dispatchers/{dispatcher_id}": {
+      "get": {
+        "description": "Get a  system dispatcher. See the Extension model for more information.",
+        "tags": [
+          "Dispatch"
+        ],
+        "operationId": "Get Dispatcher_",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "dispatcher_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string",
+            "description": "The URI path must specify the dispacther ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Extension"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/engines/{engine_id}": {
+      "get": {
+        "description": "Get a registered engine. See the Extension model for more information.",
+        "tags": [
+          "Engine"
+        ],
+        "operationId": "Get Engine_",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "engine_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string",
+            "description": "The URI path must specify the parent engine ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Extension"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/projects/{project_id}/plugins/{plugin_id}": {
+      "put": {
+        "description": "Add a plugin to a project. Only owned plugins can be added to owned projects. See the Project and Plugin models for more information.",
+        "tags": [
+          "Plugin"
+        ],
+        "operationId": "Add Plugin to Project_",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string",
+            "description": "The URI path must specify the project ID."
+          },
+          {
+            "name": "plugin_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string",
+            "description": "The URI path must specify the plugin ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Remove a plugin from a project. Only owned plugins can be removed from owned projects.",
+        "tags": [
+          "Plugin"
+        ],
+        "operationId": "Remove Plugin from Project_",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string",
+            "description": "The URI path must specify the project ID."
+          },
+          {
+            "name": "plugin_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string",
+            "description": "The URI path must specify the plugin ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/plugins/{plugin_id}/projects": {
+      "get": {
+        "description": "Get a collection of projects associated with a plugin. See the Project model for more information.",
+        "tags": [
+          "Project"
+        ],
+        "operationId": "Get Plugin Projects_",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "plugin_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string",
+            "description": "The URI path must specify the parent plugin ID."
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string",
+            "description": "Endpoints that return collections are automatically paginated and the first page of results is returned. The desired page number can be targeted using this parameter. e.g. page=2 would return the second page of results."
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string",
+            "description": "Endpoints that return collections are automatically paginated with 10 results per page . The desired number of results per page can be set using this parameter. e.g. perPage=20 would return the 20 results on each page."
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string",
+            "description": "The response collection can be sorted into an order based on a specific field value.  The parameter expects a field name from the response model. It is possible to prefix the field name with a minus sign (-) to invert the sort order. e.g. sort=createdAt or sort=-createdAt "
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          },
+          {
+            "name": "createdAt",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          },
+          {
+            "name": "updatedAt",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Project"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/projects/{project_id}/plugins": {
+      "get": {
+        "description": "Get a collection of plugins associated with a project. See the Plugin model for more information.",
+        "tags": [
+          "Plugin"
+        ],
+        "operationId": "Get Project Plugins_",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string",
+            "description": "The URI path must specify the project ID."
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string",
+            "description": "Endpoints that return collections are automatically paginated and the first page of results is returned. The desired page number can be targeted using this parameter. e.g. page=2 would return the second page of results."
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string",
+            "description": "Endpoints that return collections are automatically paginated with 10 results per page . The desired number of results per page can be set using this parameter. e.g. perPage=20 would return the 20 results on each page."
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "string",
+            "description": "The response collection can be sorted into an order based on a specific field value.  The parameter expects a field name from the response model. It is possible to prefix the field name with a minus sign (-) to invert the sort order. e.g. sort=createdAt or sort=-createdAt "
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          },
+          {
+            "name": "global",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "boolean"
+            },
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          },
+          {
+            "name": "title",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          },
+          {
+            "name": "homepage",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          },
+          {
+            "name": "license",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          },
+          {
+            "name": "provider",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          },
+          {
+            "name": "categories",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "enum": [
+              "ACTIVE",
+              "INACTIVE"
+            ],
+            "type": "string",
+            "items": {},
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          },
+          {
+            "name": "updatedAt",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          },
+          {
+            "name": "createdAt",
+            "in": "query",
+            "required": false,
+            "x-is-map": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Plugin"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
     }
   },
   "definitions": {
@@ -5006,99 +5717,6 @@
       "enum": [
         "ACTIVE",
         "INACTIVE"
-      ]
-    },
-    "SettingField": {
-      "title": "Setting Field",
-      "description": "@ Deprecated - This model is scheduled to be replaced with a simpler design. | This model represents an HTML field representation.",
-      "type": "object",
-      "properties": {
-        "type": {
-          "description": "The HTML input tag type. See the Setting Field Type model for more information.  ",
-          "$ref": "#/definitions/SettingFieldType"
-        },
-        "name": {
-          "description": "Specifies the name of an <input> element.",
-          "type": "string"
-        },
-        "label": {
-          "description": "Specifies the label of an <input> element.",
-          "type": "string"
-        },
-        "min": {
-          "description": "Specifies a minimum value for an <input> element.",
-          "type": "integer",
-          "format": "int64"
-        },
-        "max": {
-          "description": "Specifies the maximum value for an <input> element.",
-          "type": "integer",
-          "format": "int64"
-        },
-        "maxLength": {
-          "description": "Specifies the maximum number of characters allowed in an <input> element.",
-          "type": "integer",
-          "format": "int64"
-        },
-        "step": {
-          "description": "Specifies the legal number intervals for an input field.",
-          "type": "integer",
-          "format": "int64"
-        },
-        "pattern": {
-          "description": "Specifies a regular expression that an <input> element's value is checked against.",
-          "type": "string"
-        },
-        "readOnly": {
-          "description": "Specifies that an input field is read-only.",
-          "type": "boolean"
-        },
-        "required": {
-          "description": "Specifies that an input field must be filled out before submitting the form.",
-          "type": "boolean"
-        },
-        "checked": {
-          "description": "Specifies that an <input> element should be pre-selected when the page loads (for type=\"checkbox\" or type=\"radio\").",
-          "type": "boolean"
-        },
-        "value": {
-          "description": "Specifies the value of an <input> element.",
-          "type": "string"
-        },
-        "order": {
-          "description": "The order that the field should be displayed in relative to other fields.",
-          "type": "integer",
-          "format": "int64"
-        },
-        "options": {
-          "description": "For fields that define collections the options for the fields are contained here.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/SettingField"
-          }
-        }
-      }
-    },
-    "SettingFieldType": {
-      "title": "Setting Field Type",
-      "description": "A collection of values that can be used to define a setting field type. This model describes the input types of the <input> element.",
-      "type": "string",
-      "enum": [
-        "TEXT",
-        "PASSWORD",
-        "TEL",
-        "URL",
-        "EMAIL",
-        "BOOLEAN",
-        "RADIO",
-        "CHECKBOX",
-        "LIST",
-        "COLOR",
-        "DATE",
-        "DATE_TIME",
-        "TIME",
-        "NUMBER",
-        "RANGE"
       ]
     },
     "Person": {
@@ -5246,9 +5864,9 @@
         "OTHER"
       ]
     },
-    "Dispatcher": {
-      "title": "Dispatcher",
-      "description": "Halo provides internal hooks that broadcast events on defined 'channels'. Dispatchers provide a dynamic delivery mechanism that will dispatch messages in a specific medium.",
+    "Extension": {
+      "title": "Extension",
+      "description": "Plugins can define extension points that implement service interfaces from the core. These extension points are automatically filtered into their appropriate categories but are returned from their respective endpoints as extensions.",
       "type": "object",
       "properties": {
         "id": {
@@ -5262,104 +5880,82 @@
         "description": {
           "description": "A human readable description assigned to the dispatcher.",
           "type": "string"
+        },
+        "meta": {
+          "description": "Metadata attached to the extension. This data will vary depending on the type of extension.",
+          "type": "object"
         }
       }
     },
-    "DispatcherProtocol": {
-      "title": "Dispatcher Protocol",
-      "description": "Dispatchers need to define a minimum of 1 protocol. Protocols define the delivery protocols defined by the dispatcher.",
-      "type": "object",
-      "properties": {
-        "type": {
-          "description": "The type name assigned to the dispatcher protocol.",
-          "type": "string"
-        },
-        "options": {
-          "description": "An optional collection of the protocol definition options required to make the dispatcher function as a dispatcher. Note that this is the definition not the actual stored value. e.g. An email dispatcher needs the user to define the email addresses that the message should be dispatched to.",
-          "$ref": "#/definitions/SettingFieldType"
-        }
-      }
-    },
-    "Engine": {
-      "title": "Engine",
-      "description": "Engines are a type of extension that provide Halo support for specific hardware. Engines are generally proprietary extensions provided by the manufacturers to allow Halo support for their internal communication protocols. ",
-      "type": "object",
-      "properties": {
-        "manufacturer": {
-          "description": "The manufacturer of the hardware that the engine provides support for.",
-          "type": "string"
-        },
-        "model": {
-          "description": "The model of the hardware that the engine provides support for.",
-          "type": "string"
-        },
-        "description": {
-          "description": "A human readable description of the engine.",
-          "type": "string"
-        },
-        "id": {
-          "description": "A unique, system assigned record identifier. Engines are extension based resources and so this ID does not conform to standard system resource ID formats. This is a 10 character alpha-numeric ID. ",
-          "type": "string"
-        }
-      }
-    },
-    "Extension": {
-      "title": "Extension",
-      "description": "Extension are independent packages that can be installed/removed at runtime by users to extend the core Halo functionality. ",
+    "Plugin": {
+      "title": "Plugin",
+      "description": "Plugin are independent packages that can be installed/removed at runtime by users to extend the core Halo functionality. ",
       "type": "object",
       "properties": {
         "id": {
-          "description": "A unique, system assigned record identifier. Engines are extension based resources and so this ID does not conform to standard system resource ID formats. This is a 10 character alpha-numeric ID. ",
+          "description": "A unique, system assigned record identifier. The ID format is made up as follows: : where cluster-id is the id of the cluster. Halo can have a maximum of 32,767 clusters (2^15-1). The cluster-position is the position of the record inside the cluster. Each cluster can handle up to 9,223,372,036,854,780,000 (2^63) records, namely 9,223,372 Trillion of records!",
+          "type": "string"
+        },
+        "global": {
+          "description": "A flag indicating whether the plugin is globally accessible. Globally accessible plugins can be accessed for usage by all system users. Non global plugins are context sensitive resources and must be shared via teams and projects.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "A unique name assigned to the plugin.",
           "type": "string"
         },
         "title": {
-          "description": "A human readable title assigned to the extension.",
-          "type": "string"
-        },
-        "name": {
-          "description": "A unique package name assigned to the extension. This is usually a code based workspace assignment.",
+          "description": "A human readable title for the plugin.",
           "type": "string"
         },
         "description": {
-          "description": "A human readable description of the extension.",
-          "type": "string"
-        },
-        "author": {
-          "description": "The extension author.",
-          "type": "string"
-        },
-        "version": {
-          "description": "The extension version. Although no format is imposed on extension versions, developers are encouraged to use semantic format.  For more info see http://semver.org/",
-          "type": "string"
-        },
-        "license": {
-          "description": "The type of license that the extension id published under.",
-          "type": "string"
-        },
-        "frameworks": {
-          "description": "A description of the supported core Halo framework versions that are supported by the extension. This takes the format '<comparator><major>.<minor>.<patch>'. e.g. '>=1.0.0'",
-          "type": "string"
-        },
-        "category": {
-          "description": "The category that the extension is categorised under.",
+          "description": "A human readable title for the plugin.",
           "type": "string"
         },
         "homepage": {
           "description": "An optional URL of the extension homepage.",
           "type": "string"
         },
-        "repository": {
-          "description": "An optional URL of the extension repository.",
+        "license": {
+          "description": "The type of license that the plugin is published under.",
+          "type": "string"
+        },
+        "provider": {
+          "description": "The plugin provider or author.",
+          "type": "string"
+        },
+        "categories": {
+          "description": "The category that the extension is categorised under.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "version": {
+          "description": "The plugin semantical release version.",
           "type": "string"
         },
         "status": {
-          "description": "The status of the extension determines whether the extension is enabled. See Extension State model for more information.",
-          "$ref": "#/definitions/ExtensionState"
+          "description": "The status of the plugin determines whether it is enabled. See Plugin State model for more information.",
+          "$ref": "#/definitions/PluginState"
         },
-        "icon": {
-          "description": "An optional Base64 encoded icon."
+        "owner": {
+          "description": "Plugins are context sensitive and always have an owner (even globally accessible plugins).",
+          "$ref": "#/definitions/Person"
+        },
+        "createdAt": {
+          "description": "An optional Base64 encoded icon.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
         }
-      }
+      },
+      "required": [
+        "categories"
+      ]
     },
     "Incident": {
       "title": "Incident",
@@ -5549,7 +6145,7 @@
           "description": "A collection of the value over the last 30 mins.  Due the way that different languages handle polymorphism and for the convenience of the SDK compatibility all values are represented as String and the actual type is independently specified in the type field. ",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "#/definitions/PropertyRecentValue"
           }
         },
         "silent": {
@@ -5609,9 +6205,9 @@
           "description": "An optional human readable description assigned to the project.",
           "type": "string"
         },
-        "model": {
-          "description": "The engine model that the sector is hosting. This must match the model specified in the active engine extension exactly. See Engine model for more information.  Required to create.",
-          "type": "string"
+        "engine": {
+          "description": "The engine that the sector is hosting. See Extension model for more information.  Required to create.",
+          "$ref": "#/definitions/Extension"
         },
         "addresses": {
           "description": "A collection of IPv4 or IPv6 addresses (or sockets) for the destination hardware headend  node. The first address in the collection is treated as the primary head end node. All subsequent addresses are treated as failover head end nodes. e.g. 1.1.1.1 or 1.1.1.1:222 or 2001:0db8:0a0b:12f0:0000:0000:0000:0001 or 2001:0db8:0a0b:12f0:0000:0000:0000:0001::80.  Required to create.",
@@ -5624,10 +6220,6 @@
           "description": "The optional http(s) proxy server used for connections to the hardware. See Proxy model for more information.",
           "$ref": "#/definitions/Proxy"
         },
-        "manufacturer": {
-          "description": "The engine manufacturer that the sector is hosting. This must match the manufacturer specified in the active engine extension exactly. See Engine model for more information.  Required to create.",
-          "type": "string"
-        },
         "status": {
           "description": "The current status of the sector. See the Sector State model for more information.",
           "$ref": "#/definitions/SectorState"
@@ -5635,10 +6227,6 @@
         "silent": {
           "description": "A flag specifying whether the sector should be treated as silent. This flag does not alter any behaviour in the system. It simply propagates its value to incidents that originate from this sector. This propagated flag can optionally be included in searches, reporting etc.",
           "type": "boolean"
-        },
-        "engineId": {
-          "description": "The engine ID that the sector is hosting. See Engine model for more information. ",
-          "type": "string"
         },
         "createdAt": {
           "description": "A timestamp of when the resource was created. The format is: \"yyyy-MM-dd'T'HH:mm:ssZ\" e.g. \"2016-02-14T16:32:47-0500\"",
@@ -5697,12 +6285,12 @@
           }
         },
         "dispatcher": {
-          "description": "The ID of the dispatcher that the broadcast messages should be passed to. Required to create.",
-          "type": "string"
+          "description": "The dispatcher extension that the broadcast messages should be passed to. Required to create.",
+          "$ref": "#/definitions/Extension"
         },
         "protocol": {
           "description": "The dispatcher protocol settings that should be passed to the dispatcher with the broadcast message. See Dispatcher Protocol model for more information.",
-          "$ref": "#/definitions/DispatcherProtocol"
+          "$ref": "#/definitions/Setting"
         },
         "createdAt": {
           "description": "A timestamp of when the resource was created. The format is: \"yyyy-MM-dd'T'HH:mm:ssZ\" e.g. \"2016-02-14T16:32:47-0500\"",
@@ -5799,20 +6387,24 @@
     },
     "Setting": {
       "title": "Setting",
-      "description": "All Halo settings are defined via extensions. This model does not contain the actual settings, instead it is the parent meta model that defines whether settings exist.",
+      "description": "All Halo settings are defined via plugins and use the Angular Formly API to define the form under the fields property and the values are stored under the model property.",
       "type": "object",
       "properties": {
         "id": {
           "description": "A unique, system assigned record identifier. Engines are extension based resources and so this ID does not conform to standard system resource ID formats. This is a 10 character alpha-numeric ID. ",
           "type": "string"
         },
-        "extension": {
-          "description": "The ID of the extension that the settings belong to.",
+        "name": {
+          "description": "A human readable name of the extension setting.",
           "type": "string"
         },
-        "description": {
-          "description": "A human readable description of the extension setting.",
-          "type": "string"
+        "model": {
+          "description": "A dynamic set of model values as specified by the Angular Formly API. For more information see: http://docs.angular-formly.com/docs",
+          "type": "object"
+        },
+        "fields": {
+          "description": "A dynamic set of form field definition as specified by the Angular Formly API. For more information see: http://docs.angular-formly.com/docs",
+          "type": "object"
         }
       }
     },
@@ -5894,9 +6486,9 @@
         "ENDED"
       ]
     },
-    "ExtensionState": {
-      "title": "Extension State",
-      "description": "A collection of values that can be used to define an extension status.",
+    "PluginState": {
+      "title": "Plugin State",
+      "description": "A collection of values that can be used to define an plugin status.",
       "type": "string",
       "enum": [
         "ACTIVE",
@@ -6023,41 +6615,17 @@
         }
       }
     },
-    "Firmware": {
-      "title": "Firmware",
-      "description": "Halo provides the ability to control engine hardware firmware versions. This model is not the actual firmware but rather a representation of the firmware metadata.",
+    "PropertyRecentValue": {
+      "title": "Property Recent Value",
+      "description": "Recent values in properties are made up of a timestamp and the value represented as a string.",
       "type": "object",
       "properties": {
-        "id": {
-          "description": "A unique, system assigned record identifier. Engines are extension based resources and so this ID does not conform to standard system resource ID formats. This is a 10 character alpha-numeric ID. ",
+        "value": {
           "type": "string"
         },
-        "name": {
-          "description": "The firmware package human readable name.",
-          "type": "string"
-        },
-        "description": {
-          "description": "The firmware package human readable description.",
-          "type": "string"
-        },
-        "manufacturer": {
-          "description": "The manufacturer of the hardware supported by the firmware package.",
-          "type": "string"
-        },
-        "model": {
-          "description": "The model of the hardware supported by the firmware package.",
-          "type": "string"
-        },
-        "nodes": {
-          "description": "A collection of node types that this firmware is compatible with. These nodes match the node types defined by the engine supporting the target hardware.",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "version": {
-          "description": "The version of the firmware defined in the firmware package .",
-          "type": "string"
+        "date": {
+          "type": "string",
+          "format": "date-time"
         }
       }
     }
