@@ -14,6 +14,10 @@ Building a Halo SDK
 -------------------------------
 #### Download
 
+The easiest way to get the SDK in the language of your choice is to get it from here:
+<script type='text/javascript' async src='https://apimatic.io/js/apimatic-widget.js'></script><div id='apimatic-widget' data-apikey='IuEH8uoLMgm15CIH9eU-YGcm1CrjSH1aG7UyDW-uIC4qBa2J7iyEsKOYM0xaHX_q'></div>
+
+If you cant find the a specific language then the next best option is to grab the definition.
 You will need to select the API definition file that best suits your needs. We currently 
 support blueprints, apimatic and swagger 2.0. Between these you can generate an SDK in 
 more than 30 languages which seems pretty awesome.
