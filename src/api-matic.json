@@ -3,7 +3,7 @@
   "BaseUri": "http://localhost:8080/api",
   "ImageUri": "https://cloud.githubusercontent.com/assets/7042623/11058972/1934eda0-8797-11e5-91b8-852e15655949.png",
   "Description": "Software Development Kit (SDK) to access the Halo RESTful API.",
-  "Version": "1.0.6",
+  "Version": "1.0.7",
   "AdditionalHeaders": [],
   "Authentication": {
     "Type": "Basic",
@@ -44,7 +44,8 @@
           "Name": "setting_id"
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Remove Message",
@@ -80,7 +81,8 @@
           "Description": "The URI path must specify the message ID."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Execute Function",
@@ -116,7 +118,8 @@
           "Description": "The administrative function to be executed"
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Settings",
@@ -139,7 +142,8 @@
       "HasOptionalFieldParams": false,
       "CollectParameters": false,
       "Parameters": [],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Update Setting",
@@ -185,7 +189,8 @@
           "Name": "setting"
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Add Team",
@@ -221,7 +226,8 @@
           "Description": "The team model specifying the values of the object to create. It is not a requirement to construct a complete model object."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Remove Team",
@@ -257,7 +263,8 @@
           "Description": "The URI path must specify the team ID."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Update Node Property",
@@ -329,7 +336,8 @@
           "Description": "The property model specifying the values to be updated. It is not a requirement to construct a complete model object. Fields not set will be ignored and existing values will persist. "
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Add Sector",
@@ -365,7 +373,8 @@
           "Description": "The sector model specifying the values of the object to create. It is not a requirement to construct a complete model object."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Remove Sector",
@@ -401,7 +410,8 @@
           "Description": "The URI path must specify the sector ID."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Add User",
@@ -437,7 +447,8 @@
           "Description": "The person model specifying the values of the object to create. It is not a requirement to construct a complete model object."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Remove User",
@@ -473,7 +484,8 @@
           "Description": "The URI path must specify the person ID."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Update Sector Node",
@@ -533,7 +545,8 @@
           "Description": "The node model specifying the values to be updated. It is not a requirement to construct a complete model object. Fields not set will be ignored and existing values will persist. "
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Node Property",
@@ -617,7 +630,8 @@
           "Description": "Obtain a copy of a node at a specific moment in time. A timestamp, either as a unix epoch (in seconds) or in the format of: \"yyyy-MM-dd'T'HH:mm:ssZ\" e.g. \"2016-02-14T16:32:47-0500\""
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Plugin",
@@ -653,7 +667,8 @@
           "Description": "The URI path must specify the plugin ID."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Remove Plugin",
@@ -689,7 +704,8 @@
           "Description": "The URI path must specify the plugin ID."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Add Access Key",
@@ -712,7 +728,8 @@
       "HasOptionalFieldParams": false,
       "CollectParameters": false,
       "Parameters": [],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Remove Access Key",
@@ -748,7 +765,8 @@
           "Description": "The URI path must specify the access key ID."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Add Project",
@@ -784,7 +802,8 @@
           "Description": "The project model specifying the values of the object to create. It is not a requirement to construct a complete model object."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Remove Project",
@@ -820,7 +839,8 @@
           "Description": "The URI path must specify the project ID."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Engine Nodes",
@@ -856,7 +876,8 @@
           "Description": "The URI path must specify the parent engine ID."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Engine Structures",
@@ -892,7 +913,8 @@
           "Description": "The URI path must specify the parent engine ID."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Update Plugin Setting",
@@ -952,7 +974,8 @@
           "Description": "The setting model specifying the values to be updated. It is not a requirement to construct a complete model object. Fields not set will be ignored and existing values will persist. "
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Dispatchers",
@@ -975,7 +998,8 @@
       "HasOptionalFieldParams": false,
       "CollectParameters": false,
       "Parameters": [],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Dispatcher Protocols",
@@ -1011,7 +1035,8 @@
           "Description": "The URI path must specify the parent dispatcher ID."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Add Subscription",
@@ -1047,7 +1072,8 @@
           "Description": "The subscription model specifying the values of the object to create. It is not a requirement to construct a complete model object."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Remove Subscription",
@@ -1083,7 +1109,8 @@
           "Description": "The URI path must specify the subscription ID."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Update Message",
@@ -1131,7 +1158,8 @@
           "Description": "The message model specifying the values to be updated. It is not a requirement to construct a complete model object. Fields not set will be ignored and existing values will persist. "
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Update Access Key",
@@ -1179,7 +1207,8 @@
           "Description": "The access key model specifying the values to be updated. It is not a requirement to construct a complete model object. Fields not set will be ignored and existing values will persist. "
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Update Node Firmware",
@@ -1239,7 +1268,8 @@
           "Description": "The URI path must specify the firmware ID."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Firmware",
@@ -1275,7 +1305,8 @@
           "Description": "The URI path must specify the firmware ID."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Audits",
@@ -1443,7 +1474,8 @@
           "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Engines",
@@ -1466,7 +1498,8 @@
       "HasOptionalFieldParams": false,
       "CollectParameters": false,
       "Parameters": [],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Upload Plugin",
@@ -1489,7 +1522,8 @@
       "HasOptionalFieldParams": false,
       "CollectParameters": false,
       "Parameters": [],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Update Plugin",
@@ -1537,7 +1571,8 @@
           "Description": "The plugin model specifying the values to be updated. It is not a requirement to construct a complete model object. Fields not set will be ignored and existing values will persist. "
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Firmwares",
@@ -1609,7 +1644,8 @@
           "Description": "The response collection can be sorted into an order based on a specific field value.  The parameter expects a field name from the response model. It is possible to prefix the field name with a minus sign (-) to invert the sort order. e.g. sort=createdAt or sort=-createdAt "
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Incidents",
@@ -1777,7 +1813,8 @@
           "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Access Keys",
@@ -1897,7 +1934,8 @@
           "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Messages",
@@ -2077,7 +2115,8 @@
           "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Add Sector Node",
@@ -2125,7 +2164,8 @@
           "Description": "The node model specifying the values to be installed. It is not a requirement to construct a complete model object. "
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Remove Sector Node",
@@ -2173,7 +2213,8 @@
           "Description": "The URI path must specify the node ID."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Sector Nodes",
@@ -2377,7 +2418,8 @@
           "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Projects",
@@ -2509,7 +2551,8 @@
           "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Sector Projects",
@@ -2653,7 +2696,8 @@
           "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Team Projects",
@@ -2797,7 +2841,8 @@
           "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Add Project to Team",
@@ -2845,7 +2890,8 @@
           "Description": "The URI path must specify the team ID."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Remove Project from Team",
@@ -2893,7 +2939,8 @@
           "Description": "The URI path must specify the team ID."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Update Project",
@@ -2941,7 +2988,8 @@
           "Description": "The project model specifying the values to be updated. It is not a requirement to construct a complete model object. Fields not set will be ignored and existing values will persist. "
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Node Properties",
@@ -3241,7 +3289,8 @@
           "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Add Sector to Project",
@@ -3289,7 +3338,8 @@
           "Description": "The URI path must specify the sector ID."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Project Sectors",
@@ -3505,7 +3555,8 @@
           "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Sectors",
@@ -3698,7 +3749,8 @@
           "Name": "updatedAt"
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Remove Sector from Project",
@@ -3746,7 +3798,8 @@
           "Description": "The URI path must specify the sector ID."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Update Sector",
@@ -3794,7 +3847,8 @@
           "Description": "The sector model specifying the values to be updated. It is not a requirement to construct a complete model object. Fields not set will be ignored and existing values will persist. "
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Plugin Setting",
@@ -3854,7 +3908,8 @@
           "Description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Plugin Settings",
@@ -3938,7 +3993,8 @@
           "Description": "The response collection can be sorted into an order based on a specific field value.  The parameter expects a field name from the response model. It is possible to prefix the field name with a minus sign (-) to invert the sort order. e.g. sort=createdAt or sort=-createdAt "
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Subscriptions",
@@ -4094,7 +4150,8 @@
           "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Update Subscription",
@@ -4142,7 +4199,8 @@
           "Description": "The subscription model specifying the values to be updated. It is not a requirement to construct a complete model object. Fields not set will be ignored and existing values will persist. "
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Project Teams",
@@ -4298,7 +4356,8 @@
           "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Teams",
@@ -4442,7 +4501,8 @@
           "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Update Team",
@@ -4490,7 +4550,8 @@
           "Description": "The team model specifying the values to be updated. It is not a requirement to construct a complete model object. Fields not set will be ignored and existing values will persist. "
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Add User to Team",
@@ -4538,7 +4599,8 @@
           "Description": "The URI path must specify the person ID."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Team Users",
@@ -4742,7 +4804,8 @@
           "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Users",
@@ -4934,7 +4997,8 @@
           "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Update User",
@@ -4982,7 +5046,8 @@
           "Description": "The user model specifying the values to be updated. It is not a requirement to construct a complete model object. Fields not set will be ignored and existing values will persist. "
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Remove User from Team",
@@ -5030,7 +5095,8 @@
           "Description": "The URI path must specify the person ID."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Sector Node",
@@ -5102,7 +5168,8 @@
           "Description": "Obtain a copy of a node at a specific moment in time. A timestamp, either as a unix epoch (in seconds) or in the format of: \"yyyy-MM-dd'T'HH:mm:ssZ\" e.g. \"2016-02-14T16:32:47-0500\""
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Incident",
@@ -5150,7 +5217,8 @@
           "Description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Access Key",
@@ -5198,7 +5266,8 @@
           "Description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Message",
@@ -5246,7 +5315,8 @@
           "Description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Project",
@@ -5294,7 +5364,8 @@
           "Description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Sector",
@@ -5342,7 +5413,8 @@
           "Description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Subscription",
@@ -5390,7 +5462,8 @@
           "Description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Team",
@@ -5438,7 +5511,8 @@
           "Description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get User",
@@ -5486,7 +5560,8 @@
           "Description": "It is possible to restrict data models response fields in order to reduce response size. It is possible to specify the fields of the returning model that should be populated with data using a comma separated list of field name. e.g. fields=name,createdAt,updatedAt"
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Dispatcher",
@@ -5522,7 +5597,8 @@
           "Description": "The URI path must specify the dispacther ID."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Engine",
@@ -5558,7 +5634,8 @@
           "Description": "The URI path must specify the parent engine ID."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Add Plugin to Project",
@@ -5606,7 +5683,8 @@
           "Description": "The URI path must specify the plugin ID."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Remove Plugin from Project",
@@ -5654,7 +5732,8 @@
           "Description": "The URI path must specify the plugin ID."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Upgrade Plugin",
@@ -5689,7 +5768,8 @@
           "Name": "plugin_id"
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Plugin Projects",
@@ -5833,7 +5913,8 @@
           "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Project Plugins",
@@ -6073,7 +6154,8 @@
           "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
     },
     {
       "Name": "Get Plugins",
@@ -6301,7 +6383,204 @@
           "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
         }
       ],
-      "Errors": []
+      "Errors": [],
+      "WrapBodyInObject": false
+    },
+    {
+      "Name": "Get Navigation Menu",
+      "Description": "Get a collection of menu items that make up the navigation menu . See the Menu Item model for more information.",
+      "HTTPMethod": "GET",
+      "Group": "GUI",
+      "RequiresAuthentication": true,
+      "Route": "/menus",
+      "Response": {
+        "Optional": false,
+        "Type": "Menu Item",
+        "Constant": false,
+        "IsStream": false,
+        "IsAttribute": false,
+        "IsArray": true,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [],
+      "Errors": [],
+      "WrapBodyInObject": false
+    },
+    {
+      "Name": "Get Page",
+      "Description": "Get a dynamic page meta object specifying the information required to construct the page.  See the Page model for more information.",
+      "HTTPMethod": "GET",
+      "Group": "GUI",
+      "RequiresAuthentication": true,
+      "Route": "/pages/{page_id}",
+      "Response": {
+        "Optional": false,
+        "Type": "Page",
+        "Constant": false,
+        "IsStream": false,
+        "IsAttribute": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "page_id",
+          "Description": "The URI path must specify the page ID."
+        }
+      ],
+      "Errors": [],
+      "WrapBodyInObject": false
+    },
+    {
+      "Name": "Get Page HTML",
+      "Description": "Get the HTML for a dynamic page. ",
+      "HTTPMethod": "GET",
+      "Group": "GUI",
+      "RequiresAuthentication": true,
+      "Route": "/pages/{page_id}/html",
+      "Response": {
+        "Optional": false,
+        "Type": "String",
+        "Constant": false,
+        "IsStream": false,
+        "IsAttribute": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "page_id",
+          "Description": "The URI path must specify the page ID."
+        }
+      ],
+      "Errors": [],
+      "WrapBodyInObject": false
+    },
+    {
+      "Name": "Get Page CSS",
+      "Description": "Get the CSS for a dynamic page. ",
+      "HTTPMethod": "GET",
+      "Group": "GUI",
+      "RequiresAuthentication": true,
+      "Route": "/pages/{page_id}/css/{css_id}",
+      "Response": {
+        "Optional": false,
+        "Type": "String",
+        "Constant": false,
+        "IsStream": false,
+        "IsAttribute": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "page_id",
+          "Description": "The URI path must specify the page ID."
+        },
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "css_id",
+          "Description": "The URI path must specify the CSS ID."
+        }
+      ],
+      "Errors": [],
+      "WrapBodyInObject": false
+    },
+    {
+      "Name": "Get Page JS",
+      "Description": "Get the JS for a dynamic page. ",
+      "HTTPMethod": "GET",
+      "Group": "GUI",
+      "RequiresAuthentication": true,
+      "Route": "/pages/{page_id}/js/{js_id}",
+      "Response": {
+        "Optional": false,
+        "Type": "String",
+        "Constant": false,
+        "IsStream": false,
+        "IsAttribute": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "page_id",
+          "Description": "The URI path must specify the page ID."
+        },
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "js_id",
+          "Description": "The URI path must specify the JS ID."
+        }
+      ],
+      "Errors": [],
+      "WrapBodyInObject": false
     }
   ],
   "CustomTypes": [
@@ -8571,6 +8850,130 @@
           "Name": "date"
         }
       ]
+    },
+    {
+      "Name": "Page",
+      "ImplementationType": "Structure",
+      "Description": "A meta data representation of a dynamically injected page.",
+      "Fields": [
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": true,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "id",
+          "Description": "The unique navigation state ID of the page. "
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": true,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "name",
+          "Description": "The display name of the dynamic page."
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": true,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "html",
+          "Description": "The API link address to the pages raw HTML."
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "css",
+          "Description": "A collection of API link address to the pages raw external CSS."
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "js",
+          "Description": "A collection of API link address to the pages raw external JS."
+        }
+      ]
+    },
+    {
+      "Name": "Menu Item",
+      "ImplementationType": "Structure",
+      "Description": "A single GUI Navigation menu item. ",
+      "Fields": [
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": true,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "name",
+          "Description": "The display name of the page menu item as it will appear in the menu."
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": true,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "icon",
+          "Description": "The font awesome icon reference string for the icon to use in the navigation menu."
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": true,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "state",
+          "Description": "The navigation state for the menu item. For default menu items this is the Angular navigation state, for dynamic pages this is the page ID reference. This value is only present for actual navigation menu items. Top tier navigation containers do not have this value."
+        },
+        {
+          "Optional": false,
+          "Type": "Boolean",
+          "Constant": true,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "dynamic",
+          "Description": "A boolean flag determining if the menu item has been dynamically injected by a plugin (true) or is part of the native menu navigation (false)."
+        },
+        {
+          "Optional": true,
+          "Type": "Menu Item",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": true,
+          "IsMap": false,
+          "Name": "menus",
+          "Description": "This value is for top level menu items that are containers only. The value is an optional array of menu items making up a sub menu."
+        }
+      ]
     }
   ],
   "CodeGenSettings": {
@@ -8596,11 +8999,11 @@
     "ProjectName": "Halo SDK",
     "EnableAdditionalModelProperties": true,
     "PreserveParameterOrder": false,
+    "ValidateRequiredParameters": false,
     "AppendContentHeaders": true,
     "GenerateInterfaces": false,
     "UseCommonSDKLibrary": false,
-    "ParameterArrayFormat": 2,
-    "BodySerialization": 0
+    "ParameterArrayFormat": 2
   },
   "Errors": []
 }
