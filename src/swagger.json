@@ -5707,6 +5707,191 @@
           }
         ]
       }
+    },
+    "/menus": {
+      "get": {
+        "description": "Get a collection of menu items that make up the navigation menu . See the Menu Item model for more information.",
+        "tags": [
+          "GUI"
+        ],
+        "operationId": "Get Navigation Menu_",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MenuItem"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/pages/{page_id}": {
+      "get": {
+        "description": "Get a dynamic page meta object specifying the information required to construct the page.  See the Page model for more information.",
+        "tags": [
+          "GUI"
+        ],
+        "operationId": "Get Page_",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string",
+            "description": "The URI path must specify the page ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Page"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/pages/{page_id}/html": {
+      "get": {
+        "description": "Get the HTML for a dynamic page. ",
+        "tags": [
+          "GUI"
+        ],
+        "operationId": "Get Page HTML_",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string",
+            "description": "The URI path must specify the page ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/pages/{page_id}/css/{css_id}": {
+      "get": {
+        "description": "Get the CSS for a dynamic page. ",
+        "tags": [
+          "GUI"
+        ],
+        "operationId": "Get Page CSS_",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string",
+            "description": "The URI path must specify the page ID."
+          },
+          {
+            "name": "css_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string",
+            "description": "The URI path must specify the CSS ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/pages/{page_id}/js/{js_id}": {
+      "get": {
+        "description": "Get the JS for a dynamic page. ",
+        "tags": [
+          "GUI"
+        ],
+        "operationId": "Get Page JS_",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string",
+            "description": "The URI path must specify the page ID."
+          },
+          {
+            "name": "js_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string",
+            "description": "The URI path must specify the JS ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
     }
   },
   "definitions": {
@@ -6628,6 +6813,74 @@
           "format": "date-time"
         }
       }
+    },
+    "Page": {
+      "title": "Page",
+      "description": "A meta data representation of a dynamically injected page.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The unique navigation state ID of the page. ",
+          "type": "string"
+        },
+        "name": {
+          "description": "The display name of the dynamic page.",
+          "type": "string"
+        },
+        "html": {
+          "description": "The API link address to the pages raw HTML.",
+          "type": "string"
+        },
+        "css": {
+          "description": "A collection of API link address to the pages raw external CSS.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "js": {
+          "description": "A collection of API link address to the pages raw external JS.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "MenuItem": {
+      "title": "Menu Item",
+      "description": "A single GUI Navigation menu item. ",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The display name of the page menu item as it will appear in the menu.",
+          "type": "string"
+        },
+        "icon": {
+          "description": "The font awesome icon reference string for the icon to use in the navigation menu.",
+          "type": "string"
+        },
+        "state": {
+          "description": "The navigation state for the menu item. For default menu items this is the Angular navigation state, for dynamic pages this is the page ID reference. This value is only present for actual navigation menu items. Top tier navigation containers do not have this value.",
+          "type": "string"
+        },
+        "dynamic": {
+          "description": "A boolean flag determining if the menu item has been dynamically injected by a plugin (true) or is part of the native menu navigation (false).",
+          "type": "boolean"
+        },
+        "menus": {
+          "description": "This value is for top level menu items that are containers only. The value is an optional array of menu items making up a sub menu.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MenuItem"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "icon",
+        "dynamic"
+      ]
     }
   }
 }

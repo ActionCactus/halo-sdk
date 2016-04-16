@@ -2037,6 +2037,86 @@ Get an incident. See the Incident model for more information.
 
 
 
+# Group GUI
+
+## Menus [/menus]
+
+### Get Navigation Menu [GET]
+Get a collection of menu items that make up the navigation menu . See the Menu Item model for more information.
+
++ Response 200 (application/json)
+    + Attributes (array[Menu Item])
+
+
+## Pages By Page Id [/pages/{page_id}]
+
++ Parameters
+    + page_id (string, required)
+
+        The URI path must specify the page ID.
+
+
+### Get Page [GET]
+Get a dynamic page meta object specifying the information required to construct the page.  See the Page model for more information.
+
++ Response 200 (application/json)
+    + Attributes (Page)
+
+
+## Pages Html By Page Id [/pages/{page_id}/html]
+
++ Parameters
+    + page_id (string, required)
+
+        The URI path must specify the page ID.
+
+
+### Get Page HTML [GET]
+Get the HTML for a dynamic page.
+
++ Response 200 
+    + Attributes (string)
+
+
+## Pages Css By Page Id And Css Id [/pages/{page_id}/css/{css_id}]
+
++ Parameters
+    + page_id (string, required)
+
+        The URI path must specify the page ID.
+
+    + css_id (string, required)
+
+        The URI path must specify the CSS ID.
+
+
+### Get Page CSS [GET]
+Get the CSS for a dynamic page.
+
++ Response 200 
+    + Attributes (string)
+
+
+## Pages Js By Page Id And Js Id [/pages/{page_id}/js/{js_id}]
+
++ Parameters
+    + page_id (string, required)
+
+        The URI path must specify the page ID.
+
+    + js_id (string, required)
+
+        The URI path must specify the JS ID.
+
+
+### Get Page JS [GET]
+Get the JS for a dynamic page.
+
++ Response 200 
+    + Attributes (string)
+
+
+
 # Data Structures
 
 ## Person (object)
@@ -2337,3 +2417,25 @@ Recent values in properties are made up of a timestamp and the value represented
 ### Properties
 + `value` (string, optional) 
 + `date` (string, optional) 
+
+
+## Page (object)
+A meta data representation of a dynamically injected page.
+
+### Properties
++ `id` (string, optional) - The unique navigation state ID of the page.
++ `name` (string, optional) - The display name of the dynamic page.
++ `html` (string, optional) - The API link address to the pages raw HTML.
++ `css` (array[string], optional) - A collection of API link address to the pages raw external CSS.
++ `js` (array[string], optional) - A collection of API link address to the pages raw external JS.
+
+
+## Menu Item (object)
+A single GUI Navigation menu item. 
+
+### Properties
++ `name` (string, required) - The display name of the page menu item as it will appear in the menu.
++ `icon` (string, required) - The font awesome icon reference string for the icon to use in the navigation menu.
++ `state` (string, optional) - The navigation state for the menu item. For default menu items this is the Angular navigation state, for dynamic pages this is the page ID reference. This value is only present for actual navigation menu items. Top tier navigation containers do not have this value.
++ `dynamic` (boolean, required) - A boolean flag determining if the menu item has been dynamically injected by a plugin (true) or is part of the native menu navigation (false).
++ `menus` (array[Menu Item], optional) - This value is for top level menu items that are containers only. The value is an optional array of menu items making up a sub menu.
