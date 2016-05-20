@@ -3,7 +3,7 @@
   "BaseUri": "http://localhost:8080/api",
   "ImageUri": "https://cloud.githubusercontent.com/assets/7042623/11058972/1934eda0-8797-11e5-91b8-852e15655949.png",
   "Description": "Software Development Kit (SDK) to access the Halo RESTful API.",
-  "Version": "1.0.7",
+  "Version": "1.0.8",
   "AdditionalHeaders": [],
   "Authentication": {
     "Type": "Basic",
@@ -6585,6 +6585,46 @@
   ],
   "CustomTypes": [
     {
+      "Name": "Sector State",
+      "ImplementationType": "Enumeration",
+      "Description": "A collection of values that can be used to define a sector status.",
+      "Fields": [
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "ACTIVE",
+          "Description": "Specifies a sector status as being enabled inside Halo. In this state Halo will harvest and communicate with the sector."
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "PASSIVE",
+          "Description": "Specifies a sector status as being passive inside Halo. In this state Halo will harvest and communicate with the sector but will not generate incidents. This does not disable the hardware."
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "INACTIVE",
+          "Description": "Specifies a sector status as being disabled inside Halo. In this state Halo will not harvest and communicate with the sector. This does not disable the hardware."
+        }
+      ]
+    },
+    {
       "Name": "Access Key State",
       "ImplementationType": "Enumeration",
       "Description": "A collection of values that can be used to define an access keys status.",
@@ -7936,35 +7976,6 @@
       ]
     },
     {
-      "Name": "Sector State",
-      "ImplementationType": "Enumeration",
-      "Description": "A collection of values that can be used to define a sector status.",
-      "Fields": [
-        {
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "ACTIVE",
-          "Description": "Specifies a sector status as being enabled inside Halo. In this state Halo will harvest and communicate with the sector."
-        },
-        {
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "PASSIVE",
-          "Description": "Specifies a sector status as being disabled inside Halo. In this state Halo will not harvest and communicate with the sector. This does not disable the hardware."
-        }
-      ]
-    },
-    {
       "Name": "Subscription",
       "ImplementationType": "Structure",
       "Description": "Subscriptions are the binding model that connects system topic broadcasts with dispatchers. A subscription listens for broadcasts of specific topics and passes them to the dispatcher.",
@@ -8980,6 +8991,7 @@
     "SynchronyMode": 0,
     "ModelSerializationScheme": "Json",
     "ArraySerialization": "Indexed",
+    "Nullify404": true,
     "UseHttpMethodPrefix": false,
     "UseModelPrefix": true,
     "UseEnumPrefix": true,
@@ -8999,7 +9011,7 @@
     "ProjectName": "Halo SDK",
     "EnableAdditionalModelProperties": true,
     "PreserveParameterOrder": false,
-    "ValidateRequiredParameters": false,
+    "ValidateRequiredParameters": true,
     "AppendContentHeaders": true,
     "GenerateInterfaces": false,
     "UseCommonSDKLibrary": false,
