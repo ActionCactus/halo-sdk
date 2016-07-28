@@ -13,7 +13,8 @@
   "basePath": "/api",
   "securityDefinitions": {
     "auth": {
-      "type": "basic"
+      "type": "basic",
+      "x-testValue": []
     }
   },
   "schemes": [
@@ -26,79 +27,58 @@
     "application/json"
   ],
   "paths": {
-    "/@/settings/{setting_id}": {
+    "/headers": {
       "get": {
-        "description": "Get the system setting",
+        "description": "Get a collection of menu items that make up the header menu . See the Menu Item model for more information.",
         "tags": [
-          "Admin"
+          "GUI"
         ],
-        "operationId": "Get Setting_",
+        "operationId": "Get Header Menu_",
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
-            "name": "setting_id",
-            "in": "path",
-            "required": true,
-            "x-is-map": false,
-            "type": "string"
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Setting"
+              "$ref": "#/definitions/MenuItem"
             }
-          }
-        },
-        "security": [
-          {
-            "auth": []
-          }
-        ]
-      },
-      "put": {
-        "description": "Update system setting",
-        "tags": [
-          "Admin"
-        ],
-        "operationId": "Update Setting_",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "setting_id",
-            "in": "path",
-            "required": true,
-            "x-is-map": false,
-            "type": "string"
           },
-          {
-            "name": "setting",
-            "in": "body",
-            "required": true,
-            "x-is-map": false,
-            "schema": {
-              "$ref": "#/definitions/Setting"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/Setting"
-            }
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/messages/{message_id}": {
@@ -138,13 +118,41 @@
             "schema": {
               "$ref": "#/definitions/Message"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "put": {
         "description": "Update a message.  See the Message model for more information.",
@@ -181,13 +189,41 @@
             "schema": {
               "$ref": "#/definitions/Message"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "delete": {
         "description": "Delete a message.  See the Message model for more information.",
@@ -211,81 +247,41 @@
         "responses": {
           "200": {
             "description": ""
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
-      }
-    },
-    "/@/functions/{function}": {
-      "put": {
-        "description": "Execute admin function",
-        "tags": [
-          "Admin"
         ],
-        "operationId": "Execute Function_",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "function",
-            "in": "path",
-            "required": true,
-            "x-is-map": false,
-            "enum": [
-              "update",
-              "initSectors",
-              "initAlarms",
-              "setClock",
-              "reboot"
-            ],
-            "type": "string",
-            "description": "The administrative function to be executed"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "auth": []
-          }
-        ]
-      }
-    },
-    "/@/settings": {
-      "get": {
-        "description": "Get system settings",
-        "tags": [
-          "Admin"
-        ],
-        "operationId": "Get Settings_",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Setting"
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "auth": []
-          }
-        ]
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/teams": {
@@ -412,13 +408,41 @@
                 "$ref": "#/definitions/Team"
               }
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": true,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "post": {
         "description": "Create a team. See the Team model for more information.",
@@ -447,13 +471,41 @@
             "schema": {
               "$ref": "#/definitions/Team"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/teams/{team_id}": {
@@ -493,13 +545,41 @@
             "schema": {
               "$ref": "#/definitions/Team"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "put": {
         "description": "Update a team. See the Team model for more information.",
@@ -536,13 +616,41 @@
             "schema": {
               "$ref": "#/definitions/Team"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "delete": {
         "description": "Delete a team. See the Team model for more information. ",
@@ -566,13 +674,41 @@
         "responses": {
           "200": {
             "description": ""
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/sectors/{sector_id}/nodes/{node_id}/properties/{property_id}": {
@@ -636,13 +772,41 @@
             "schema": {
               "$ref": "#/definitions/Property"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "put": {
         "description": "Update a node property.  See the Property model for more information.",
@@ -695,13 +859,41 @@
             "schema": {
               "$ref": "#/definitions/Property"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/sectors": {
@@ -872,13 +1064,41 @@
                 "$ref": "#/definitions/Sector"
               }
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": true,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "post": {
         "description": "Create a Sector.  See the Sector model for more information.",
@@ -907,13 +1127,41 @@
             "schema": {
               "$ref": "#/definitions/Sector"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/sectors/{sector_id}": {
@@ -953,13 +1201,41 @@
             "schema": {
               "$ref": "#/definitions/Sector"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "put": {
         "description": "Update a sector.  See the Sector model for more information.",
@@ -996,13 +1272,41 @@
             "schema": {
               "$ref": "#/definitions/Sector"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "delete": {
         "description": "Delete a sector. Only owned or authorized sectors can be deleted. See the Sector model for more information. ",
@@ -1026,13 +1330,41 @@
         "responses": {
           "200": {
             "description": ""
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/users": {
@@ -1203,13 +1535,41 @@
                 "$ref": "#/definitions/Person"
               }
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": true,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "post": {
         "description": "Create a user. See the Person model for more information.",
@@ -1238,13 +1598,41 @@
             "schema": {
               "$ref": "#/definitions/Person"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/users/{user_id}": {
@@ -1284,13 +1672,41 @@
             "schema": {
               "$ref": "#/definitions/Person"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "put": {
         "description": "Update a user. For non administrative requests only self updates are permitted. See the Person model for more information.",
@@ -1327,13 +1743,41 @@
             "schema": {
               "$ref": "#/definitions/Person"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "delete": {
         "description": "Delete a user. Only administrative requests can delete users. It is not possible to delete the account of the requesting user. See the Person model for more information. ",
@@ -1357,13 +1801,41 @@
         "responses": {
           "200": {
             "description": ""
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/sectors/{sector_id}/nodes/{node_id}": {
@@ -1419,13 +1891,41 @@
             "schema": {
               "$ref": "#/definitions/Node"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "put": {
         "description": "Update a node.  See the Node model for more information.",
@@ -1470,13 +1970,41 @@
             "schema": {
               "$ref": "#/definitions/Node"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "delete": {
         "description": "Create a request to manually uninstall a node.  See the Node model for more information.",
@@ -1508,13 +2036,41 @@
         "responses": {
           "200": {
             "description": ""
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/plugins/{plugin_id}": {
@@ -1543,13 +2099,41 @@
             "schema": {
               "$ref": "#/definitions/Plugin"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "put": {
         "description": "Upgrade a plugin.  The plugin must be in its native format.",
@@ -1575,13 +2159,41 @@
             "schema": {
               "$ref": "#/definitions/Plugin"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "delete": {
         "description": "Delete a plugin. See the Plugin model for more information.",
@@ -1605,13 +2217,41 @@
         "responses": {
           "200": {
             "description": ""
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/keys": {
@@ -1716,13 +2356,41 @@
                 "$ref": "#/definitions/AccessKey"
               }
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": true,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "post": {
         "description": "Create an access key.  See the Access Key model for more information.",
@@ -1740,13 +2408,41 @@
             "schema": {
               "$ref": "#/definitions/AccessKey"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/keys/{key_id}": {
@@ -1786,13 +2482,41 @@
             "schema": {
               "$ref": "#/definitions/AccessKey"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "put": {
         "description": "Update access key.  See the Access Key model for more information.",
@@ -1829,13 +2553,41 @@
             "schema": {
               "$ref": "#/definitions/AccessKey"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "delete": {
         "description": "Delete an access key.  See the Access Key model for more information.",
@@ -1859,13 +2611,41 @@
         "responses": {
           "200": {
             "description": ""
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/projects": {
@@ -1981,13 +2761,41 @@
                 "$ref": "#/definitions/Project"
               }
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": true,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "post": {
         "description": "Create a Project.  See the Project model for more information.",
@@ -2016,13 +2824,41 @@
             "schema": {
               "$ref": "#/definitions/Project"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/projects/{project_id}": {
@@ -2062,13 +2898,41 @@
             "schema": {
               "$ref": "#/definitions/Project"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "put": {
         "description": "Update a project.  See the Project model for more information.",
@@ -2105,13 +2969,41 @@
             "schema": {
               "$ref": "#/definitions/Project"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "delete": {
         "description": "Delete a project. Only owned projects can be deleted. See the Project model for more information. ",
@@ -2138,13 +3030,41 @@
             "schema": {
               "type": "string"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/engines/{engine_id}/nodes": {
@@ -2176,13 +3096,41 @@
                 "$ref": "#/definitions/Node"
               }
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/engines/{engine_id}/structures": {
@@ -2211,13 +3159,41 @@
             "schema": {
               "type": "object"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/plugins/{plugin_id}/settings/{setting_id}": {
@@ -2265,13 +3241,41 @@
             "schema": {
               "$ref": "#/definitions/Setting"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "put": {
         "description": "Update a plugin setting.  See the Setting model for more information.",
@@ -2316,13 +3320,41 @@
             "schema": {
               "$ref": "#/definitions/Setting"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/dispatchers": {
@@ -2345,13 +3377,41 @@
                 "$ref": "#/definitions/Extension"
               }
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/dispatchers/{dispatcher_id}/protocols": {
@@ -2383,13 +3443,41 @@
                 "$ref": "#/definitions/Setting"
               }
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/subscriptions": {
@@ -2474,7 +3562,7 @@
             "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
           },
           {
-            "name": "topics",
+            "name": "channels",
             "in": "query",
             "required": false,
             "x-is-map": false,
@@ -2527,13 +3615,41 @@
                 "$ref": "#/definitions/Subscription"
               }
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": true,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "post": {
         "description": "Create a new Subscription.  See the Subscription model for more information.",
@@ -2562,13 +3678,41 @@
             "schema": {
               "$ref": "#/definitions/Subscription"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/subscriptions/{subscription_id}": {
@@ -2608,13 +3752,41 @@
             "schema": {
               "$ref": "#/definitions/Subscription"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "put": {
         "description": "Update a subscription.  See the Subscription model for more information.",
@@ -2651,13 +3823,41 @@
             "schema": {
               "$ref": "#/definitions/Subscription"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "delete": {
         "description": "Delete a subscription. See the Subscription model for more information. ",
@@ -2684,13 +3884,41 @@
             "schema": {
               "type": "string"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/sectors/{sector_id}/nodes/{node_id}/firmwares/{firmware_id}": {
@@ -2732,13 +3960,41 @@
         "responses": {
           "200": {
             "description": ""
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/firmwares/{firmware_id}": {
@@ -2767,13 +4023,41 @@
             "schema": {
               "$ref": "#/definitions/Extension"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/audits": {
@@ -2889,14 +4173,6 @@
             "x-is-map": false,
             "type": "string",
             "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
-          },
-          {
-            "name": "targetType",
-            "in": "query",
-            "required": true,
-            "x-is-map": false,
-            "type": "string",
-            "description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
           }
         ],
         "responses": {
@@ -2908,13 +4184,41 @@
                 "$ref": "#/definitions/Audit"
               }
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": true,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/engines": {
@@ -2937,13 +4241,41 @@
                 "$ref": "#/definitions/Extension"
               }
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/plugins": {
@@ -3151,13 +4483,41 @@
                 "$ref": "#/definitions/Plugin"
               }
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": true,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "post": {
         "description": "Upload a plugin. The plugin must be in its native format.",
@@ -3175,13 +4535,41 @@
             "schema": {
               "$ref": "#/definitions/Plugin"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/firmwares": {
@@ -3242,13 +4630,41 @@
                 "$ref": "#/definitions/Extension"
               }
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": true,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/incidents": {
@@ -3393,13 +4809,41 @@
                 "$ref": "#/definitions/Incident"
               }
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": true,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/messages": {
@@ -3559,13 +5003,41 @@
                 "$ref": "#/definitions/Message"
               }
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": true,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/sectors/{sector_id}/nodes": {
@@ -3747,13 +5219,41 @@
                 "$ref": "#/definitions/Node"
               }
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": true,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "post": {
         "description": "Creates a request to manually install a node into a sector. See the Node model for more information.",
@@ -3790,13 +5290,41 @@
             "schema": {
               "$ref": "#/definitions/Node"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/sectors/{sector_id}/projects": {
@@ -3920,13 +5448,41 @@
                 "$ref": "#/definitions/Project"
               }
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": true,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/teams/{team_id}/projects": {
@@ -4050,13 +5606,41 @@
                 "$ref": "#/definitions/Project"
               }
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": true,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/teams/{team_id}/projects/{project_id}": {
@@ -4090,13 +5674,41 @@
         "responses": {
           "200": {
             "description": ""
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "delete": {
         "description": "Remove a project from a team. Only owned projects can be removed from owned teams.",
@@ -4128,13 +5740,41 @@
         "responses": {
           "200": {
             "description": ""
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/sectors/{sector_id}/nodes/{node_id}/properties": {
@@ -4398,13 +6038,41 @@
                 "$ref": "#/definitions/Property"
               }
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/projects/{project_id}/sectors/{sector_id}": {
@@ -4441,13 +6109,41 @@
             "schema": {
               "type": "string"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "delete": {
         "description": "Remove a sector from a project. Only owned sectors can be removed from owned projects.",
@@ -4482,13 +6178,41 @@
             "schema": {
               "type": "string"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/projects/{project_id}/sectors": {
@@ -4678,13 +6402,41 @@
                 "$ref": "#/definitions/Sector"
               }
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": true,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/plugins/{plugin_id}/settings": {
@@ -4751,13 +6503,41 @@
                 "$ref": "#/definitions/Setting"
               }
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": true,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/projects/{project_id}/teams": {
@@ -4892,13 +6672,41 @@
                 "$ref": "#/definitions/Team"
               }
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": true,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/teams/{team_id}/members/{user_id}": {
@@ -4932,13 +6740,41 @@
         "responses": {
           "200": {
             "description": ""
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "delete": {
         "description": "Remove a user from a team. Only owned teams can remove other users. Users can remove themselves from any team they are a member of.",
@@ -4970,13 +6806,41 @@
         "responses": {
           "200": {
             "description": ""
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/teams/{team_id}/members": {
@@ -5155,13 +7019,41 @@
                 "$ref": "#/definitions/Person"
               }
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": true,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/incidents/{incident_id}": {
@@ -5201,13 +7093,161 @@
             "schema": {
               "$ref": "#/definitions/Incident"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/endpoints": {
+      "get": {
+        "description": "Get a collection of system dynamic endopints. See the Extension model for more information.",
+        "tags": [
+          "Endpoint"
+        ],
+        "operationId": "Get Endpoints_",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Extension"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/endpoints/{endpoint_id}": {
+      "get": {
+        "description": "Get a  system endpoint swagger definition. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md for more information.",
+        "tags": [
+          "Endpoint"
+        ],
+        "operationId": "Get Endpoint Definition_",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "endpoint_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string",
+            "description": "The URI path must specify the endpoint ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/dispatchers/{dispatcher_id}": {
@@ -5236,13 +7276,41 @@
             "schema": {
               "$ref": "#/definitions/Extension"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/engines/{engine_id}": {
@@ -5271,13 +7339,41 @@
             "schema": {
               "$ref": "#/definitions/Extension"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/projects/{project_id}/plugins/{plugin_id}": {
@@ -5311,13 +7407,41 @@
         "responses": {
           "200": {
             "description": ""
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       },
       "delete": {
         "description": "Remove a plugin from a project. Only owned plugins can be removed from owned projects.",
@@ -5349,13 +7473,41 @@
         "responses": {
           "200": {
             "description": ""
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/plugins/{plugin_id}/projects": {
@@ -5479,13 +7631,41 @@
                 "$ref": "#/definitions/Project"
               }
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/projects/{project_id}/plugins": {
@@ -5699,13 +7879,41 @@
                 "$ref": "#/definitions/Plugin"
               }
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/menus": {
@@ -5728,13 +7936,41 @@
                 "$ref": "#/definitions/MenuItem"
               }
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/pages/{page_id}": {
@@ -5763,13 +7999,41 @@
             "schema": {
               "$ref": "#/definitions/Page"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/pages/{page_id}/html": {
@@ -5798,13 +8062,41 @@
             "schema": {
               "type": "string"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/pages/{page_id}/css/{css_id}": {
@@ -5841,13 +8133,41 @@
             "schema": {
               "type": "string"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     },
     "/pages/{page_id}/js/{js_id}": {
@@ -5884,13 +8204,104 @@
             "schema": {
               "type": "string"
             }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
           }
         },
         "security": [
           {
             "auth": []
           }
-        ]
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/engines/{engine_id}/protocols": {
+      "get": {
+        "description": "Get a collection of all protocols for n engine. See the Engine Setting model for more information.",
+        "tags": [
+          "Engine"
+        ],
+        "operationId": "Get Engine Protocols_",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "engine_id",
+            "in": "path",
+            "required": true,
+            "x-is-map": false,
+            "type": "string",
+            "description": "The URI path must specify the parent engine ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/EngineSetting"
+            }
+          },
+          "400": {
+            "description": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+          },
+          "401": {
+            "description": "Unauthorized: The user does not have the necessary credentials."
+          },
+          "404": {
+            "description": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+          },
+          "405": {
+            "description": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+          },
+          "408": {
+            "description": "Request Timeout: The server timed out waiting for the request. "
+          },
+          "415": {
+            "description": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+          },
+          "default": {
+            "description": "Internal Server Error: Oooops, something went terribly wrong!"
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
       }
     }
   },
@@ -6263,10 +8674,10 @@
           }
         },
         "functions": {
-          "description": "A collection of defined functions that apply to this node. This is currently an experimental property. See the Node Function model for more information.",
+          "description": "@Depricated",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/NodeFunction"
+            "type": "string"
           }
         }
       }
@@ -6369,6 +8780,10 @@
         "id": {
           "description": "A unique, system assigned record identifier. The ID format is made up as follows: <cluster-id>:<cluster-position> where cluster-id is the id of the cluster. Halo can have a maximum of 32,767 clusters (2^15-1). The cluster-position is the position of the record inside the cluster. Each cluster can handle up to 9,223,372,036,854,780,000 (2^63) records, namely 9,223,372 Trillion of records!",
           "type": "string"
+        },
+        "valueDisplayExpression": {
+          "description": "A Javascript expression used to control the display value of the property value in the GUI. e.g.  if (${value} > 5) ? `on` : `off`",
+          "type": "string"
         }
       }
     },
@@ -6405,14 +8820,14 @@
           "$ref": "#/definitions/Extension"
         },
         "addresses": {
-          "description": "A collection of IPv4 or IPv6 addresses (or sockets) for the destination hardware headend  node. The first address in the collection is treated as the primary head end node. All subsequent addresses are treated as failover head end nodes. e.g. 1.1.1.1 or 1.1.1.1:222 or 2001:0db8:0a0b:12f0:0000:0000:0000:0001 or 2001:0db8:0a0b:12f0:0000:0000:0000:0001::80.  Required to create.",
+          "description": "@Deprecated since 1.2.1. Please use the `protocol` object to support the engine specific protocol requirements. A collection of IPv4 or IPv6 addresses (or sockets) for the destination hardware headend  node. The first address in the collection is treated as the primary head end node. All subsequent addresses are treated as failover head end nodes. e.g. 1.1.1.1 or 1.1.1.1:222 or 2001:0db8:0a0b:12f0:0000:0000:0000:0001 or 2001:0db8:0a0b:12f0:0000:0000:0000:0001::80.  Required to create.",
           "type": "array",
           "items": {
             "type": "string"
           }
         },
         "proxy": {
-          "description": "The optional http(s) proxy server used for connections to the hardware. See Proxy model for more information.",
+          "description": "@Deprecated since 1.2.1. Please use the `protocol` object to support the engine specific protocol requirements. The optional http(s) proxy server used for connections to the hardware. See Proxy model for more information.",
           "$ref": "#/definitions/Proxy"
         },
         "status": {
@@ -6443,6 +8858,10 @@
         "owner": {
           "description": "The project owner. See Person model for more information.",
           "$ref": "#/definitions/Person"
+        },
+        "protocol": {
+          "description": "The engine protocol that specifies the protocol based settings that are required by the engine to function. See the Engine Setting model for more information.",
+          "$ref": "#/definitions/EngineSetting"
         }
       }
     },
@@ -6463,8 +8882,8 @@
           "description": "An optional human readable description assigned to the project.",
           "type": "string"
         },
-        "topics": {
-          "description": "A collection of topics that the subscription should listen for. Required to create.",
+        "channels": {
+          "description": "A collection of channels that the subscription should listen for. Required to create.",
           "type": "array",
           "items": {
             "type": "string"
@@ -6662,16 +9081,6 @@
         }
       }
     },
-    "IncidentEventType": {
-      "title": "Incident Event Type",
-      "description": "The type of event that occurred in an incident event",
-      "type": "string",
-      "enum": [
-        "STARTED",
-        "CHANGED",
-        "ENDED"
-      ]
-    },
     "PluginState": {
       "title": "Plugin State",
       "description": "A collection of values that can be used to define an plugin status.",
@@ -6727,15 +9136,6 @@
         }
       }
     },
-    "NodeFunction": {
-      "title": "Node Function",
-      "description": "A collection of values that can be used to define a nodes primary functions. This is an experiment property that is being used to help perform reporting analytical information only at the moment.! ",
-      "type": "string",
-      "enum": [
-        "OTHER",
-        "ANTENNA"
-      ]
-    },
     "Project": {
       "title": "Project",
       "description": "All system resources in Halo are context sensitive. This means that the creation of a resource results in that resource being owned by the creator. Projects are mechanism of grouping resources together and subsequently allowing teams to access these resources.",
@@ -6771,7 +9171,7 @@
     },
     "Proxy": {
       "title": "Proxy",
-      "description": "A proxy server is a server that acts as an intermediary for Halo requests. Halo currently only supports HTTP(S) proxy servers.",
+      "description": "Deprecated as of 1.2.2. Engines now define optional proxy for their respective communication mechanisms.",
       "type": "object",
       "properties": {
         "active": {
@@ -6881,6 +9281,34 @@
         "name",
         "icon",
         "dynamic"
+      ]
+    },
+    "EngineSetting": {
+      "title": "Engine Setting",
+      "description": "All Halo settings are defined via plugins and use the Angular Formly API to define the form under the fields property and the values are stored under the model property. An extended setting used by engines.",
+      "type": "object",
+      "properties": {
+        "schedule": {
+          "description": "This value is ONLY respected if the engine defined type is 'REQUESTER`. It is composed of a quartz cron expression that will determine the how often the engine will attempt to harvest data from the hardware. If no value or an invalid expression are supplied the default is `0 0/1 * 1/1 * ? *` It is important to note that the schedule is used to place the sector into a queue at requested intervals. However,  this does not supply any guaranties. Neither regarding the execution itself nor that the execution will happen at  the exact specified interval. Each sector is allocated an operational thread. If the previous request execution has not completed at the time of the new request then the new request will be dumped. So if it takes the engine 15 seconds to complete a harvest and this value is set to 1 second it will simple use up system resources but  will not execute any faster than 15 seconds.",
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "#/definitions/Setting"
+        }
+      ]
+    },
+    "IncidentEventType": {
+      "title": "Incident Event Type",
+      "description": "The type of event that occurred in an incident event",
+      "type": "string",
+      "enum": [
+        "Started",
+        "Quarantined",
+        "Restarted",
+        "Observation",
+        "Ended"
       ]
     }
   }
