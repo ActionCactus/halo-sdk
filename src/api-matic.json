@@ -3,7 +3,7 @@
   "BaseUri": "http://localhost:8080/api",
   "ImageUri": "https://cloud.githubusercontent.com/assets/7042623/11058972/1934eda0-8797-11e5-91b8-852e15655949.png",
   "Description": "Software Development Kit (SDK) to access the Halo RESTful API.",
-  "Version": "1.0.8",
+  "Version": "1.3.0",
   "AdditionalHeaders": [],
   "Authentication": {
     "Type": "Basic",
@@ -12,15 +12,15 @@
   },
   "Endpoints": [
     {
-      "Name": "Get Setting",
-      "Description": "Get the system setting",
+      "Name": "Get Header Menu",
+      "Description": "Get a collection of menu items that make up the header menu . See the Menu Item model for more information.",
       "HTTPMethod": "GET",
-      "Group": "Admin",
+      "Group": "GUI",
       "RequiresAuthentication": true,
-      "Route": "/@/settings/{setting_id}",
+      "Route": "/headers",
       "Response": {
         "Optional": false,
-        "Type": "Setting",
+        "Type": "Menu Item",
         "Constant": false,
         "IsStream": false,
         "IsAttribute": false,
@@ -31,20 +31,9 @@
       "HasOptionalQueryParams": false,
       "HasOptionalFieldParams": false,
       "CollectParameters": false,
-      "Parameters": [
-        {
-          "ParamFormat": "Template",
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "setting_id"
-        }
-      ],
+      "Parameters": [],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -82,114 +71,7 @@
         }
       ],
       "Errors": [],
-      "WrapBodyInObject": false
-    },
-    {
-      "Name": "Execute Function",
-      "Description": "Execute admin function",
-      "HTTPMethod": "PUT",
-      "Group": "Admin",
-      "RequiresAuthentication": true,
-      "Route": "/@/functions/{function}",
-      "Response": {
-        "Optional": false,
-        "Type": "Void",
-        "Constant": false,
-        "IsStream": false,
-        "IsAttribute": false,
-        "IsArray": false,
-        "IsMap": false,
-        "Name": "response"
-      },
-      "HasOptionalQueryParams": false,
-      "HasOptionalFieldParams": false,
-      "CollectParameters": false,
-      "Parameters": [
-        {
-          "ParamFormat": "Template",
-          "Optional": false,
-          "Type": "Admin Function",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "function",
-          "Description": "The administrative function to be executed"
-        }
-      ],
-      "Errors": [],
-      "WrapBodyInObject": false
-    },
-    {
-      "Name": "Get Settings",
-      "Description": "Get system settings",
-      "HTTPMethod": "GET",
-      "Group": "Admin",
-      "RequiresAuthentication": true,
-      "Route": "/@/settings",
-      "Response": {
-        "Optional": false,
-        "Type": "Setting",
-        "Constant": false,
-        "IsStream": false,
-        "IsAttribute": false,
-        "IsArray": true,
-        "IsMap": false,
-        "Name": "response"
-      },
-      "HasOptionalQueryParams": false,
-      "HasOptionalFieldParams": false,
-      "CollectParameters": false,
-      "Parameters": [],
-      "Errors": [],
-      "WrapBodyInObject": false
-    },
-    {
-      "Name": "Update Setting",
-      "Description": "Update system setting",
-      "HTTPMethod": "PUT",
-      "Group": "Admin",
-      "RequiresAuthentication": true,
-      "Route": "/@/settings/{setting_id}",
-      "Response": {
-        "Optional": false,
-        "Type": "Setting",
-        "Constant": false,
-        "IsStream": false,
-        "IsAttribute": false,
-        "IsArray": false,
-        "IsMap": false,
-        "Name": "response"
-      },
-      "HasOptionalQueryParams": false,
-      "HasOptionalFieldParams": false,
-      "CollectParameters": false,
-      "Parameters": [
-        {
-          "ParamFormat": "Template",
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "setting_id"
-        },
-        {
-          "ParamFormat": "Body",
-          "Optional": false,
-          "Type": "Setting",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "setting"
-        }
-      ],
-      "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -227,6 +109,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -264,6 +147,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -337,6 +221,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -374,6 +259,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -411,6 +297,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -448,6 +335,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -485,6 +373,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -546,6 +435,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -631,6 +521,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -668,6 +559,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -705,6 +597,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -729,6 +622,7 @@
       "CollectParameters": false,
       "Parameters": [],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -766,6 +660,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -803,6 +698,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -840,6 +736,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -877,6 +774,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -914,6 +812,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -975,6 +874,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -999,6 +899,7 @@
       "CollectParameters": false,
       "Parameters": [],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -1036,6 +937,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -1073,6 +975,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -1110,6 +1013,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -1159,6 +1063,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -1208,6 +1113,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -1269,6 +1175,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -1306,6 +1213,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -1460,21 +1368,10 @@
           "IsMap": false,
           "Name": "targetId",
           "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
-        },
-        {
-          "ParamFormat": "Query",
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "targetType",
-          "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -1499,6 +1396,7 @@
       "CollectParameters": false,
       "Parameters": [],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -1523,6 +1421,7 @@
       "CollectParameters": false,
       "Parameters": [],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -1572,6 +1471,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -1645,6 +1545,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -1814,6 +1715,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -1935,6 +1837,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -2116,6 +2019,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -2165,6 +2069,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -2214,6 +2119,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -2419,6 +2325,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -2552,6 +2459,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -2697,6 +2605,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -2842,6 +2751,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -2891,6 +2801,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -2940,6 +2851,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -2989,6 +2901,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -3290,6 +3203,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -3339,6 +3253,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -3556,6 +3471,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -3750,6 +3666,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -3799,6 +3716,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -3848,6 +3766,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -3909,6 +3828,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -3994,6 +3914,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -4110,7 +4031,7 @@
           "IsAttribute": false,
           "IsArray": true,
           "IsMap": false,
-          "Name": "topics",
+          "Name": "channels",
           "Description": "Apply a search filter specifically for this model field. The parameter takes a collection of comma separated values that are interpreted  as 'OR' statements. e.g. 'name=foo,baa,lee' will filter the search so that field name must be equal to 'foo' or 'baa' or 'lee'. The query comparator that prefixes the first value can be extended to customise the meaning of the filter condition. Adding an additional '=' creates a 'LIKE' filter instead of 'EQUALS'. e.g. 'name==am' would return all results that  where the model field 'name' is 'LIKE' 'am'. So 'Sam', 'Pam', 'Amber' etc. are valid results. Numerical based fields can use the '>' and '<' to respectively query values that are greater than and smaller than. e.g. 'value=>10' will return only models where the field value is greater than 10. Simple collection fields can use the '^' prefix to indicate a 'CONTAINS' filter. e.g. 'values=^foo' will only return models whether the values field collection contains the value 'foo'."
         },
         {
@@ -4151,6 +4072,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -4200,6 +4122,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -4357,6 +4280,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -4502,6 +4426,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -4551,6 +4476,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -4600,6 +4526,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -4805,6 +4732,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -4998,6 +4926,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -5047,6 +4976,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -5096,6 +5026,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -5169,6 +5100,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -5218,6 +5150,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -5267,6 +5200,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -5316,6 +5250,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -5365,6 +5300,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -5414,6 +5350,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -5463,6 +5400,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -5512,6 +5450,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -5561,6 +5500,70 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
+      "WrapBodyInObject": false
+    },
+    {
+      "Name": "Get Endpoints",
+      "Description": "Get a collection of system dynamic endopints. See the Extension model for more information.",
+      "HTTPMethod": "GET",
+      "Group": "Endpoint",
+      "RequiresAuthentication": true,
+      "Route": "/endpoints",
+      "Response": {
+        "Optional": false,
+        "Type": "Extension",
+        "Constant": false,
+        "IsStream": false,
+        "IsAttribute": false,
+        "IsArray": true,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [],
+      "Errors": [],
+      "TestCases": [],
+      "WrapBodyInObject": false
+    },
+    {
+      "Name": "Get Endpoint Definition",
+      "Description": "Get a  system endpoint swagger definition. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md for more information.",
+      "HTTPMethod": "GET",
+      "Group": "Endpoint",
+      "RequiresAuthentication": true,
+      "Route": "/endpoints/{endpoint_id}",
+      "Response": {
+        "Optional": false,
+        "Type": "Dynamic",
+        "Constant": false,
+        "IsStream": false,
+        "IsAttribute": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "endpoint_id",
+          "Description": "The URI path must specify the endpoint ID."
+        }
+      ],
+      "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -5598,6 +5601,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -5635,6 +5639,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -5684,6 +5689,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -5733,6 +5739,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -5769,6 +5776,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -5914,6 +5922,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -6155,6 +6164,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -6384,6 +6394,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -6408,6 +6419,7 @@
       "CollectParameters": false,
       "Parameters": [],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -6445,6 +6457,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -6482,6 +6495,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -6531,6 +6545,7 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     },
     {
@@ -6580,6 +6595,45 @@
         }
       ],
       "Errors": [],
+      "TestCases": [],
+      "WrapBodyInObject": false
+    },
+    {
+      "Name": "Get Engine Protocols",
+      "Description": "Get a collection of all protocols for n engine. See the Engine Setting model for more information.",
+      "HTTPMethod": "GET",
+      "Group": "Engine",
+      "RequiresAuthentication": true,
+      "Route": "/engines/{engine_id}/protocols",
+      "Response": {
+        "Optional": false,
+        "Type": "Engine Setting",
+        "Constant": false,
+        "IsStream": false,
+        "IsAttribute": false,
+        "IsArray": false,
+        "IsMap": false,
+        "Name": "response"
+      },
+      "HasOptionalQueryParams": false,
+      "HasOptionalFieldParams": false,
+      "CollectParameters": false,
+      "Parameters": [
+        {
+          "ParamFormat": "Template",
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "engine_id",
+          "Description": "The URI path must specify the parent engine ID."
+        }
+      ],
+      "Errors": [],
+      "TestCases": [],
       "WrapBodyInObject": false
     }
   ],
@@ -7507,14 +7561,14 @@
         },
         {
           "Optional": true,
-          "Type": "Node Function",
+          "Type": "String",
           "Constant": false,
           "IsStream": false,
           "IsAttribute": false,
           "IsArray": true,
           "IsMap": false,
           "Name": "functions",
-          "Description": "A collection of defined functions that apply to this node. This is currently an experimental property. See the Node Function model for more information."
+          "Description": "@Depricated"
         }
       ]
     },
@@ -7782,6 +7836,17 @@
           "IsMap": false,
           "Name": "id",
           "Description": "A unique, system assigned record identifier. The ID format is made up as follows: <cluster-id>:<cluster-position> where cluster-id is the id of the cluster. Halo can have a maximum of 32,767 clusters (2^15-1). The cluster-position is the position of the record inside the cluster. Each cluster can handle up to 9,223,372,036,854,780,000 (2^63) records, namely 9,223,372 Trillion of records!"
+        },
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "valueDisplayExpression",
+          "Description": "A Javascript expression used to control the display value of the property value in the GUI. e.g.  if (${value} > 5) ? `on` : `off`"
         }
       ]
     },
@@ -7894,7 +7959,7 @@
           "IsArray": true,
           "IsMap": false,
           "Name": "addresses",
-          "Description": "A collection of IPv4 or IPv6 addresses (or sockets) for the destination hardware headend  node. The first address in the collection is treated as the primary head end node. All subsequent addresses are treated as failover head end nodes. e.g. 1.1.1.1 or 1.1.1.1:222 or 2001:0db8:0a0b:12f0:0000:0000:0000:0001 or 2001:0db8:0a0b:12f0:0000:0000:0000:0001::80.  Required to create."
+          "Description": "@Deprecated since 1.2.1. Please use the `protocol` object to support the engine specific protocol requirements. A collection of IPv4 or IPv6 addresses (or sockets) for the destination hardware headend  node. The first address in the collection is treated as the primary head end node. All subsequent addresses are treated as failover head end nodes. e.g. 1.1.1.1 or 1.1.1.1:222 or 2001:0db8:0a0b:12f0:0000:0000:0000:0001 or 2001:0db8:0a0b:12f0:0000:0000:0000:0001::80.  Required to create."
         },
         {
           "Optional": true,
@@ -7905,7 +7970,7 @@
           "IsArray": false,
           "IsMap": false,
           "Name": "proxy",
-          "Description": "The optional http(s) proxy server used for connections to the hardware. See Proxy model for more information."
+          "Description": "@Deprecated since 1.2.1. Please use the `protocol` object to support the engine specific protocol requirements. The optional http(s) proxy server used for connections to the hardware. See Proxy model for more information."
         },
         {
           "Optional": true,
@@ -7972,6 +8037,17 @@
           "IsMap": false,
           "Name": "owner",
           "Description": "The project owner. See Person model for more information."
+        },
+        {
+          "Optional": true,
+          "Type": "Engine Setting",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "protocol",
+          "Description": "The engine protocol that specifies the protocol based settings that are required by the engine to function. See the Engine Setting model for more information."
         }
       ]
     },
@@ -8021,8 +8097,8 @@
           "IsAttribute": false,
           "IsArray": true,
           "IsMap": false,
-          "Name": "topics",
-          "Description": "A collection of topics that the subscription should listen for. Required to create."
+          "Name": "channels",
+          "Description": "A collection of channels that the subscription should listen for. Required to create."
         },
         {
           "Optional": true,
@@ -8515,43 +8591,6 @@
       ]
     },
     {
-      "Name": "Incident Event Type",
-      "ImplementationType": "Enumeration",
-      "Description": "The type of event that occurred in an incident event",
-      "Fields": [
-        {
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "STARTED"
-        },
-        {
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "CHANGED"
-        },
-        {
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "ENDED"
-        }
-      ]
-    },
-    {
       "Name": "Plugin State",
       "ImplementationType": "Enumeration",
       "Description": "A collection of values that can be used to define an plugin status.",
@@ -8661,35 +8700,6 @@
       ]
     },
     {
-      "Name": "Node Function",
-      "ImplementationType": "Enumeration",
-      "Description": "A collection of values that can be used to define a nodes primary functions. This is an experiment property that is being used to help perform reporting analytical information only at the moment.! ",
-      "Fields": [
-        {
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "OTHER",
-          "Description": "This function should be assigned to all nodes other than transmitting nodes."
-        },
-        {
-          "Optional": false,
-          "Type": "String",
-          "Constant": false,
-          "IsStream": false,
-          "IsAttribute": false,
-          "IsArray": false,
-          "IsMap": false,
-          "Name": "ANTENNA",
-          "Description": "This function should be assigned to transmitting nodes."
-        }
-      ]
-    },
-    {
       "Name": "Project",
       "ImplementationType": "Structure",
       "Description": "All system resources in Halo are context sensitive. This means that the creation of a resource results in that resource being owned by the creator. Projects are mechanism of grouping resources together and subsequently allowing teams to access these resources.",
@@ -8765,7 +8775,7 @@
     {
       "Name": "Proxy",
       "ImplementationType": "Structure",
-      "Description": "A proxy server is a server that acts as an intermediary for Halo requests. Halo currently only supports HTTP(S) proxy servers.",
+      "Description": "Deprecated as of 1.2.2. Engines now define optional proxy for their respective communication mechanisms.",
       "Fields": [
         {
           "Optional": true,
@@ -8985,6 +8995,82 @@
           "Description": "This value is for top level menu items that are containers only. The value is an optional array of menu items making up a sub menu."
         }
       ]
+    },
+    {
+      "Name": "Engine Setting",
+      "BaseType": "Setting",
+      "ImplementationType": "Structure",
+      "Description": "All Halo settings are defined via plugins and use the Angular Formly API to define the form under the fields property and the values are stored under the model property. An extended setting used by engines.",
+      "Fields": [
+        {
+          "Optional": true,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "schedule",
+          "Description": "This value is ONLY respected if the engine defined type is 'REQUESTER`. It is composed of a quartz cron expression that will determine the how often the engine will attempt to harvest data from the hardware. If no value or an invalid expression are supplied the default is `0 0/1 * 1/1 * ? *` It is important to note that the schedule is used to place the sector into a queue at requested intervals. However,  this does not supply any guaranties. Neither regarding the execution itself nor that the execution will happen at  the exact specified interval. Each sector is allocated an operational thread. If the previous request execution has not completed at the time of the new request then the new request will be dumped. So if it takes the engine 15 seconds to complete a harvest and this value is set to 1 second it will simple use up system resources but  will not execute any faster than 15 seconds."
+        }
+      ]
+    },
+    {
+      "Name": "Incident Event Type",
+      "ImplementationType": "Enumeration",
+      "Description": "The type of event that occurred in an incident event",
+      "Fields": [
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "Started"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "Quarantined"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "Restarted"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "Observation"
+        },
+        {
+          "Optional": false,
+          "Type": "String",
+          "Constant": false,
+          "IsStream": false,
+          "IsAttribute": false,
+          "IsArray": false,
+          "IsMap": false,
+          "Name": "Ended"
+        }
+      ]
     }
   ],
   "CodeGenSettings": {
@@ -9006,6 +9092,7 @@
     "ObjCHttpClient": "UNIREST",
     "CSharpHttpClient": "UNIREST",
     "JavaPackageName": "co.ff36.halo.sdk",
+    "JavaUsePropertiesConfig": false,
     "PHPHttpClient": "UNIREST",
     "BrandLabel": "555 INC LTD",
     "ProjectName": "Halo SDK",
@@ -9017,5 +9104,39 @@
     "UseCommonSDKLibrary": false,
     "ParameterArrayFormat": 2
   },
-  "Errors": []
+  "Errors": [
+    {
+      "ErrorCode": 400,
+      "ErrorMessage": "Bad Request: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+    },
+    {
+      "ErrorCode": 401,
+      "ErrorMessage": "Unauthorized: The user does not have the necessary credentials."
+    },
+    {
+      "ErrorCode": 404,
+      "ErrorMessage": "Not Found: Ohhhh you got our junior developer's homepage. For security, some resources not available to the requesting user will return 404 to prevent exposing their existence."
+    },
+    {
+      "ErrorCode": 405,
+      "ErrorMessage": "Method Not Allowed: A request method is not supported for the requested resource; for example, a GET request on a form which requires data to be presented via POST, or a PUT request on a read-only resource."
+    },
+    {
+      "ErrorCode": 408,
+      "ErrorMessage": "Request Timeout: The server timed out waiting for the request. "
+    },
+    {
+      "ErrorCode": 415,
+      "ErrorMessage": "Unsupported Media Type: The request entity has a media type which the server or resource does not support."
+    },
+    {
+      "ErrorCode": 500,
+      "ErrorMessage": "Internal Server Error: Oooops, something went terribly wrong!"
+    }
+  ],
+  "TestGenSettings": {
+    "Configuration": {},
+    "TestTimeout": 30,
+    "PrecisionDelta": 0.01
+  }
 }
